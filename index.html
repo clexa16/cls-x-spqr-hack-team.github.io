@@ -1,4 +1,4 @@
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -354,7 +354,7 @@ html_content = """<!DOCTYPE html>
 
     <div class="top-status-bar">
         <span>[AKIŞ] broadcast.mp3 - Tünellendi</span>
-        <audio controls loop autoplay>
+        <audio controls loop>
             <source src="din.mp3" type="audio/mp3">
             Tarayıcınız ses elementini desteklemiyor.
         </audio>
@@ -434,7 +434,7 @@ html_content = """<!DOCTYPE html>
             <button type="button" class="btn primary" onclick="runLeakScanner()" style="background: #ff00ff; border-color: #ff00ff; color: #fff; cursor: pointer; width: 100%; margin-bottom: 15px;">Sızıntı Ara</button>
             <div class="terminal-box">
                 <div class="terminal-screen" id="leak-screen">
-                    <div class="sim-magenta">[+] Spectre-Dump sızıntı veritabanına bağlandı...</div>
+                    <div class="sim-magenta">[+] Spectre-Dump sızıntı modülü aktifleşti.</div>
                 </div>
             </div>
         </section>
@@ -533,11 +533,11 @@ html_content = """<!DOCTYPE html>
         <section id="bot" class="bot-section">
             <h2>NERVE-AI // Asistan</h2>
             <div class="chatbox-body" id="chatbot-log">
-                <div class="chat-msg bot">[NERVE-AI]: Asistan aktif.</div>
+                <div class="chat-msg bot">[NERVE-AI]: Asistan aktif ve komutları işlemeye hazır.</div>
             </div>
             <form onsubmit="handleLocalAI(event)">
                 <div style="display: flex; gap: 10px;">
-                    <input type="text" id="chat-input" class="form-control" placeholder="Komut yaz..." required>
+                    <input type="text" id="chat-input" class="form-control" placeholder="Komut yaz (örn: durum, yardim, temizle)..." required>
                     <button type="submit" class="btn primary" style="cursor: pointer; white-space: nowrap;">Çalıştır</button>
                 </div>
             </form>
@@ -620,7 +620,7 @@ html_content = """<!DOCTYPE html>
             const screen = document.getElementById('osint-screen');
             if(!alias) { screen.innerHTML += `<div class="sim-red">[!] Hata: Hedef kullanıcı adı belirtilmedi!</div>`; return; }
             
-            screen.innerHTML += `<div class="sim-cyan">[~] Taraniyor: "${alias}" sosyal profiller kontrol ediliyor...</div>`;
+            screen.innerHTML += `<div class="sim-cyan">[~] Taranıyor: "${alias}" sosyal profiller kontrol ediliyor...</div>`;
             screen.scrollTop = screen.scrollHeight;
 
             const targets = [
@@ -712,15 +712,15 @@ html_content = """<!DOCTYPE html>
             if (!ip) { screen.innerHTML += `<div class="sim-red">[!] Hata: IP girilmedi!</div>`; return; }
             screen.innerHTML += `<div class="sim-cyan">[~] Konum sorgulanıyor: ${ip}...</div>`;
             try {
-                const res = await fetch(`http://ip-api.com/json/${ip}`);
+                const res = await fetch(`https://ipapi.co/${ip}/json/`);
                 const data = await res.json();
-                if(data.status === 'success') {
-                    screen.innerHTML += `<div class="sim-green">[KONUM] Ülke: ${data.country} | Şehir: ${data.city} | ISS: ${data.isp}</div>`;
+                if(data && !data.error) {
+                    screen.innerHTML += `<div class="sim-green">[KONUM] Ülke: ${data.country_name} | Şehir: ${data.city} | ISS: ${data.org}</div>`;
                 } else {
                     screen.innerHTML += `<div class="sim-red">[!] Sonuç alınamadı.</div>`;
                 }
             } catch(e) {
-                screen.innerHTML += `<div class="sim-red">[!] Zaman aşımı.</div>`;
+                screen.innerHTML += `<div class="sim-red">[!] Zaman aşımı veya HTTPS/CORS engeli.</div>`;
             }
             screen.scrollTop = screen.scrollHeight;
         }
@@ -729,16 +729,17 @@ html_content = """<!DOCTYPE html>
         async function runLeakScanner() {
             const target = document.getElementById('leak-input').value.trim();
             const screen = document.getElementById('leak-screen');
-            if(!target) { screen.innerHTML += `<div class="sim-red">[!] Hata: Hedef yok!</div>`; return; }
+            if(!target) { screen.innerHTML += `<div class="sim-red">[!] Hata: Hedef e-posta veya kullanıcı adı girilmedi!</div>`; return; }
             
-            screen.innerHTML += `<div class="sim-magenta">[~] Veritabanı sorgulanıyor: "${target}"...</div>`;
+            screen.innerHTML += `<div class="sim-magenta">[~] Veritabanı arabelleği taranıyor: "${target}"...</div>`;
             screen.scrollTop = screen.scrollHeight;
 
-            await new Promise(r => setTimeout(r, 500));
-            if(Math.random() > 0.4) {
-                screen.innerHTML += `<div class="sim-red">[!] DİKKAT: Hedef "${target}" sızıntı arşivinde bulundu!</div>`;
+            await new Promise(r => setTimeout(r, 600));
+            const isLeaked = target.includes('@') && (target.length % 2 === 0);
+            if(isLeaked) {
+                screen.innerHTML += `<div class="sim-red">[!] DİKKAT: Hedef "${target}" ihlal edilen havuzlarda listelenmiştir!</div>`;
             } else {
-                screen.innerHTML += `<div class="sim-green">[+] TEMİZ: Hedef "${target}" sızıntı kaydı yok.</div>`;
+                screen.innerHTML += `<div class="sim-green">[+] TEMİZ: Hedef "${target}" için güncel veri sızıntı kaydı bulunamadı.</div>`;
             }
             screen.scrollTop = screen.scrollHeight;
         }
@@ -795,23 +796,114 @@ html_content = """<!DOCTYPE html>
 
         window.addEventListener('DOMContentLoaded', () => { initSimButtons(); });
 
+        // Firebase Bağlantısı ve Canlı Forum Akışı
         const firebaseConfig = { apiKey: "API_KEY", databaseURL: "https://clss-f7840-default-rtdb.firebaseio.com", projectId: "clss-f7840" };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
-        const postsRef = db.ref('forum_posts');
-        postsRef.on('child_added', (snapshot) => {
-            const data = snapshot.val();
-            const container = document.getElementById('dynamic-forum-container');
-            if(container.innerHTML.includes('Akış senkronize ediliyor')) container.innerHTML = '';
-            const postDiv = document.createElement('div');
-            postDiv.className = 'forum-post';
-            postDiv.innerHTML = `<div class="forum-author">${data.user} <span class="badge-rank">${data.rank || 'ÜYE'}</span></div><div class="forum-date">${data.date}</div><div class="forum-text">${data.message}</div>`;
-            container.prepend(postDiv);
-        });
+        let dbRef = null;
+        let postsRef = null;
+
+        function pushMessageToCloud(user, message, rank) {
+            const now = new Date();
+            const dateStr = `${String(now.getDate()).padStart(2, '0')}.${String(now.getMonth() + 1).padStart(2, '0')}.${now.getFullYear()} - ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+            if(postsRef) {
+                postsRef.push({
+                    user: user,
+                    message: message,
+                    date: dateStr,
+                    rank: rank
+                });
+            }
+        }
+
+        // Genişletilmiş ve 8 Katına Çıkarılmış Dev Forum Havuzu
+        const hugeForumPool = [
+            { user: "Khaos_99", rank: "ELITE", msg: "amk cs2de subtick yuzunden oyunu silcem adamı vuruyom mermi gitmio aq" },
+            { user: "Clexa_Admin", rank: "KURUCU", msg: "ssl dusurenlerın amk banladım gecen serverı sıfırladık" },
+            { user: "Nox_Ağ", rank: "MODERATÖR", msg: "mobile legends te efsane ligine solo cıkan varsa eli öpülür kanser oluyom aq" },
+            { user: "ZeuS_34", rank: "OPERATÖR", msg: "i5 3570 hala tas gibi calisiyo la neini begenmiyonuz 16gb ram ssd var" },
+            { user: "Ghost_41", rank: "OPERATÖR", msg: "torrent oyunlar guncel 100gb patclerden daha hızlı inio la" },
+            { user: "KernelPanic", rank: "ELITE", msg: "pythonla portscanner py yazıyom arkada ram şişmesin diye ugrasıyom" },
+            { user: "Vortex", rank: "MODERATÖR", msg: "honeypot py actım bugun bi rus ip gelip tarama yaptı logları izliyom djdjdj" },
+            { user: "CyberTurk", rank: "OPERATÖR", msg: "arp spoofing deneyen bebeler switchi patlatmıs local agda" },
+            { user: "RootMaster", rank: "ELITE", msg: "linux kernel compile ederken hata alıp duruyom config bozuldu aq" },
+            { user: "ByteSlayer", rank: "OPERATÖR", msg: "lolden cıktım midde feedleyen adama sövmekten sesim kısıldı" },
+            { user: "NeonHacker", rank: "OPERATÖR", msg: "discord token calıyom diyen vebeler gelmiş siteye saldrcam dio skdkf" },
+            { user: "ArchUser", rank: "ELITE", msg: "btw i use arch la bu hız baska hicbir seyde yok" },
+            { user: "DarkEcho", rank: "OPERATÖR", msg: "gizliislembul py calıstırdım arka planda cryptolocker varmıs sildim" },
+            { user: "BitStream", rank: "MODERATÖR", msg: "github depoya star atın la biraz gelsin scriptler" },
+            { user: "Pala_33", rank: "OPERATÖR", msg: "mersin sıcaklıgından bilgisayar yanacak gpu testte 90 dereceyi gördü amk" },
+            { user: "Anarxist", rank: "ELITE", msg: "ddos atcagınıza bi routeri resetleyin la daha cok ise yario" },
+            { user: "DefacerTR", rank: "OPERATÖR", msg: "index basacak site kalmadı millette phpBB kalıntıları var hep" },
+            { user: "LagMaster", rank: "OPERATÖR", msg: "valorantta ping bi fırlıyo 800 ms oluyo türktelekomun anasını s...m" },
+            { user: "Kedi_Kodcu", rank: "OPERATÖR", msg: "klavyeye kedi bastı gece yarısı 500 satır hata kodu olustu aq" },
+            { user: "Hamsi_06", rank: "OPERATÖR", msg: "trabzonspor yine yense de iddaa parasıyla yeni psu alsak" },
+            { user: "ZeroCool", rank: "ELITE", msg: "matrix havası yaratacam diye heryeri yeşil yapmayın göz zikişiyo" },
+            { user: "Gezgin_07", rank: "OPERATÖR", msg: "antalya sahilde bile laptoptan baglanıyom ag kesilmiyo" },
+            { user: "Sokak_Mühendisi", rank: "MODERATÖR", msg: "cat6 kabloyu tavandan asarak gectim ping 2ms dustu klan rahatladı" },
+            { user: "FastLane", rank: "OPERATÖR", msg: "gtx 1055ti ile hala direniyoz cyberpunk 15fps ama idare edio" },
+            { user: "ModemBükücü", rank: "OPERATÖR", msg: "tivibu kullanan komşunun wifi şifresini kırdım dizi izliyom" },
+            // Genişletilmiş Benzer Replikler (8 Katı)
+            { user: "Hacker_Emre", rank: "OPERATÖR", msg: "gta 6 pcye gelene kadar muhtemelen ddr6 ramler çıkacak la" },
+            { user: "Cyber_Kedi", rank: "ELITE", msg: "arch linux kurdum diye havaya girmeyin her guncellemede bi yer patlıyo" },
+            { user: "PacketLoss", rank: "OPERATÖR", msg: "oyunda adamı görmeden öldüm replaya baktım ping yüzünden mermim havada kalmış" },
+            { user: "Kral_1453", rank: "MODERATÖR", msg: "ssd markası tavsiye edecen var mı ucuz yollu dramli bişey arıyom" },
+            { user: "Ghost_Rider", rank: "ELITE", msg: "wiresharkla evdeki akilli süpürgenin çine veri gönderdiğini yakaladım oha ya" },
+            { user: "Root_Can", rank: "OPERATÖR", msg: "sabaha kadar bash script yazdim kafam lapa lapa oldu" },
+            { user: "Tekno_Deli", rank: "OPERATÖR", msg: "eski tüplü monitörler bile şimdiki ips ekranlardan daha az göz yoruyodu" },
+            { user: "BlueScreen", rank: "ELITE", msg: "windows update yaparken elektrik gitti bios pili de ölüymüş sıfırdan kuruyom" },
+            { user: "AnadoluHacker", rank: "OPERATÖR", msg: "kahveden baglanıyom wifi hızı evinkinden iyi nasıl iş la bu" },
+            { user: "BitCracker", rank: "MODERATÖR", msg: "gpu fiyatları uçmuşken gtx 1060 la mezara kadar gidecez galiba" },
+            { user: "Cyber_Muhtar", rank: "OPERATÖR", msg: "mahaldeki fiber kabloyu kepçe kopardı 3 gündür internetsiziz rezillik" },
+            { user: "Matrix_Fan", rank: "ELITE", msg: "kodların arasına biraz dark mode rengi serpiştirin beyler gözümüz aktı" },
+            { user: "Lag_Savar", rank: "OPERATÖR", msg: "valorantta Aim den ziyade interneti iyi olan kazanıyor abicim net" },
+            { user: "CodeMonkey", rank: "MODERATÖR", msg: "stack overflow olmasa ne yapardık acaba meslek hayatım biterdi" },
+            { user: "Bedevi_Reis", rank: "OPERATÖR", msg: "iddaa kuponu yatınca moralen tüm optimizasyonlar bozuldu" }
+        ];
+
+        const recentMessages = [];
+        const MAX_RECENT_MEMORY = 15;
+
+        setInterval(() => {
+            if(postsRef && hugeForumPool.length > 0) {
+                let availablePool = hugeForumPool.filter(item => !recentMessages.includes(item.msg));
+                if(availablePool.length === 0) {
+                    recentMessages.length = 0;
+                    availablePool = hugeForumPool;
+                }
+
+                const randomEntry = availablePool[Math.floor(Math.random() * availablePool.length)];
+                recentMessages.push(randomEntry.msg);
+                if(recentMessages.length > MAX_RECENT_MEMORY) {
+                    recentMessages.shift();
+                }
+
+                pushMessageToCloud(randomEntry.user, randomEntry.msg, randomEntry.rank);
+            }
+        }, 6500);
+
+        try {
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.database();
+            postsRef = db.ref('forum_posts');
+            dbRef = postsRef;
+            dbRef.on('child_added', (snapshot) => {
+                const data = snapshot.val();
+                const container = document.getElementById('dynamic-forum-container');
+                if(container.innerHTML.includes('Akış senkronize ediliyor')) container.innerHTML = '';
+                const postDiv = document.createElement('div');
+                postDiv.className = 'forum-post';
+                postDiv.innerHTML = `<div class="forum-author">${data.user} <span class="badge-rank">${data.rank || 'ÜYE'}</span></div><div class="forum-date">${data.date}</div><div class="forum-text">${data.message}</div>`;
+                container.prepend(postDiv);
+            });
+        } catch(err) {
+            console.error("Firebase başlatılamadı:", err);
+        }
 
         function handleCloudPost(e) {
             e.preventDefault();
-            postsRef.push({ user: document.getElementById('forum-user').value, message: document.getElementById('forum-message').value, date: 'Şimdi', rank: 'ÜYE' });
+            const user = document.getElementById('forum-user').value;
+            const message = document.getElementById('forum-message').value;
+            pushMessageToCloud(user, message, 'ÜYE');
             document.getElementById('forum-form').reset();
         }
 
@@ -824,26 +916,43 @@ html_content = """<!DOCTYPE html>
             document.getElementById('register-form').reset();
         }
 
+        // Nerve-AI Bot Chat Mekanizması
         function handleLocalAI(e) {
             e.preventDefault();
+            const inputField = document.getElementById('chat-input');
             const logBox = document.getElementById('chatbot-log');
-            logBox.innerHTML += `<div class="chat-msg user">[SEN]: ${document.getElementById('chat-input').value}</div>`;
-            document.getElementById('chat-input').value = '';
-            setTimeout(() => { logBox.innerHTML += `<div class="chat-msg bot">[NERVE-AI]: İşlem tamamlandı.</div>`; logBox.scrollTop = logBox.scrollHeight; }, 400);
+            const userText = inputField.value.trim();
+            
+            logBox.innerHTML += `<div class="chat-msg user">[SEN]: ${userText}</div>`;
+            inputField.value = '';
+            
+            setTimeout(() => {
+                let botReply = "[NERVE-AI]: Komut işlendi.";
+                const lower = userText.toLowerCase();
+                
+                if(lower.includes('durum') || lower.includes('status')) {
+                    botReply = "[NERVE-AI]: Tüm düğümler kararlı, sistem çevrim içi.";
+                } else if(lower.includes('yardim') || lower.includes('help')) {
+                    botReply = "[NERVE-AI]: Kullanılabilir modüller: OSINT, Subdomain, Spectre-Dump, Konum Sorgu.";
+                } else if(lower.includes('temizle') || lower.includes('clear')) {
+                    logBox.innerHTML = '<div class="chat-msg bot">[NERVE-AI]: Günlük arabellek temizlendi.</div>';
+                    return;
+                } else if(lower.includes('merhaba') || lower.includes('selam')) {
+                    botReply = "[NERVE-AI]: Selam operatör. Hangi aracı devreye sokmak istiyorsun?";
+                }
+                
+                logBox.innerHTML += `<div class="chat-msg bot">${botReply}</div>`;
+                logBox.scrollTop = logBox.scrollHeight;
+            }, 350);
         }
 
         setInterval(() => {
             const counter = document.getElementById('active-count');
-            let val = parseInt(counter.innerText) + Math.floor(Math.random() * 3) - 1;
-            counter.innerText = val > 130 ? val : 138;
+            if(counter) {
+                let val = parseInt(counter.innerText) + Math.floor(Math.random() * 3) - 1;
+                counter.innerText = val > 130 ? val : 138;
+            }
         }, 4000);
     </script>
 </body>
 </html>
-"""
-
-import uuid
-file_tag = f"code-generated-file-{uuid.uuid4().hex[:10]}"
-with open("index.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
-print(f"[file-tag: {file_tag}]")
