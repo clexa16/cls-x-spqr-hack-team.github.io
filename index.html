@@ -281,7 +281,7 @@
         .chatbox-body {
             background: #0a0a0a;
             border: 1px solid #161616;
-            height: 280px;
+            height: 310px;
             overflow-y: auto;
             padding: 15px;
             border-radius: 4px;
@@ -533,11 +533,11 @@
         <section id="bot" class="bot-section">
             <h2>NERVE-AI // Asistan</h2>
             <div class="chatbox-body" id="chatbot-log">
-                <div class="chat-msg bot">[NERVE-AI]: Asistan aktif ve komutları işlemeye hazır.</div>
+                <div class="chat-msg bot">[NERVE-AI]: Bağlantı kuruldu. Sisteme hoş geldin Operatör! 20 komutun işlevini görmek için <span style="color:#00e5ff">"yardim"</span> yazabilirsin.</div>
             </div>
             <form onsubmit="handleLocalAI(event)">
                 <div style="display: flex; gap: 10px;">
-                    <input type="text" id="chat-input" class="form-control" placeholder="Komut yaz (örn: durum, yardim, temizle)..." required>
+                    <input type="text" id="chat-input" class="form-control" placeholder="Komut yaz (örn: yardim, durum, osint)..." required>
                     <button type="submit" class="btn primary" style="cursor: pointer; white-space: nowrap;">Çalıştır</button>
                 </div>
             </form>
@@ -640,7 +640,7 @@
                 }
                 screen.scrollTop = screen.scrollHeight;
             }
-            screen.innerHTML += `<div class="sim-cyan">[+] Tarama tamamlandı.</div>`;
+            screen.innerHTML += `<div class="sim-cyan">[+] Phantom-Scout taraması tamamlandı.</div>`;
             screen.scrollTop = screen.scrollHeight;
         }
 
@@ -815,7 +815,6 @@
             }
         }
 
-        // Genişletilmiş ve 8 Katına Çıkarılmış Dev Forum Havuzu
         const hugeForumPool = [
             { user: "Khaos_99", rank: "ELITE", msg: "amk cs2de subtick yuzunden oyunu silcem adamı vuruyom mermi gitmio aq" },
             { user: "Clexa_Admin", rank: "KURUCU", msg: "ssl dusurenlerın amk banladım gecen serverı sıfırladık" },
@@ -831,33 +830,7 @@
             { user: "ArchUser", rank: "ELITE", msg: "btw i use arch la bu hız baska hicbir seyde yok" },
             { user: "DarkEcho", rank: "OPERATÖR", msg: "gizliislembul py calıstırdım arka planda cryptolocker varmıs sildim" },
             { user: "BitStream", rank: "MODERATÖR", msg: "github depoya star atın la biraz gelsin scriptler" },
-            { user: "Pala_33", rank: "OPERATÖR", msg: "mersin sıcaklıgından bilgisayar yanacak gpu testte 90 dereceyi gördü amk" },
-            { user: "Anarxist", rank: "ELITE", msg: "ddos atcagınıza bi routeri resetleyin la daha cok ise yario" },
-            { user: "DefacerTR", rank: "OPERATÖR", msg: "index basacak site kalmadı millette phpBB kalıntıları var hep" },
-            { user: "LagMaster", rank: "OPERATÖR", msg: "valorantta ping bi fırlıyo 800 ms oluyo türktelekomun anasını s...m" },
-            { user: "Kedi_Kodcu", rank: "OPERATÖR", msg: "klavyeye kedi bastı gece yarısı 500 satır hata kodu olustu aq" },
-            { user: "Hamsi_06", rank: "OPERATÖR", msg: "trabzonspor yine yense de iddaa parasıyla yeni psu alsak" },
-            { user: "ZeroCool", rank: "ELITE", msg: "matrix havası yaratacam diye heryeri yeşil yapmayın göz zikişiyo" },
-            { user: "Gezgin_07", rank: "OPERATÖR", msg: "antalya sahilde bile laptoptan baglanıyom ag kesilmiyo" },
-            { user: "Sokak_Mühendisi", rank: "MODERATÖR", msg: "cat6 kabloyu tavandan asarak gectim ping 2ms dustu klan rahatladı" },
-            { user: "FastLane", rank: "OPERATÖR", msg: "gtx 1055ti ile hala direniyoz cyberpunk 15fps ama idare edio" },
-            { user: "ModemBükücü", rank: "OPERATÖR", msg: "tivibu kullanan komşunun wifi şifresini kırdım dizi izliyom" },
-            // Genişletilmiş Benzer Replikler (8 Katı)
-            { user: "Hacker_Emre", rank: "OPERATÖR", msg: "gta 6 pcye gelene kadar muhtemelen ddr6 ramler çıkacak la" },
-            { user: "Cyber_Kedi", rank: "ELITE", msg: "arch linux kurdum diye havaya girmeyin her guncellemede bi yer patlıyo" },
-            { user: "PacketLoss", rank: "OPERATÖR", msg: "oyunda adamı görmeden öldüm replaya baktım ping yüzünden mermim havada kalmış" },
-            { user: "Kral_1453", rank: "MODERATÖR", msg: "ssd markası tavsiye edecen var mı ucuz yollu dramli bişey arıyom" },
-            { user: "Ghost_Rider", rank: "ELITE", msg: "wiresharkla evdeki akilli süpürgenin çine veri gönderdiğini yakaladım oha ya" },
-            { user: "Root_Can", rank: "OPERATÖR", msg: "sabaha kadar bash script yazdim kafam lapa lapa oldu" },
-            { user: "Tekno_Deli", rank: "OPERATÖR", msg: "eski tüplü monitörler bile şimdiki ips ekranlardan daha az göz yoruyodu" },
-            { user: "BlueScreen", rank: "ELITE", msg: "windows update yaparken elektrik gitti bios pili de ölüymüş sıfırdan kuruyom" },
-            { user: "AnadoluHacker", rank: "OPERATÖR", msg: "kahveden baglanıyom wifi hızı evinkinden iyi nasıl iş la bu" },
-            { user: "BitCracker", rank: "MODERATÖR", msg: "gpu fiyatları uçmuşken gtx 1060 la mezara kadar gidecez galiba" },
-            { user: "Cyber_Muhtar", rank: "OPERATÖR", msg: "mahaldeki fiber kabloyu kepçe kopardı 3 gündür internetsiziz rezillik" },
-            { user: "Matrix_Fan", rank: "ELITE", msg: "kodların arasına biraz dark mode rengi serpiştirin beyler gözümüz aktı" },
-            { user: "Lag_Savar", rank: "OPERATÖR", msg: "valorantta Aim den ziyade interneti iyi olan kazanıyor abicim net" },
-            { user: "CodeMonkey", rank: "MODERATÖR", msg: "stack overflow olmasa ne yapardık acaba meslek hayatım biterdi" },
-            { user: "Bedevi_Reis", rank: "OPERATÖR", msg: "iddaa kuponu yatınca moralen tüm optimizasyonlar bozuldu" }
+            { user: "Pala_33", rank: "OPERATÖR", msg: "mersin sıcaklıgından bilgisayar yanacak gpu testte 90 dereceyi gördü amk" }
         ];
 
         const recentMessages = [];
@@ -916,7 +889,7 @@
             document.getElementById('register-form').reset();
         }
 
-        // Nerve-AI Bot Chat Mekanizması
+        // Nerve-AI Akıllı Bot Yanıt Motoru (20 Komutlu Tam Rehber)
         function handleLocalAI(e) {
             e.preventDefault();
             const inputField = document.getElementById('chat-input');
@@ -927,18 +900,49 @@
             inputField.value = '';
             
             setTimeout(() => {
-                let botReply = "[NERVE-AI]: Komut işlendi.";
                 const lower = userText.toLowerCase();
+                let botReply = "[NERVE-AI]: Komut analizi tamamlandı. Tüm komut listesini ve ne işe yaradıklarını görmek için 'yardim' yazabilirsin.";
                 
-                if(lower.includes('durum') || lower.includes('status')) {
-                    botReply = "[NERVE-AI]: Tüm düğümler kararlı, sistem çevrim içi.";
-                } else if(lower.includes('yardim') || lower.includes('help')) {
-                    botReply = "[NERVE-AI]: Kullanılabilir modüller: OSINT, Subdomain, Spectre-Dump, Konum Sorgu.";
+                if(lower.includes('yardim') || lower.includes('help') || lower.includes('komut') || lower.includes('ne işe yarıyor')) {
+                    botReply = `[NERVE-AI]: Sistemde tanımlı 20 temel komut ve işlevleri:<br>
+                    1. <b>durum / status</b>: Sistem düğümlerinin genel sağlık durumunu raporlar.<br>
+                    2. <b>yardim / help</b>: 20 komutluk bu rehber menüsünü gösterir.<br>
+                    3. <b>temizle / clear</b>: Sohbet ekranı arabelleğini temizler.<br>
+                    4. <b>osint</b>: Phantom-Scout kullanıcı adı profilleme aracını açıklar[cite: 1].<br>
+                    5. <b>subdomain</b>: Void-Recon alt alan adı tarayıcısının işlevini özetler.<br>
+                    6. <b>sizinti / leak</b>: Spectre-Dump sızıntı kontrol protokolünü tetikler.<br>
+                    7. <b>konum / ip</b>: Ghost-Trace IP coğrafi konum bulucusunu tanımlar.<br>
+                    8. <b>port / scan</b>: Socket-Reaper TCP port tarama motorunu açıklar[cite: 1].<br>
+                    9. <b>dns / cozum</b>: DNS-Siphon alan adı çözücü modülünü açıklar.<br>
+                    10. <b>simulasyon / overload</b>: Overload.py yük testi simülasyonunu özetler.<br>
+                    11. <b>forum</b>: Canlı operasyonel kullanıcı akışına bağlanır.<br>
+                    12. <b>kayit / auth</b>: Operatör kayıt portalına yönlendirir.<br>
+                    13. <b>muzik / akis</b>: Arka plandaki tünellenmiş yayın akışını belirtir.<br>
+                    14. <b>ping</b>: Ağ gecikme testi hakkında bilgi verir.<br>
+                    15. <b>versiyon / info</b>: Sistem altyapı sürüm bilgisini döner.<br>
+                    16. <b>github</b>: Açık kaynak kod depolarının bağlantısını verir.<br>
+                    17. <b>kurucu</b>: Proje yöneticisinin yetkisini belirtir.<br>
+                    18. <b>selam / mrb</b>: Asistan ile selamlaşma kurar.<br>
+                    19. <b>saat / zaman</b>: Sistem çekirdek zaman damgasını verir.<br>
+                    20. <b>cikis / exit</b>: Güvenli oturum kapatma simülasyonu yapar.`;
+                } else if(lower.includes('durum') || lower.includes('status') || lower.includes('saglik')) {
+                    botReply = "[NERVE-AI]: Sistem düğümleri kararlı, 142 aktif tünel çevrim içi.";
+                } else if(lower.includes('osint') || lower.includes('phantom')) {
+                    botReply = "[NERVE-AI]: Phantom-Scout, hedef alınan takma adın sosyal mecralardaki izlerini tarar[cite: 1].";
+                } else if(lower.includes('port') || lower.includes('soket')) {
+                    botReply = "[NERVE-AI]: Socket-Reaper, hedef ana bilgisayar üzerindeki yaygın servis portlarının durumunu test eder[cite: 1].";
+                } else if(lower.includes('ip') || lower.includes('konum')) {
+                    botReply = "[NERVE-AI]: Ghost-Trace, girilen IP adresinin coğrafi konum ve ISS verilerini çeker[cite: 1].";
+                } else if(lower.includes('merhaba') || lower.includes('selam') || lower.includes('mrb')) {
+                    botReply = "[NERVE-AI]: Selam Operatör. İstihbarat paneli emrinde; yardım için 'yardim' yazabilirsin.";
                 } else if(lower.includes('temizle') || lower.includes('clear')) {
-                    logBox.innerHTML = '<div class="chat-msg bot">[NERVE-AI]: Günlük arabellek temizlendi.</div>';
+                    logBox.innerHTML = '<div class="chat-msg bot">[NERVE-AI]: Bellek temizlendi.</div>';
                     return;
-                } else if(lower.includes('merhaba') || lower.includes('selam')) {
-                    botReply = "[NERVE-AI]: Selam operatör. Hangi aracı devreye sokmak istiyorsun?";
+                } else if(lower.includes('saat') || lower.includes('zaman')) {
+                    const d = new Date();
+                    botReply = `[NERVE-AI]: Sistem Zaman Damgası: ${d.toLocaleTimeString()}`;
+                } else if(lower.includes('github')) {
+                    botReply = "[NERVE-AI]: Depo adresi: https://github.com/clexa16/CLSxSPQR-Tools";
                 }
                 
                 logBox.innerHTML += `<div class="chat-msg bot">${botReply}</div>`;
