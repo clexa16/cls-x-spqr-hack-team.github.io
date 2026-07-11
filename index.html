@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CLS-X-SPQR // İstihbarat Paneli</title>
-    <!-- Firebase SDK Yükleme -->
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     <style>
@@ -173,12 +173,49 @@
             transform: translateY(-3px);
         }
 
-        .info-section, .tools-section, .forum-section, .auth-section, .bot-section, .sim-section, .resolver-section, .scanner-section, .tracer-section, .leak-section, .osint-section, .subdomain-section {
+        .info-section, .tools-section, .forum-section, .auth-section, .bot-section, .sim-section, .resolver-section, .scanner-section, .tracer-section, .leak-section, .osint-section, .subdomain-section, .map-section {
             background-color: rgba(8, 8, 8, 0.92);
             border: 1px solid #1a1a1a;
             border-radius: 6px;
             padding: 40px;
             margin-bottom: 35px;
+        }
+
+        #threat-stream-container {
+            width: 100%;
+            height: 480px;
+            background-color: #020202;
+            border: 1px solid #1a1a1a;
+            border-top: 2px solid #00FF00;
+            border-radius: 4px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-y: auto;
+            margin-top: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .city-log-item {
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #1a331a;
+            animation: fadeIn 0.4s ease-out;
+        }
+        .city-title {
+            font-size: 1.05rem;
+            color: #e0e0e0;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+        .success-text {
+            color: #00FF00;
+            text-shadow: 0 0 6px rgba(0, 255, 0, 0.4);
+            margin: 3px 0;
+        }
+        .failure-text {
+            color: #FF0000;
+            text-shadow: 0 0 6px rgba(255, 0, 0, 0.4);
+            margin: 3px 0;
         }
 
         .terminal-box {
@@ -368,13 +405,14 @@
         </div>
         <nav>
             <a href="#genel">Ana Sayfa</a>
-            <a href="#osint">Phantom-Scout</a>
-            <a href="#subdomain">Void-Recon</a>
-            <a href="#leakcheck">Spectre-Dump</a>
-            <a href="#tracer">Ghost-Trace</a>
-            <a href="#scanner">Socket-Reaper</a>
-            <a href="#resolver">DNS-Siphon</a>
-            <a href="#simulasyon">Overload.py</a>
+            <a href="#radar">Operasyonlar</a>
+            <a href="#osint">Phantom</a>
+            <a href="#subdomain">Void</a>
+            <a href="#leakcheck">Spectre</a>
+            <a href="#tracer">Ghost</a>
+            <a href="#scanner">Socket</a>
+            <a href="#resolver">DNS</a>
+            <a href="#simulasyon">Overload</a>
             <a href="#forum">Forum</a>
             <a href="#bot">Nerve-AI</a>
         </nav>
@@ -391,6 +429,19 @@
             </div>
         </section>
 
+        <!-- OPERASYONLAR -->
+        <section id="radar" class="map-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                <div>
+                    <h2 style="color: #00FF00; font-size: 1.35rem; margin-bottom: 5px;">Operasyonlar</h2>
+                    <p style="font-family: 'Courier New', Courier, monospace; color: #888; font-size: 0.8rem;">ANLIK AKIŞ // SAATLİK GÜNCEL VERİ AKIŞI AKTİF</p>
+                </div>
+            </div>
+            <div id="threat-stream-container">
+                <!-- Canlı saat başı operasyonlar buraya düşecek -->
+            </div>
+        </section>
+
         <!-- PHANTOM-SCOUT // ALIAS OSINT SCANNER -->
         <section id="osint" class="osint-section">
             <h2 style="color: #00e5ff; font-size: 1.35rem; margin-bottom: 5px;">| PHANTOM-SCOUT // OSINT Tarayıcı |</h2>
@@ -402,7 +453,7 @@
             <button type="button" class="btn primary" onclick="runAliasOsint()" style="background: #00e5ff; border-color: #00e5ff; color: #000; cursor: pointer; width: 100%; margin-bottom: 15px;">Kullanıcı Adı Ara</button>
             <div class="terminal-box">
                 <div class="terminal-screen" id="osint-screen">
-                    <div class="sim-cyan">[+] Phantom-Scout hazır. Kullanıcı adı analizi bekleniyor...</div>
+                    <div class="sim-cyan">[+] Phantom-Scout hazır. Kullanıcı adı analizi bekleniyor[cite: 1]...</div>
                 </div>
             </div>
         </section>
@@ -450,7 +501,7 @@
             <button type="button" class="btn primary" onclick="traceIPLocation()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">IP Konumunu Sorgula</button>
             <div class="terminal-box">
                 <div class="terminal-screen" id="tracer-screen">
-                    <div class="sim-green">[+] IP konum çekirdeği aktif.</div>
+                    <div class="sim-green">[+] IP konum çekirdeği aktif[cite: 1].</div>
                 </div>
             </div>
         </section>
@@ -466,7 +517,7 @@
             <button type="button" class="btn primary" onclick="runPortScanner()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">Portları Tara</button>
             <div class="terminal-box">
                 <div class="terminal-screen" id="scanner-screen">
-                    <div class="sim-green">[+] TCP Soket motoru hazır.</div>
+                    <div class="sim-green">[+] TCP Soket motoru hazır[cite: 1].</div>
                 </div>
             </div>
         </section>
@@ -533,7 +584,7 @@
         <section id="bot" class="bot-section">
             <h2>NERVE-AI // Asistan</h2>
             <div class="chatbox-body" id="chatbot-log">
-                <div class="chat-msg bot">[NERVE-AI]: Bağlantı kuruldu. Sisteme hoş geldin Operatör! 20 komutun işlevini görmek için <span style="color:#00e5ff">"yardim"</span> yazabilirsin.</div>
+                <div class="chat-msg bot">[NERVE-AI]: Bağlantı kuruldu. Sisteme hoş geldin Operatör! 20 komutun işlevini görmek için <span style="color:#00ff66">"yardim"</span> yazabilirsin[cite: 1].</div>
             </div>
             <form onsubmit="handleLocalAI(event)">
                 <div style="display: flex; gap: 10px;">
@@ -614,6 +665,56 @@
             }
         });
 
+        // Saat Başına Canlı Operasyonlar Havuzu (1 Saatte Bir Güncellenir)
+        const liveOperationsPool = [
+            ["Moskova, Rusya", "Merkezi enerji şebekesinin SCADA sistemlerine sızıldı."],
+            ["Tokyo, Japonya", "Otomotiv devinin robotik montaj hattı durduruldu."],
+            ["Londra, Birleşik Krallık", "Yatırım bankasının SWIFT anahtarları tarandı."],
+            ["Washington DC, ABD", "Savunma bakanlığı lojistik veritabanına erişildi."],
+            ["Seul, Güney Kore", "Yarı iletken üreticisinin ar-ge armatürleri çekildi."],
+            ["Berlin, Almanya", "Kimya tesisinin akış valfleri yoklandı."],
+            ["Pekin, Çin", "Uydu yer istasyonunun yörünge modülü izlendi."],
+            ["Tahran, İran", "Santrifüj kontrol veritabanı sorgulandı."],
+            ["Tel Aviv, İsrail", "Erken uydu telemetrisi intercept edildi."],
+            ["Brasilia, Brezilya", "Enerji borsası altyapısı tarandı."],
+            ["Paris, Fransa", "Nükleer santral soğutma pompaları incelendi."],
+            ["Ankara, Türkiye", "Savunma sanayi ar-ge telemetrisi yoklandı."],
+            ["Yeni Delhi, Hindistan", "Demiryolu lojistik takip paneli tarandı."],
+            ["Roma, İtalya", "Telekomünikasyon omurga yönlendiricileri izlendi."],
+            ["Ottawa, Kanada", "Doğalgaz scada sensörleri sorgulandı."]
+        ];
+
+        function addLiveOperation() {
+            const container = document.getElementById('threat-stream-container');
+            const item = liveOperationsPool[Math.floor(Math.random() * liveOperationsPool.length)];
+            const city = item[0];
+            const desc = item[1];
+            const now = new Date();
+            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+            
+            const isSuccess = Math.random() > 0.3;
+            const statusHtml = isSuccess 
+                ? `<div class="success-text"><span style="color:#00FF00;">✔ Operasyon Onaylandı</span>: ${desc}</div>` 
+                : `<div class="failure-text"><span style="color:#FF0000;">✘ Engellendi / Kesinti</span>: ${desc}</div>`;
+
+            const opDiv = document.createElement('div');
+            opDiv.className = 'city-log-item';
+            opDiv.innerHTML = `
+                <div class="city-title">[${timeStr}] ## ${city}</div>
+                ${statusHtml}
+            `;
+            
+            container.prepend(opDiv);
+            if (container.children.length > 50) {
+                container.removeChild(container.lastChild);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            addLiveOperation(); // Sayfa açıldığında ilk logu düş
+            setInterval(addLiveOperation, 3600000); // Tam 1 saatte (3600000 ms) bir yeni saldırı ekle
+        });
+
         // 1. Phantom-Scout OSINT
         async function runAliasOsint() {
             const alias = document.getElementById('osint-input').value.trim();
@@ -640,7 +741,7 @@
                 }
                 screen.scrollTop = screen.scrollHeight;
             }
-            screen.innerHTML += `<div class="sim-cyan">[+] Phantom-Scout taraması tamamlandı.</div>`;
+            screen.innerHTML += `<div class="sim-cyan">[+] Phantom-Scout taraması tamamlandı[cite: 1].</div>`;
             screen.scrollTop = screen.scrollHeight;
         }
 
@@ -829,7 +930,7 @@
             { user: "NeonHacker", rank: "OPERATÖR", msg: "discord token calıyom diyen vebeler gelmiş siteye saldrcam dio skdkf" },
             { user: "ArchUser", rank: "ELITE", msg: "btw i use arch la bu hız baska hicbir seyde yok" },
             { user: "DarkEcho", rank: "OPERATÖR", msg: "gizliislembul py calıstırdım arka planda cryptolocker varmıs sildim" },
-            { user: "BitStream", rank: "MODERATÖR", msg: "github depoya star atın la biraz gelsin scriptler" },
+            { user: "BitStream", rank: "MODERATÖR", msg: "github depopre star atın la biraz gelsin scriptler" },
             { user: "Pala_33", rank: "OPERATÖR", msg: "mersin sıcaklıgından bilgisayar yanacak gpu testte 90 dereceyi gördü amk" }
         ];
 
@@ -901,19 +1002,19 @@
             
             setTimeout(() => {
                 const lower = userText.toLowerCase();
-                let botReply = "[NERVE-AI]: Komut analizi tamamlandı. Tüm komut listesini ve ne işe yaradıklarını görmek için 'yardim' yazabilirsin.";
+                let botReply = "[NERVE-AI]: Komut analizi tamamlandı. Tüm komut listesini ve ne işe yaradıklarını görmek için 'yardim' yazabilirsin[cite: 1].";
                 
                 if(lower.includes('yardim') || lower.includes('help') || lower.includes('komut') || lower.includes('ne işe yarıyor')) {
-                    botReply = `[NERVE-AI]: Sistemde tanımlı 20 temel komut ve işlevleri:<br>
-                    1. <b>durum / status</b>: Sistem düğümlerinin genel sağlık durumunu raporlar.<br>
-                    2. <b>yardim / help</b>: 20 komutluk bu rehber menüsünü gösterir.<br>
+                    botReply = `[NERVE-AI]: Sistemde tanımlı temel komutlar ve işlevleri:<br>
+                    1. <b>durum / status</b>: Sistem genel sağlık durumunu raporlar.<br>
+                    2. <b>yardim / help</b>: Komut rehber menüsünü gösterir.<br>
                     3. <b>temizle / clear</b>: Sohbet ekranı arabelleğini temizler.<br>
                     4. <b>osint</b>: Phantom-Scout kullanıcı adı profilleme aracını açıklar[cite: 1].<br>
-                    5. <b>subdomain</b>: Void-Recon alt alan adı tarayıcısının işlevini özetler.<br>
-                    6. <b>sizinti / leak</b>: Spectre-Dump sızıntı kontrol protokolünü tetikler.<br>
-                    7. <b>konum / ip</b>: Ghost-Trace IP coğrafi konum bulucusunu tanımlar.<br>
+                    5. <b>subdomain</b>: Void-Recon alt alan adı tarayıcısını özetler.<br>
+                    6. <b>sizinti / leak</b>: Spectre-Dump sızıntı kontrolünü tetikler.<br>
+                    7. <b>konum / ip</b>: Ghost-Trace IP konum bulucusunu tanımlar[cite: 1].<br>
                     8. <b>port / scan</b>: Socket-Reaper TCP port tarama motorunu açıklar[cite: 1].<br>
-                    9. <b>dns / cozum</b>: DNS-Siphon alan adı çözücü modülünü açıklar.<br>
+                    9. <b>harita / map</b>: Sabit istihbarat haritası durumunu belirtir.<br>
                     10. <b>simulasyon / overload</b>: Overload.py yük testi simülasyonunu özetler.<br>
                     11. <b>forum</b>: Canlı operasyonel kullanıcı akışına bağlanır.<br>
                     12. <b>kayit / auth</b>: Operatör kayıt portalına yönlendirir.<br>
