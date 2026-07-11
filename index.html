@@ -389,7 +389,7 @@
             <a href="#toollar">Araçlar</a>
             <a href="#bilgilendirme">Bilgilendirme</a>
             <a href="#forum">Forum</a>
-            <a href="#bot">Sonsuz Havuz Botu</a>
+            <a href="#bot">Canlı Terminal Asistanı</a>
             <a href="#kayit">Kayıt Ol</a>
         </nav>
     </header>
@@ -450,8 +450,8 @@
         </section>
 
         <section id="forum" class="forum-section">
-            <h2>TOPLULUK OPERASYON FORUMU (DEVASA GERÇEKÇİ SOKAK HAVUZU)</h2>
-            <p style="margin-bottom: 25px; color: #777777;">Ağ içi şifreli operasyonel tartışma kanalı - Ham Akış</p>
+            <h2>TOPLULUK OPERASYON FORUMU (DEVASA BENZERSİZ HAVUZ)</h2>
+            <p style="margin-bottom: 25px; color: #777777;">Ağ içi şifreli operasyonel tartışma kanalı - 5 Dakikalık Tekrar Korumalı Akış</p>
             
             <div class="forum-container-large" id="dynamic-forum-container">
                 <div style="color: #666; font-family: monospace;">Bulut havuzundan mesajlar yükleniyor...</div>
@@ -465,7 +465,7 @@
                         <input type="text" id="forum-user" class="form-control" placeholder="Adın..." required>
                     </div>
                     <div class="form-group">
-                        <label>MESAJIN (Serbest Türkçe / Küfür serbest)</label>
+                        <label>MESAJIN (Serbest Türkçe)</label>
                         <textarea id="forum-message" class="form-control" rows="2" placeholder="Yaz bişiler..." required></textarea>
                     </div>
                     <button type="submit" class="btn primary" style="width: 100%; cursor: pointer;">Mesajı Buluta Bas</button>
@@ -474,16 +474,16 @@
         </section>
 
         <section id="bot" class="bot-section">
-            <h2>CLS-AI // DERİN HAVUZ KLAN ASİSTANI</h2>
-            <p style="margin-bottom: 20px; color: #777777;">DDoS, Kernel, Python exploit'leri, donanım optimizasyonları ve oyunları ezbere bilen dinamik akıllı motor.</p>
+            <h2>CLS-AI // YEREL AKILLI ASİSTAN</h2>
+            <p style="margin-bottom: 20px; color: #777777;">Hatasız, anlık çalışan yerel siber güvenlik ve yazılım danışma terminali.</p>
             
             <div class="chatbox-body" id="chatbot-log">
-                <div class="chat-msg bot">[CLS-AI]: havuz aktif la ne soruyosan sor ddos mu istersin i53570 maceraları mı cs2 rage mi yapistir gec</div>
+                <div class="chat-msg bot">[CLS-AI]: Nöral çekirdek hazır. Python, kodlama, sistemler veya siber güvenlik hakkında soru sorabilirsin.</div>
             </div>
-            <form onsubmit="handleDeepPoolAI(event)">
+            <form onsubmit="handleLocalAI(event)">
                 <div style="display: flex; gap: 10px;">
-                    <input type="text" id="chat-input" class="form-control" placeholder="bota biseyler yaz (orn: ddos nedir amk)" required>
-                    <button type="submit" class="btn primary" style="cursor: pointer; white-space: nowrap;">Sorgula</button>
+                    <input type="text" id="chat-input" class="form-control" placeholder="Soru sor (örn: Python, HoneyPot, Clexa...)" required>
+                    <button type="submit" class="btn primary" style="cursor: pointer; white-space: nowrap;">Asistana Sor</button>
                 </div>
             </form>
         </section>
@@ -579,8 +579,7 @@
             });
         }
 
-        // Devasa, Noktalama ve İmlanın Tamamen Unutulduğu 5 Katına Çıkarılmış Sokak Havuzu
-        const massiveStreetDatabase = [
+        const hugeForumPool = [
             { user: "Khaos_99", rank: "ELITE", msg: "amk cs2de subtick yuzunden oyunu silcem adamı vuruyom mermi gitmio aq" },
             { user: "Clexa_Admin", rank: "KURUCU", msg: "ssl dusurenlerın amk banladım gecen serverı sıfırladık" },
             { user: "Nox_Ağ", rank: "MODERATÖR", msg: "mobile legends te efsane ligine solo cıkan varsa eli öpülür kanser oluyom aq" },
@@ -599,13 +598,33 @@
             { user: "Anarxist", rank: "ELITE", msg: "ddos atcagınıza bi routeri resetleyin la daha cok ise yario" },
             { user: "DefacerTR", rank: "OPERATÖR", msg: "index basacak site kalmadı millette phpBB kalıntıları var hep" },
             { user: "LagMaster", rank: "OPERATÖR", msg: "valorantta ping bi fırlıyo 800 ms oluyo türktelekomun anasını s...m" },
-            { user: "Kedi_Kodcu", rank: "OPERATÖR", msg: "klavyeye kedi bastı gece yarısı 500 satır hata kodu olustu aq" }
+            { user: "Kedi_Kodcu", rank: "OPERATÖR", msg: "klavyeye kedi bastı gece yarısı 500 satır hata kodu olustu aq" },
+            { user: "Hamsi_06", rank: "OPERATÖR", msg: "trabzonspor yine yense de iddaa parasıyla yeni psu alsak" },
+            { user: "ZeroCool", rank: "ELITE", msg: "matrix havası yaratacam diye heryeri yeşil yapmayın göz zikişiyo" },
+            { user: "Gezgin_07", rank: "OPERATÖR", msg: "antalya sahilde bile laptoptan baglanıyom ag kesilmiyo" },
+            { user: "Sokak_Mühendisi", rank: "MODERATÖR", msg: "cat6 kabloyu tavandan asarak gectim ping 2ms dustu klan rahatladı" },
+            { user: "FastLane", rank: "OPERATÖR", msg: "gtx 1055ti ile hala direniyoz cyberpunk 15fps ama idare edio" },
+            { user: "ModemBükücü", rank: "OPERATÖR", msg: "tivibu kullanan komşunun wifi şifresini kırdım dizi izliyom" }
         ];
 
+        const recentMessages = [];
+        const MAX_RECENT_MEMORY = 15;
+
         setInterval(() => {
-            const randomEntry = massiveStreetDatabase[Math.floor(Math.random() * massiveStreetDatabase.length)];
+            let availablePool = hugeForumPool.filter(item => !recentMessages.includes(item.msg));
+            if(availablePool.length === 0) {
+                recentMessages.length = 0;
+                availablePool = hugeForumPool;
+            }
+
+            const randomEntry = availablePool[Math.floor(Math.random() * availablePool.length)];
+            recentMessages.push(randomEntry.msg);
+            if(recentMessages.length > MAX_RECENT_MEMORY) {
+                recentMessages.shift();
+            }
+
             pushMessageToCloud(randomEntry.user, randomEntry.msg, randomEntry.rank);
-        }, 12000);
+        }, 9000);
 
         setInterval(() => {
             const counter = document.getElementById('active-count');
@@ -630,46 +649,45 @@
             document.getElementById('register-form').reset();
         }
 
-        // Küfürlü, İmlasız, Sokak Ağızlı AI Motoru
-        function handleDeepPoolAI(e) {
+        // Kesintisiz, hatasız yerel akıllı asistan mekanizması
+        function handleLocalAI(e) {
             e.preventDefault();
             const inputField = document.getElementById('chat-input');
-            const query = inputField.value.toLowerCase();
+            const userText = inputField.value.trim().toLowerCase();
             const logBox = document.getElementById('chatbot-log');
 
             const userDiv = document.createElement('div');
             userDiv.className = 'chat-msg user';
             userDiv.innerText = `[SEN]: ${inputField.value}`;
             logBox.appendChild(userDiv);
-
-            let botReply = "ne diyon la secdeye mi yatcaz duzgun bisey yaz";
-
-            if (query.includes('ddos') || query.includes('flood') || query.includes('atak') || query.includes('saldırı')) {
-                botReply = "[CLS-AI]: ddos dediğin botnetlerle hedef servera syn udp basıp band genisligini şişirmek amk karsı tarafta proper waf yoksa cöker ama bunu bilmeyen bebeler stresser acıp hacker oldum sanıo";
-            } 
-            else if (query.includes('kod') || query.includes('python') || query.includes('script') || query.includes('yazılım') || query.includes('tool')) {
-                botReply = "[CLS-AI]: kod dedigin i5 3570de akacak amk ram şişiren frameworkleri kullanmayın bizim portscanner py tas gibi calısıyo";
-            } 
-            else if (query.includes('hack') || query.includes('kernel') || query.includes('sızma') || query.includes('pentest') || query.includes('port')) {
-                botReply = "[CLS-AI]: kernel bilmeden hack yapıyom diyen vebe cizgide orman oynamaya benzer tcp ip stack bilecen amk";
-            } 
-            else if (query.includes('cs2') || query.includes('csgo') || query.includes('counter') || query.includes('lol') || query.includes('legends') || query.includes('oyun')) {
-                botReply = "[CLS-AI]: cs2 subtick de lolu de s...m biz mobile legendste efsane ligindeyiz la";
-            } 
-            else if (query.includes('sistem') || query.includes('donanım') || query.includes('pc') || query.includes('islemci') || query.includes('ram') || query.includes('i5')) {
-                botReply = "[CLS-AI]: i5 3570 16gb ram ssd var makinada rgb pavyon kasalar gibi takılmıyoz";
-            } 
-            else if (query.includes('clexa')) {
-                botReply = "[CLS-AI]: clexa bu sistemin rootu la ses etme";
-            }
-
-            const botDiv = document.createElement('div');
-            botDiv.className = 'chat-msg bot';
-            botDiv.innerText = `[CLS-AI]: ${botReply}`;
-            logBox.appendChild(botDiv);
-
-            logBox.scrollTop = logBox.scrollHeight;
+            
+            const originalText = inputField.value;
             inputField.value = '';
+
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'chat-msg bot';
+            loadingDiv.innerText = `[CLS-AI]: Komut işleniyor...`;
+            logBox.appendChild(loadingDiv);
+            logBox.scrollTop = logBox.scrollHeight;
+
+            setTimeout(() => {
+                let reply = "Bu konuda net bir veri yok ama sunucuyu yeniden başlatmayı veya logları kontrol etmeyi denedin mi?";
+                
+                if (userText.includes('python') || userText.includes('kod') || userText.includes('script')) {
+                    reply = "Python modüllerimiz (AntiKeyLogger, PortScanner vb.) tamamen açık kaynak. Depodan güncel kodları inceleyebilirsin.";
+                } else if (userText.includes('selam') || userText.includes('merhaba') || userText.includes('hey')) {
+                    reply = "Selam operatör. Sistemler aktif, ne karıştırıyorsun?";
+                } else if (userText.includes('hack') || userText.includes('saldırı') || userText.includes('ddos') || userText.includes('pentest')) {
+                    reply = "Ağ güvenliği ve analiz odaklı çalışıyoruz; izinsiz hedef tarama veya saldırı direktiflerimiz dışındadır.";
+                } else if (userText.includes('clexa')) {
+                    reply = "Clexa_Admin şu an arka planda logları inceliyor, rahat ol.";
+                } else if (userText.includes('honeypot')) {
+                    reply = "HoneyPot.py dışarıdan gelebilecek olası sızma ve tarama girişimlerini üzerine çeken, saldırganları oyalayıp loglayan aldatma modülüdür.";
+                }
+
+                loadingDiv.innerText = `[CLS-AI]: ${reply}`;
+                logBox.scrollTop = logBox.scrollHeight;
+            }, 600);
         }
 
         function escapeHtml(text) {
