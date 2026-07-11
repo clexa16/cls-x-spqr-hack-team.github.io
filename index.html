@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLS-X-SPQR // Hack & Software Team</title>
+    <style>
+        :root {
+            --bg-color: #0a0b0e;
+            --card-bg: #12141c;
+            --accent-color: #00ff66;
+            --accent-glow: rgba(0, 255, 102, 0.2);
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace, system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 10px var(--accent-glow);
+            text-align: center;
+        }
+
+        .logo-area {
+            margin-bottom: 25px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            background: rgba(0, 255, 102, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: #fff;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #181c27;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .link-btn:hover {
+            background-color: #222736;
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            box-shadow: 0 0 12px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            margin-top: 35px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-area">
+            <span class="status-badge">● SYSTEM ONLINE</span>
+            <h1>CLS-X-SPQR</h1>
+            <p class="subtitle">Hack Team & Open Source Software Development</p>
+        </div>
+
+        <div class="links-list">
+            <!-- Buradaki linkleri kendi GitHub veya sosyal medya adreslerinle değiştirebilirsin -->
+            <a href="https://github.com/kullaniciadin" target="_blank" class="link-btn">
+                GitHub Repolarımız (Tools)
+            </a>
+            <a href="https://t.me/kullaniciadin" target="_blank" class="link-btn">
+                Telegram Kanalı / İletişim
+            </a>
+            <a href="mailto:contact@spqr.local" class="link-btn">
+                E-Posta / Security Contact
+            </a>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 CLS-X-SPQR. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </div>
+</body>
+</html>
