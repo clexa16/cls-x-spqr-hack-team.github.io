@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+html_content = """<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLS-X-SPQR // Elite Hack & Yazılım Kolektifi</title>
+    <title>CLS-X-SPQR // İstihbarat Paneli</title>
     <!-- Firebase SDK Yükleme -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
@@ -16,11 +16,12 @@
         }
 
         body {
-            background-color: #050505;
+            background-color: #030303;
             color: #d4d4d4;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             animation: fadeIn 0.8s ease-out;
+            position: relative;
         }
 
         @keyframes fadeIn {
@@ -28,14 +29,27 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
         header {
-            background-color: #0a0a0a;
+            background-color: #080808;
             border-bottom: 2px solid #00ff66;
             padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 4px 20px rgba(0, 255, 102, 0.1);
+            position: relative;
+            z-index: 10;
         }
 
         .brand-container {
@@ -60,10 +74,10 @@
         }
 
         nav a {
-            color: #888888;
+            color: #777777;
             text-decoration: none;
-            margin-left: 12px;
-            font-size: 0.75rem;
+            margin-left: 10px;
+            font-size: 0.72rem;
             font-weight: 600;
             text-transform: uppercase;
         }
@@ -77,11 +91,13 @@
             max-width: 950px;
             margin: 60px auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 5;
         }
 
         .hero {
-            background: linear-gradient(135deg, #0d0d0d 0%, #080808 100%);
-            border: 1px solid #1f1f1f;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.92) 0%, rgba(5, 5, 5, 0.92) 100%);
+            border: 1px solid #1a1a1a;
             border-left: 4px solid #00ff66;
             border-radius: 6px;
             padding: 50px;
@@ -92,7 +108,7 @@
 
         .status-badge {
             display: inline-block;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: #00ff66;
             background-color: rgba(0, 255, 102, 0.12);
             border: 1px solid rgba(0, 255, 102, 0.3);
@@ -104,15 +120,15 @@
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             color: #ffffff;
             margin-bottom: 15px;
             letter-spacing: 1px;
         }
 
         .hero p {
-            color: #a6a6a6;
-            font-size: 1.05rem;
+            color: #9a9a9a;
+            font-size: 1rem;
             margin-bottom: 30px;
             margin-left: auto;
             margin-right: auto;
@@ -128,20 +144,20 @@
 
         .btn {
             display: inline-block;
-            background-color: #121212;
+            background-color: #0e0e0e;
             color: #ffffff;
-            border: 1px solid #262626;
+            border: 1px solid #222222;
             padding: 12px 25px;
             border-radius: 4px;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.08);
         }
 
         .btn.primary {
@@ -158,16 +174,16 @@
         }
 
         .info-section, .tools-section, .forum-section, .auth-section, .bot-section, .sim-section, .resolver-section, .scanner-section, .tracer-section, .leak-section, .osint-section, .subdomain-section {
-            background-color: #0a0a0a;
-            border: 1px solid #1f1f1f;
+            background-color: rgba(8, 8, 8, 0.92);
+            border: 1px solid #1a1a1a;
             border-radius: 6px;
             padding: 40px;
             margin-bottom: 35px;
         }
 
         .terminal-box {
-            background-color: #050505;
-            border: 1px solid #1f1f1f;
+            background-color: #020202;
+            border: 1px solid #1a1a1a;
             border-top: 2px solid #00ff66;
             border-radius: 4px;
             padding: 20px;
@@ -175,14 +191,18 @@
             margin-top: 20px;
         }
         .terminal-screen {
-            background-color: #080808;
-            border: 1px solid #151515;
-            height: 250px;
+            background-color: #050505;
+            border: 1px solid #121212;
+            height: 260px;
             overflow-y: auto;
             padding: 15px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             margin-bottom: 15px;
             border-radius: 3px;
+        }
+        .terminal-screen a {
+            color: #00e5ff;
+            text-decoration: underline;
         }
         .sim-green { color: #00ff66; }
         .sim-red { color: #ff3333; }
@@ -200,11 +220,11 @@
             padding-right: 5px;
         }
         .tool-sim-btn {
-            background: #121212;
-            border: 1px solid #222;
-            color: #ccc;
+            background: #0e0e0e;
+            border: 1px solid #1d1d1d;
+            color: #bbb;
             padding: 8px 12px;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             border-radius: 3px;
             cursor: pointer;
             text-align: left;
@@ -213,7 +233,7 @@
         .tool-sim-btn:hover {
             border-color: #00ff66;
             color: #00ff66;
-            background: #161616;
+            background: #141414;
         }
 
         .forum-container-large {
@@ -222,8 +242,8 @@
             padding-right: 10px;
         }
         .forum-post {
-            background: #0d0d0d;
-            border: 1px solid #181818;
+            background: #0a0a0a;
+            border: 1px solid #161616;
             border-left: 3px solid #00ff66;
             padding: 16px 20px;
             border-radius: 4px;
@@ -240,7 +260,7 @@
             gap: 10px;
         }
         .badge-rank {
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             padding: 2px 6px;
             border-radius: 3px;
             font-weight: bold;
@@ -248,25 +268,25 @@
             color: #000;
         }
         .forum-date {
-            color: #555555;
-            font-size: 0.7rem;
+            color: #444444;
+            font-size: 0.68rem;
             float: right;
         }
         .forum-text {
-            color: #cccccc;
-            font-size: 0.85rem;
+            color: #bcbcbc;
+            font-size: 0.82rem;
             margin-top: 8px;
         }
 
         .chatbox-body {
-            background: #0d0d0d;
-            border: 1px solid #181818;
+            background: #0a0a0a;
+            border: 1px solid #161616;
             height: 280px;
             overflow-y: auto;
             padding: 15px;
             border-radius: 4px;
             margin-bottom: 15px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
         }
         .chat-msg { margin-bottom: 10px; }
         .chat-msg.bot { color: #00ff66; font-family: 'Courier New', Courier, monospace; }
@@ -275,19 +295,19 @@
         .form-group { margin-bottom: 15px; }
         .form-group label {
             display: block;
-            color: #a0a0a0;
-            font-size: 0.8rem;
+            color: #9a9a9a;
+            font-size: 0.78rem;
             margin-bottom: 6px;
             font-family: 'Courier New', Courier, monospace;
         }
         .form-control {
             width: 100%;
-            background-color: #121212;
-            border: 1px solid #222222;
+            background-color: #0e0e0e;
+            border: 1px solid #1d1d1d;
             color: #ffffff;
             padding: 10px;
             border-radius: 4px;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
         }
         .form-control:focus {
             outline: none;
@@ -296,17 +316,19 @@
         }
 
         .top-status-bar {
-            background-color: #070707;
-            border-bottom: 1px solid #151515;
+            background-color: #050505;
+            border-bottom: 1px solid #121212;
             padding: 10px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.75rem;
-            color: #777777;
+            font-size: 0.72rem;
+            color: #666666;
             font-family: 'Courier New', Courier, monospace;
             flex-wrap: wrap;
             gap: 15px;
+            position: relative;
+            z-index: 10;
         }
         .top-status-bar audio {
             height: 25px;
@@ -317,22 +339,26 @@
         footer {
             text-align: center;
             padding: 40px;
-            border-top: 1px solid #141414;
-            color: #555555;
-            font-size: 0.85rem;
-            background-color: #070707;
+            border-top: 1px solid #121212;
+            color: #444444;
+            font-size: 0.8rem;
+            background-color: #050505;
+            position: relative;
+            z-index: 10;
         }
     </style>
 </head>
 <body>
 
+    <canvas id="matrix-canvas"></canvas>
+
     <div class="top-status-bar">
-        <span>[AUDIO_STREAM] din.mp3 - Oto Başlatıldı</span>
+        <span>[AKIŞ] broadcast.mp3 - Tünellendi</span>
         <audio controls loop autoplay>
             <source src="din.mp3" type="audio/mp3">
             Tarayıcınız ses elementini desteklemiyor.
         </audio>
-        <span>[ANLIK AKTİF OPERATÖR]: <span class="live-counter" id="active-count">142</span> kişi</span>
+        <span>[AKTİF DÜĞÜMLER]: <span class="live-counter" id="active-count">142</span> aktif</span>
     </div>
 
     <header>
@@ -341,356 +367,391 @@
             <div class="brand">CLS-X-SPQR</div>
         </div>
         <nav>
-            <a href="#genel">Genel</a>
-            <a href="#osint">Alias OSINT</a>
-            <a href="#subdomain">Subdomain</a>
-            <a href="#leakcheck">Sızıntı</a>
-            <a href="#tracer">İz Sürücü</a>
-            <a href="#scanner">Port</a>
-            <a href="#resolver">IP Bulma</a>
-            <a href="#simulasyon">Sim</a>
+            <a href="#genel">Ana Sayfa</a>
+            <a href="#osint">Phantom-Scout</a>
+            <a href="#subdomain">Void-Recon</a>
+            <a href="#leakcheck">Spectre-Dump</a>
+            <a href="#tracer">Ghost-Trace</a>
+            <a href="#scanner">Socket-Reaper</a>
+            <a href="#resolver">DNS-Siphon</a>
+            <a href="#simulasyon">Overload.py</a>
             <a href="#forum">Forum</a>
-            <a href="#bot">Asistan</a>
+            <a href="#bot">Nerve-AI</a>
         </nav>
     </header>
 
     <main>
         <section id="genel" class="hero">
-            <span class="status-badge">SİSTEM AKTİF</span>
-            <h1>CLS-X-SPQR Kolektifi</h1>
-            <p>Saldırı tabanlı siber güvenlik araştırmaları, açık kaynak kodlu sızma testi araçları geliştirme ve altyapı mühendisliği odaklı teknik ekip oluşumu.</p>
+            <span class="status-badge">SİSTEM ERİŞİMİ ONAYLANDI</span>
+            <h1>CLS-X-SPQR Paneli</h1>
+            <p>Siber güvenlik analiz, ağ inceleme ve test araçları kolektifi.</p>
             <div class="btn-group">
-                <a href="https://github.com/clexa16/CLSxSPQR-Tools" target="_blank" class="btn primary">Tool Deposuna Git</a>
-                <a href="https://github.com/clexa16" target="_blank" class="btn">GitHub Depomuz</a>
+                <a href="https://github.com/clexa16/CLSxSPQR-Tools" target="_blank" class="btn primary">Tool Deposu</a>
+                <a href="https://github.com/clexa16" target="_blank" class="btn">GitHub Deposu</a>
             </div>
         </section>
 
-        <!-- YENİ: ALIAS OSINT SCANNER (Kullanıcı Adı Bilgi Toplama) -->
+        <!-- PHANTOM-SCOUT // ALIAS OSINT SCANNER -->
         <section id="osint" class="osint-section">
-            <h2 style="color: #00e5ff; font-size: 1.4rem; margin-bottom: 5px;">| SOSYAL AYAK İZİ // KULLANICI ADI (ALIAS) TARAYICI |</h2>
-            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">MODULE: SHERLOCK / SOCIAL HARVESTER NODE</p>
+            <h2 style="color: #00e5ff; font-size: 1.35rem; margin-bottom: 5px;">| PHANTOM-SCOUT // OSINT Tarayıcı |</h2>
+            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">KULLANICI ADI PROFİLLENME MOTORU // AKTİF</p>
             <div class="form-group">
-                <label>HEDEF KOD ADI / RUMUZ (ALIAS)</label>
-                <input type="text" id="osint-input" class="form-control" placeholder="Taranacak rumuz girin (örn. clexa16)">
+                <label>HEDEF KULLANICI ADI</label>
+                <input type="text" id="osint-input" class="form-control" placeholder="Kullanıcı adı yaz (örn. clexa16)">
             </div>
-            <button type="button" class="btn primary" onclick="runAliasOsint()" style="background: #00e5ff; border-color: #00e5ff; color: #000; cursor: pointer; width: 100%; margin-bottom: 15px;">Sosyal Ağlarda İz Sür</button>
+            <button type="button" class="btn primary" onclick="runAliasOsint()" style="background: #00e5ff; border-color: #00e5ff; color: #000; cursor: pointer; width: 100%; margin-bottom: 15px;">Kullanıcı Adı Ara</button>
             <div class="terminal-box">
                 <div class="terminal-screen" id="osint-screen">
-                    <div class="sim-cyan">[+] Sosyal ağ veritabanı düğümleri hazır. Rumuz taramasını başlatın.</div>
+                    <div class="sim-cyan">[+] Phantom-Scout hazır. Kullanıcı adı analizi bekleniyor...</div>
                 </div>
             </div>
         </section>
 
-        <!-- YENİ: SUBDOMAIN HARVESTER (Alt Alan Adı Toplama) -->
+        <!-- VOID-RECON // SUBDOMAIN HARVESTER -->
         <section id="subdomain" class="subdomain-section">
-            <h2 style="color: #ffcc00; font-size: 1.4rem; margin-bottom: 5px;">| ALT ALAN ADI HARİTALAYICI // SUBDOMAIN HARVESTER |</h2>
-            <p class="sim-yellow" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">ENGINE: ACTIVE DNS BRUTE-MAPPING</p>
+            <h2 style="color: #ffcc00; font-size: 1.35rem; margin-bottom: 5px;">| VOID-RECON // Subdomain Harvester |</h2>
+            <p class="sim-yellow" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">ALT ALAN ADI TARAYICISI</p>
             <div class="form-group">
-                <label>HEDEF ANA DOMAİN</label>
-                <input type="text" id="subdomain-input" class="form-control" placeholder="örn. github.com veya target.com">
+                <label>HEDEF ALAN ADI</label>
+                <input type="text" id="subdomain-input" class="form-control" placeholder="örn. hedef.com">
             </div>
-            <button type="button" class="btn primary" onclick="runSubdomainHarvester()" style="background: #ffcc00; border-color: #ffcc00; color: #000; cursor: pointer; width: 100%; margin-bottom: 15px;">Gizli Subdomainleri Keşfet</button>
+            <button type="button" class="btn primary" onclick="runSubdomainHarvester()" style="background: #ffcc00; border-color: #ffcc00; color: #000; cursor: pointer; width: 100%; margin-bottom: 15px;">Alt Alan Adlarını Tara</button>
             <div class="terminal-box">
                 <div class="terminal-screen" id="subdomain-screen">
-                    <div class="sim-yellow">[+] DNS kelime listesi yüklendi. Tarama tetiklenmeyi bekliyor...</div>
+                    <div class="sim-yellow">[+] Void-Recon sözlük verileri yüklendi.</div>
                 </div>
             </div>
         </section>
 
-        <!-- IP BULMA MODÜLÜ -->
-        <section id="resolver" class="resolver-section">
-            <h2 style="color: #00ff66; font-size: 1.4rem; margin-bottom: 5px;">| HEDEF AĞ ANALİZİ // IP BULMA |</h2>
-            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">SYSTEM: DNS LOOKUP NODE | STATUS: ONLINE</p>
-            <div class="form-group">
-                <label>HEDEF BAĞLANTI / LİNK VEYA DOMAİN</label>
-                <input type="text" id="resolver-input" class="form-control" placeholder="örn. github.com veya https://google.com">
-            </div>
-            <button type="button" class="btn primary" onclick="resolveTargetIP()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">IP Adresini Bul</button>
-            <div class="terminal-box">
-                <div class="terminal-screen" id="resolver-screen">
-                    <div class="sim-green">[+] Sistem hazır. IP'sini bulmak istediğiniz linki veya domaini yukarıya girin.</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PORT TARAYICI -->
-        <section id="scanner" class="scanner-section">
-            <h2 style="color: #00ff66; font-size: 1.4rem; margin-bottom: 5px;">| AĞ HARİTALANDIRMA // PORT TARAYICI |</h2>
-            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">MODULE: TCP SOCKET SCANNER | STATUS: READY</p>
-            <div class="form-group">
-                <label>HEDEF IP / DOMAİN</label>
-                <input type="text" id="scanner-input" class="form-control" placeholder="örn. 142.250.187.46 veya scanme.nmap.org">
-            </div>
-            <button type="button" class="btn primary" onclick="runPortScanner()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">Portları Haritalandır</button>
-            <div class="terminal-box">
-                <div class="terminal-screen" id="scanner-screen">
-                    <div class="sim-green">[+] TCP Soket motoru başlatıldı. Hedef belirtip taramayı tetikleyin.</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- İZ SÜRÜCÜ // GEO-TRACER -->
-        <section id="tracer" class="tracer-section">
-            <h2 style="color: #00ff66; font-size: 1.4rem; margin-bottom: 5px;">| DİJİTAL İZ SÜRÜCÜ // GEO TRACER |</h2>
-            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">NODE: IP GEO-LOCATION TRACER | STATUS: ACTIVE</p>
-            <div class="form-group">
-                <label>HEDEF IP ADRESİ</label>
-                <input type="text" id="tracer-input" class="form-control" placeholder="örn. 8.8.8.8 veya 1.1.1.1">
-            </div>
-            <button type="button" class="btn primary" onclick="traceIPLocation()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">Konum ve Ağ İzini Sür</button>
-            <div class="terminal-box">
-                <div class="terminal-screen" id="tracer-screen">
-                    <div class="sim-green">[+] Coğrafi konum haritalama düğümü hazır. IP adresi girin.</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SIZINTI KONTROLÜ -->
+        <!-- SPECTRE-DUMP // SIZINTI KONTROLÜ -->
         <section id="leakcheck" class="leak-section">
-            <h2 style="color: #ff00ff; font-size: 1.4rem; margin-bottom: 5px;">| DARK WEB SIZINTI İSTİHBARATI // HESAP TARAYICI |</h2>
-            <p class="sim-magenta" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">ENGINE: DEEP WEB BREACH DUMP HARVESTER</p>
+            <h2 style="color: #ff00ff; font-size: 1.35rem; margin-bottom: 5px;">| SPECTRE-DUMP // Sızıntı Kontrolü |</h2>
+            <p class="sim-magenta" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">VERİ TABANI İHLAL KONTROLÜ</p>
             <div class="form-group">
-                <label>HEDEF E-POSTA VEYA KULLANICI ADI (ALIAS)</label>
-                <input type="text" id="leak-input" class="form-control" placeholder="Taranacak e-posta girin (örn. target@mail.com)">
+                <label>HEDEF E-POSTA VEYA KULLANICI ADI</label>
+                <input type="text" id="leak-input" class="form-control" placeholder="örn. ornek@mail.com">
             </div>
-            <button type="button" class="btn primary" onclick="runLeakScanner()" style="background: #ff00ff; border-color: #ff00ff; color: #fff; cursor: pointer; width: 100%; margin-bottom: 15px;">Sızıntı Veritabanlarını Tara</button>
+            <button type="button" class="btn primary" onclick="runLeakScanner()" style="background: #ff00ff; border-color: #ff00ff; color: #fff; cursor: pointer; width: 100%; margin-bottom: 15px;">Sızıntı Ara</button>
             <div class="terminal-box">
                 <div class="terminal-screen" id="leak-screen">
-                    <div class="sim-magenta">[+] İstihbarat düğümü devrede. Gizli sızıntı arşivlerine erişim sağlandı...</div>
+                    <div class="sim-magenta">[+] Spectre-Dump sızıntı veritabanına bağlandı...</div>
                 </div>
             </div>
         </section>
 
-        <!-- SİMÜLASYON OYUNLARI -->
+        <!-- GHOST-TRACE // GEO-TRACER -->
+        <section id="tracer" class="tracer-section">
+            <h2 style="color: #00ff66; font-size: 1.35rem; margin-bottom: 5px;">| GHOST-TRACE // IP Konum Bulucu |</h2>
+            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">IP COĞRAFİ KONUM TESPİTİ</p>
+            <div class="form-group">
+                <label>HEDEF IP</label>
+                <input type="text" id="tracer-input" class="form-control" placeholder="örn. 8.8.8.8">
+            </div>
+            <button type="button" class="btn primary" onclick="traceIPLocation()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">IP Konumunu Sorgula</button>
+            <div class="terminal-box">
+                <div class="terminal-screen" id="tracer-screen">
+                    <div class="sim-green">[+] IP konum çekirdeği aktif.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOCKET-REAPER // PORT SCANNER -->
+        <section id="scanner" class="scanner-section">
+            <h2 style="color: #00ff66; font-size: 1.35rem; margin-bottom: 5px;">| SOCKET-REAPER // Port Tarayıcı |</h2>
+            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">TCP PORT TARAMA MOTORU</p>
+            <div class="form-group">
+                <label>HEDEF IP / HOST</label>
+                <input type="text" id="scanner-input" class="form-control" placeholder="örn. 142.250.187.46">
+            </div>
+            <button type="button" class="btn primary" onclick="runPortScanner()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">Portları Tara</button>
+            <div class="terminal-box">
+                <div class="terminal-screen" id="scanner-screen">
+                    <div class="sim-green">[+] TCP Soket motoru hazır.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DNS-SIPHON // IP RESOLVER -->
+        <section id="resolver" class="resolver-section">
+            <h2 style="color: #00ff66; font-size: 1.35rem; margin-bottom: 5px;">| DNS-SIPHON // Alan Adı Çözücü |</h2>
+            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">HOST - IP ÇEVİRİCİ</p>
+            <div class="form-group">
+                <label>HEDEF URL / ALAN ADI</label>
+                <input type="text" id="resolver-input" class="form-control" placeholder="örn. github.com">
+            </div>
+            <button type="button" class="btn primary" onclick="resolveTargetIP()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">IP Adresini Çöz</button>
+            <div class="terminal-box">
+                <div class="terminal-screen" id="resolver-screen">
+                    <div class="sim-green">[+] DNS çözücü hazır.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OVERLOAD.PY // SİMÜLASYON -->
         <section id="simulasyon" class="sim-section">
             <h2 class="sim-red" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 10px;">==========================================</h2>
-            <h2 style="color: #fff; font-size: 1.4rem; margin-bottom: 5px;">| SİMÜLASYON OYUNLARI // FAKEHACK.PY |</h2>
-            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 10px;">SYSTEM: TINY10 | GPU: HD 4450 | BY CLEXA - CLxSPQR</p>
-            <div style="background: rgba(255, 51, 51, 0.08); border: 1px dashed #ff3333; padding: 12px 18px; border-radius: 4px; margin-bottom: 25px; font-family: 'Courier New', Courier, monospace; font-size: 0.82rem; color: #ff6666;">
-                [!] <strong>DİKKAT:</strong> Bu simülasyon tamamen göz boyama amaçlıdır, gerçekte hiçbir sisteme zarar vermez veya işlem yapmaz. Arkadaşlarınızın yanında hava atıp karizmatik görünmek için gönül rahatlığıyla kullanabilirsiniz. Sorumluluk tamamen sizde! 😉
+            <h2 style="color: #fff; font-size: 1.35rem; margin-bottom: 5px;">| OVERLOAD.PY // Yük Simülatörü |</h2>
+            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 10px;">GÖRSEL YÜK TESTİ SİMÜLASYONU</p>
+            <div style="background: rgba(255, 51, 51, 0.08); border: 1px dashed #ff3333; padding: 12px 18px; border-radius: 4px; margin-bottom: 25px; font-family: 'Courier New', Courier, monospace; font-size: 0.8rem; color: #ff6666;">
+                [!] <strong>DİKKAT:</strong> Tamamen görsel simülasyondur, sisteme zarar vermez.
             </div>
             <div class="terminal-box">
                 <div class="terminal-screen" id="sim-screen">
                     <div class="sim-red">==========================================</div>
-                    <div class="sim-red">|        BY CLEXA - CLSxSPQR TEAM         |</div>
-                    <div class="sim-red">|    SYSTEM: TINY10 | GPU: HD 4450        |</div>
+                    <div class="sim-red">|      YÜK TESTİ SİMÜLASYON MOTORU       |</div>
                     <div class="sim-red">==========================================</div>
-                    <div class="sim-green" style="margin-top: 10px;">Sistem hazır. Modül seçerek simülasyonu çalıştırın.</div>
+                    <div class="sim-green" style="margin-top: 10px;">Modül seçin ve testi başlatın.</div>
                 </div>
                 <div class="tools-grid-sim" id="sim-buttons-container"></div>
                 <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                    <input type="text" id="sim-target-input" class="form-control" placeholder="Hedef (IP, URL, vb.) girin..." style="flex: 1; min-width: 220px;">
-                    <button type="button" class="btn primary" onclick="stopSimulation()" style="cursor: pointer; background: #ff3333; border-color: #ff3333; color: #fff;">Durdur (Menüye Dön)</button>
+                    <input type="text" id="sim-target-input" class="form-control" placeholder="Hedef gir..." style="flex: 1; min-width: 220px;">
+                    <button type="button" class="btn primary" onclick="stopSimulation()" style="cursor: pointer; background: #ff3333; border-color: #ff3333; color: #fff;">Durdur</button>
                 </div>
             </div>
         </section>
 
-        <section id="bilgilendirme" class="info-section">
-            <h2>RESMİ BİLGİLENDİRME: CLSxSPQR OPERASYONEL DİREKTİFLERİ</h2>
-            <p><strong>Kuruluş Tarihi:</strong> 14 Ocak 2021<br><strong>Birim:</strong> Dijital Güvenlik ve Ağ Analiz Sistemleri<br><strong>Operasyonel Durum:</strong> Aktif</p>
-        </section>
-
         <section id="forum" class="forum-section">
-            <h2>TOPLULUK OPERASYON FORUMU</h2>
+            <h2>KULLANICI FORUMU</h2>
             <div class="forum-container-large" id="dynamic-forum-container">
-                <div style="color: #666; font-family: monospace;">Bulut havuzundan mesajlar yükleniyor...</div>
+                <div style="color: #555; font-family: monospace;">Akış senkronize ediliyor...</div>
             </div>
-            <div style="margin-top: 25px; border-top: 1px solid #1a1a1a; padding-top: 20px;">
+            <div style="margin-top: 25px; border-top: 1px solid #161616; padding-top: 20px;">
                 <form id="forum-form" onsubmit="handleCloudPost(event)">
                     <div class="form-group">
-                        <label>RUMUZ / ALIAS</label>
-                        <input type="text" id="forum-user" class="form-control" placeholder="Adın..." required>
+                        <label>RUMUZ</label>
+                        <input type="text" id="forum-user" class="form-control" placeholder="Rumuz..." required>
                     </div>
                     <div class="form-group">
-                        <label>MESAJIN</label>
-                        <textarea id="forum-message" class="form-control" rows="2" placeholder="Yaz bişiler..." required></textarea>
+                        <label>MESAJ</label>
+                        <textarea id="forum-message" class="form-control" rows="2" placeholder="Yaz..." required></textarea>
                     </div>
-                    <button type="submit" class="btn primary" style="width: 100%; cursor: pointer;">Mesajı Buluta Bas</button>
+                    <button type="submit" class="btn primary" style="width: 100%; cursor: pointer;">Mesaj Gönder</button>
                 </form>
             </div>
         </section>
 
         <section id="bot" class="bot-section">
-            <h2>CLS-AI // YEREL AKILLI ASİSTAN</h2>
+            <h2>NERVE-AI // Asistan</h2>
             <div class="chatbox-body" id="chatbot-log">
-                <div class="chat-msg bot">[CLS-AI]: Nöral çekirdek hazır.</div>
+                <div class="chat-msg bot">[NERVE-AI]: Asistan aktif.</div>
             </div>
             <form onsubmit="handleLocalAI(event)">
                 <div style="display: flex; gap: 10px;">
-                    <input type="text" id="chat-input" class="form-control" placeholder="Soru sor..." required>
-                    <button type="submit" class="btn primary" style="cursor: pointer; white-space: nowrap;">Asistana Sor</button>
+                    <input type="text" id="chat-input" class="form-control" placeholder="Komut yaz..." required>
+                    <button type="submit" class="btn primary" style="cursor: pointer; white-space: nowrap;">Çalıştır</button>
                 </div>
             </form>
         </section>
 
         <section id="kayit" class="auth-section">
-            <h2>OPERATÖR KAYIT PORTALI</h2>
+            <h2>KAYIT PORTALI</h2>
             <form id="register-form" onsubmit="handleRegistration(event)">
                 <div class="form-group">
-                    <label>KOD ADI (OPERATOR ALIAS)</label>
-                    <input type="text" id="reg-alias" class="form-control" placeholder="Ghost_41" required>
+                    <label>RUMUZ</label>
+                    <input type="text" id="reg-alias" class="form-control" placeholder="KullanıcıAdı" required>
                 </div>
                 <div class="form-group">
-                    <label>İLETİŞİM FREKANSI (E-POSTA)</label>
-                    <input type="email" id="reg-email" class="form-control" placeholder="operator@cls-spqr.net" required>
+                    <label>E-POSTA</label>
+                    <input type="email" id="reg-email" class="form-control" placeholder="ornek@domain.com" required>
                 </div>
                 <div class="form-group">
-                    <label>ÇEKİRDEK ŞİFRESİ</label>
+                    <label>ŞİFRE</label>
                     <input type="password" id="reg-pass" class="form-control" placeholder="••••••••" required>
                 </div>
-                <button type="submit" class="btn primary" style="width: 100%; cursor: pointer;">Sisteme Kayıt Ol</button>
+                <button type="submit" class="btn primary" style="width: 100%; cursor: pointer;">Kayıt Ol</button>
             </form>
-            <div id="auth-status" style="margin-top: 15px; font-family: 'Courier New', Courier, monospace; font-size: 0.85rem;"></div>
+            <div id="auth-status" style="margin-top: 15px; font-family: 'Courier New', Courier, monospace; font-size: 0.82rem;"></div>
         </section>
     </main>
 
     <footer>&copy; 2026 CLS-X-SPQR. Tüm hakları saklıdır.</footer>
 
     <script>
-        // 1. Alias OSINT Taraması (Kullanıcı Adı Bilgi Toplama)[cite: 1]
+        // Matrix Dijital Yağmur Efekti
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const characters = 'CLSxSPQR0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&';
+        const fontSize = 14;
+        let columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(3, 3, 3, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff66';
+            ctx.font = fontSize + 'px "Courier New", Courier, monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 33);
+
+        window.addEventListener('resize', () => {
+            columns = canvas.width / fontSize;
+            for (let x = 0; x < columns; x++) {
+                if (!drops[x]) drops[x] = 1;
+            }
+        });
+
+        // 1. Phantom-Scout OSINT
         async function runAliasOsint() {
             const alias = document.getElementById('osint-input').value.trim();
             const screen = document.getElementById('osint-screen');
-            if(!alias) { screen.innerHTML += `<div class="sim-red">[!] Hata: Taranacak rumuz girilmedi!</div>`; return; }
+            if(!alias) { screen.innerHTML += `<div class="sim-red">[!] Hata: Hedef kullanıcı adı belirtilmedi!</div>`; return; }
             
-            screen.innerHTML += `<div class="sim-cyan">[~] Hedef rumuz analiz ediliyor: "${alias}" platformlar taranıyor...</div>`;
+            screen.innerHTML += `<div class="sim-cyan">[~] Taraniyor: "${alias}" sosyal profiller kontrol ediliyor...</div>`;
             screen.scrollTop = screen.scrollHeight;
 
-            const platforms = [
-                { name: "GitHub", url: `https://github.com/${alias}` },
-                { name: "Reddit", url: `https://www.reddit.com/user/${alias}` },
-                { name: "X (Twitter)", url: `https://x.com/${alias}` },
-                { name: "Instagram", url: `https://www.instagram.com/${alias}` }
+            const targets = [
+                { platform: "Instagram", url: `https://www.instagram.com/${alias}` },
+                { platform: "GitHub", url: `https://github.com/${alias}` },
+                { platform: "X (Twitter)", url: `https://x.com/${alias}` },
+                { platform: "Reddit", url: `https://www.reddit.com/user/${alias}` }
             ];
 
-            for(let i=0; i<platforms.length; i++) {
-                await new Promise(r => setTimeout(r, 250));
-                const active = Math.random() > 0.3;
+            for(let i=0; i<targets.length; i++) {
+                await new Promise(r => setTimeout(r, 280));
+                const active = Math.random() > 0.35;
                 if(active) {
-                    let platformName = platforms[i].name;
-                    if(platformName === "Reddit") {
-                        platformName = "Reddit (reddit.com)";
-                    } else if(platformName === "Instagram") {
-                        platformName = "Instagram (instagram.com)";
-                    }
-                    screen.innerHTML += `<div class="sim-green">[BULUNDU] ${platformName} -> Profil Aktif (${platforms[i].url})</div>`;
+                    screen.innerHTML += `<div class="sim-green">[BULUNDU] Kaynak: <span style="color:#fff">${targets[i].platform}</span> -> <a href="${targets[i].url}" target="_blank">${targets[i].url}</a></div>`;
                 } else {
-                    screen.innerHTML += `<div class="sim-red">[BULUNAMADI] ${platforms[i].name} -> Eşleşme yok</div>`;
+                    screen.innerHTML += `<div class="sim-red">[YOK] Kaynak: ${targets[i].platform} -> Eşleşme yok</div>`;
                 }
                 screen.scrollTop = screen.scrollHeight;
             }
-            screen.innerHTML += `<div class="sim-cyan">[+] Rumuz OSINT taraması tamamlandı.</div>`;
+            screen.innerHTML += `<div class="sim-cyan">[+] Tarama tamamlandı.</div>`;
             screen.scrollTop = screen.scrollHeight;
         }
 
-        // 2. Subdomain Harvester
+        // 2. Void-Recon Subdomain Harvester
         async function runSubdomainHarvester() {
             const domain = document.getElementById('subdomain-input').value.trim().replace(/^(https?:\/\/)?(www\.)?/, '').split('/')[0];
             const screen = document.getElementById('subdomain-screen');
-            if(!domain) { screen.innerHTML += `<div class="sim-red">[!] Hata: Domain girilmedi!</div>`; return; }
+            if(!domain) { screen.innerHTML += `<div class="sim-red">[!] Hata: Alan adı girilmedi!</div>`; return; }
 
-            screen.innerHTML += `<div class="sim-yellow">[~] DNS sorgu tablosu harmanlanıyor: ${domain}...</div>`;
+            screen.innerHTML += `<div class="sim-yellow">[~] Taranıyor: ${domain}...</div>`;
             screen.scrollTop = screen.scrollHeight;
 
             const subs = ["admin", "api", "dev", "vpn", "test", "portal", "secure"];
             for(let i=0; i<subs.length; i++) {
-                await new Promise(r => setTimeout(r, 200));
-                const found = Math.random() > 0.4;
+                await new Promise(r => setTimeout(r, 180));
+                const found = Math.random() > 0.45;
                 if(found) {
-                    screen.innerHTML += `<div class="sim-green">[AKTİF SUBDOMAIN] ${subs[i]}.${domain} -> IP resolved</div>`;
+                    screen.innerHTML += `<div class="sim-green">[BULUNDU] <a href="http://${subs[i]}.${domain}" target="_blank">${subs[i]}.${domain}</a> -> AKTİF</div>`;
                 } else {
-                    screen.innerHTML += `<div class="sim-red">[KAPALI] ${subs[i]}.${domain} -> NXDOMAIN</div>`;
+                    screen.innerHTML += `<div class="sim-red">[KAPALI] ${subs[i]}.${domain} -> BULUNAMADI</div>`;
                 }
                 screen.scrollTop = screen.scrollHeight;
             }
         }
 
-        // 3. IP Bulma
+        // 3. DNS-Siphon // IP Resolver
         async function resolveTargetIP() {
             const val = document.getElementById('resolver-input').value.trim();
             const screen = document.getElementById('resolver-screen');
-            if (!val) { screen.innerHTML += `<div class="sim-red">[!] Hata: Domain girilmedi!</div>`; return; }
+            if (!val) { screen.innerHTML += `<div class="sim-red">[!] Hata: Hedef yok!</div>`; return; }
             let domain = val.replace(/^(https?:\/\/)?(www\.)?/, '').split('/')[0];
-            screen.innerHTML += `<div class="sim-cyan">[~] Hedef taranıyor: ${domain}...</div>`;
+            screen.innerHTML += `<div class="sim-cyan">[~] Çözümleniyor: ${domain}...</div>`;
             try {
                 const res = await fetch(`https://cloudflare-dns.com/dns-query?name=${domain}&type=A`, { headers: { 'Accept': 'application/dns-json' } });
                 const data = await res.json();
                 if (data.Answer && data.Answer.length > 0) {
-                    screen.innerHTML += `<div class="sim-green">[BULUNAN IP] ${domain} -> ${data.Answer[0].data}</div>`;
-                } else { screen.innerHTML += `<div class="sim-red">[!] IP kaydı bulunamadı.</div>`; }
-            } catch(e) { screen.innerHTML += `<div class="sim-red">[!] Ağ hatası.</div>`; }
+                    screen.innerHTML += `<div class="sim-green">[IP BULUNDU] ${domain} -> ${data.Answer[0].data}</div>`;
+                } else { screen.innerHTML += `<div class="sim-red">[!] Kayıt bulunamadı.</div>`; }
+            } catch(e) { screen.innerHTML += `<div class="sim-red">[!] Bağlantı hatası.</div>`; }
             screen.scrollTop = screen.scrollHeight;
         }
 
-        // 4. Port Tarayıcı
+        // 4. Socket-Reaper // Port Scanner
         async function runPortScanner() {
             const val = document.getElementById('scanner-input').value.trim();
             const screen = document.getElementById('scanner-screen');
-            if (!val) { screen.innerHTML += `<div class="sim-red">[!] Hata: Hedef IP girilmedi!</div>`; return; }
+            if (!val) { screen.innerHTML += `<div class="sim-red">[!] Hata: IP eksik!</div>`; return; }
             const ports = [21, 22, 80, 443, 3306, 8080];
-            screen.innerHTML += `<div class="sim-cyan">[~] TCP port taraması başlatılıyor: ${val}...</div>`;
+            screen.innerHTML += `<div class="sim-cyan">[~] Port taraması başlatıldı: ${val}...</div>`;
             screen.scrollTop = screen.scrollHeight;
 
             for(let i=0; i<ports.length; i++) {
-                await new Promise(r => setTimeout(r, 150));
+                await new Promise(r => setTimeout(r, 140));
                 const p = ports[i];
                 const isOpen = (p === 80 || p === 443 || p === 22) && Math.random() > 0.3;
                 if(isOpen) {
-                    screen.innerHTML += `<div class="sim-green">[PORT AÇIK] Port ${p}/TCP - Status: OPEN</div>`;
+                    screen.innerHTML += `<div class="sim-green">[PORT AÇIK] Port ${p}/TCP - AÇIK</div>`;
                 } else {
-                    screen.innerHTML += `<div class="sim-red">[PORT KAPALI] Port ${p}/TCP - Status: CLOSED</div>`;
+                    screen.innerHTML += `<div class="sim-red">[PORT KAPALI] Port ${p}/TCP - KAPALI</div>`;
                 }
                 screen.scrollTop = screen.scrollHeight;
             }
         }
 
-        // 5. İz Sürücü // Geo-Tracer
+        // 5. Ghost-Trace // Geo-Tracer
         async function traceIPLocation() {
             const ip = document.getElementById('tracer-input').value.trim();
             const screen = document.getElementById('tracer-screen');
-            if (!ip) { screen.innerHTML += `<div class="sim-red">[!] Hata: IP adresi girilmedi!</div>`; return; }
-            screen.innerHTML += `<div class="sim-cyan">[~] Uzak düğüm sorgulanıyor: ${ip}...</div>`;
+            if (!ip) { screen.innerHTML += `<div class="sim-red">[!] Hata: IP girilmedi!</div>`; return; }
+            screen.innerHTML += `<div class="sim-cyan">[~] Konum sorgulanıyor: ${ip}...</div>`;
             try {
                 const res = await fetch(`http://ip-api.com/json/${ip}`);
                 const data = await res.json();
                 if(data.status === 'success') {
-                    screen.innerHTML += `<div class="sim-green">[İZ SÜRÜLDÜ] Ülke: ${data.country} | Şehir: ${data.city} | ISS: ${data.isp}</div>`;
+                    screen.innerHTML += `<div class="sim-green">[KONUM] Ülke: ${data.country} | Şehir: ${data.city} | ISS: ${data.isp}</div>`;
                 } else {
-                    screen.innerHTML += `<div class="sim-red">[!] Konum çözümlenemedi.</div>`;
+                    screen.innerHTML += `<div class="sim-red">[!] Sonuç alınamadı.</div>`;
                 }
             } catch(e) {
-                screen.innerHTML += `<div class="sim-red">[!] API zaman aşımı.</div>`;
+                screen.innerHTML += `<div class="sim-red">[!] Zaman aşımı.</div>`;
             }
             screen.scrollTop = screen.scrollHeight;
         }
 
-        // 6. Hesap Sızıntı Kontrolü
+        // 6. Spectre-Dump // Sızıntı Tarayıcı
         async function runLeakScanner() {
             const target = document.getElementById('leak-input').value.trim();
             const screen = document.getElementById('leak-screen');
-            if(!target) { screen.innerHTML += `<div class="sim-red">[!] Hata: Hedef girilmedi!</div>`; return; }
+            if(!target) { screen.innerHTML += `<div class="sim-red">[!] Hata: Hedef yok!</div>`; return; }
             
-            screen.innerHTML += `<div class="sim-magenta">[~] Hedef sorgulanıyor: "${target}" gizli veritabanları taranıyor...</div>`;
+            screen.innerHTML += `<div class="sim-magenta">[~] Veritabanı sorgulanıyor: "${target}"...</div>`;
             screen.scrollTop = screen.scrollHeight;
 
-            await new Promise(r => setTimeout(r, 600));
+            await new Promise(r => setTimeout(r, 500));
             if(Math.random() > 0.4) {
-                screen.innerHTML += `<div class="sim-red">[!] TEHLİKE: Hedef "${target}" sızıntı arşivlerinde (COMB_2025) bulundu!</div>`;
+                screen.innerHTML += `<div class="sim-red">[!] DİKKAT: Hedef "${target}" sızıntı arşivinde bulundu!</div>`;
             } else {
-                screen.innerHTML += `<div class="sim-green">[+] TEMİZ: Hedef "${target}" güncel sızıntı havuzlarında eşleşmedi.</div>`;
+                screen.innerHTML += `<div class="sim-green">[+] TEMİZ: Hedef "${target}" sızıntı kaydı yok.</div>`;
             }
             screen.scrollTop = screen.scrollHeight;
         }
 
-        // Simülasyon kodları
+        // Overload.py Simülasyon
         const PYTHON_TOOLS = [
-            { name: "DDoS Attack", input: "Target IP" },
-            { name: "RAT Controller", input: "Target IP" },
-            { name: "SMS Bomber", input: "Phone Number" },
-            { name: "Port Scanner", input: "Target IP" },
-            { name: "Brute Force SSH", input: "Target IP" },
-            { name: "WiFi Cracker", input: "WiFi SSID" },
-            { name: "Phishing Page Generator", input: "Target URL" }
+            { name: "DDoS Siphon", input: "Hedef IP" },
+            { name: "RAT Injector", input: "Hedef IP" },
+            { name: "SMS Overload", input: "Telefon" },
+            { name: "Port Reaper", input: "Hedef IP" },
+            { name: "SSH Brute", input: "Hedef IP" },
+            { name: "WiFi Decryptor", input: "SSID" },
+            { name: "Phish Forge", input: "URL" }
         ];
 
         let activeSimInterval = null;
@@ -717,10 +778,10 @@
                 const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
                 const lineDiv = document.createElement('div');
                 lineDiv.className = colorClass;
-                lineDiv.innerText = `[${timeStr}] ${tool.name}: target=${targetVal} status=RUNNING`;
+                lineDiv.innerText = `[${timeStr}] ${tool.name}: hedef=${targetVal} durum=ÇALIŞIYOR`;
                 screen.appendChild(lineDiv);
                 screen.scrollTop = screen.scrollHeight;
-            }, 60);
+            }, 55);
         }
 
         function stopSimulation() {
@@ -728,7 +789,7 @@
                 clearInterval(activeSimInterval);
                 activeSimInterval = null;
                 const screen = document.getElementById('sim-screen');
-                screen.innerHTML += `<div class="sim-cyan">[!] Durduruldu. Menüye dönüldü.</div>`;
+                screen.innerHTML += `<div class="sim-cyan">[!] Test durduruldu.</div>`;
             }
         }
 
@@ -741,16 +802,16 @@
         postsRef.on('child_added', (snapshot) => {
             const data = snapshot.val();
             const container = document.getElementById('dynamic-forum-container');
-            if(container.innerHTML.includes('Bulut havuzundan mesajlar')) container.innerHTML = '';
+            if(container.innerHTML.includes('Akış senkronize ediliyor')) container.innerHTML = '';
             const postDiv = document.createElement('div');
             postDiv.className = 'forum-post';
-            postDiv.innerHTML = `<div class="forum-author">${data.user} <span class="badge-rank">${data.rank || 'OPERATÖR'}</span></div><div class="forum-date">${data.date}</div><div class="forum-text">${data.message}</div>`;
+            postDiv.innerHTML = `<div class="forum-author">${data.user} <span class="badge-rank">${data.rank || 'ÜYE'}</span></div><div class="forum-date">${data.date}</div><div class="forum-text">${data.message}</div>`;
             container.prepend(postDiv);
         });
 
         function handleCloudPost(e) {
             e.preventDefault();
-            postsRef.push({ user: document.getElementById('forum-user').value, message: document.getElementById('forum-message').value, date: 'Şimdi', rank: 'OPERATÖR' });
+            postsRef.push({ user: document.getElementById('forum-user').value, message: document.getElementById('forum-message').value, date: 'Şimdi', rank: 'ÜYE' });
             document.getElementById('forum-form').reset();
         }
 
@@ -768,7 +829,7 @@
             const logBox = document.getElementById('chatbot-log');
             logBox.innerHTML += `<div class="chat-msg user">[SEN]: ${document.getElementById('chat-input').value}</div>`;
             document.getElementById('chat-input').value = '';
-            setTimeout(() => { logBox.innerHTML += `<div class="chat-msg bot">[CLS-AI]: Operasyonel altyapı çevrimiçi.</div>`; logBox.scrollTop = logBox.scrollHeight; }, 500);
+            setTimeout(() => { logBox.innerHTML += `<div class="chat-msg bot">[NERVE-AI]: İşlem tamamlandı.</div>`; logBox.scrollTop = logBox.scrollHeight; }, 400);
         }
 
         setInterval(() => {
@@ -779,4 +840,10 @@
     </script>
 </body>
 </html>
-```[cite: 1]
+"""
+
+import uuid
+file_tag = f"code-generated-file-{uuid.uuid4().hex[:10]}"
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+print(f"[file-tag: {file_tag}]")
