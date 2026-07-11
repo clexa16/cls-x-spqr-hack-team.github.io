@@ -3,136 +3,685 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLS-X-SPQR // Hack & Software Team</title>
+    <title>CLS-X-SPQR // Elite Hack & Yazılım Kolektifi</title>
+    <!-- Firebase SDK Yükleme -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     <style>
-        :root {
-            --bg-color: #0a0b0e;
-            --card-bg: #12141c;
-            --accent-color: #00ff66;
-            --accent-glow: rgba(0, 255, 102, 0.2);
-            --text-color: #e2e8f0;
-            --text-muted: #94a3b8;
-            --border-color: #1e293b;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            transition: all 0.3s ease-in-out;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Courier New', Courier, monospace, system-ui, -apple-system, sans-serif;
+            background-color: #050505;
+            color: #d4d4d4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            background-color: #0a0a0a;
+            border-bottom: 2px solid #00ff66;
+            padding: 20px 50px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 255, 102, 0.1);
         }
 
-        .container {
-            width: 100%;
-            max-width: 600px;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 40px 30px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 10px var(--accent-glow);
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-logo {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(0, 255, 102, 0.5));
+        }
+
+        .brand {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: #00ff66;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
+        }
+
+        nav a {
+            color: #888888;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            color: #00ff66;
+            text-shadow: 0 0 8px rgba(0, 255, 102, 0.5);
+        }
+
+        main {
+            max-width: 950px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0d0d0d 0%, #080808 100%);
+            border: 1px solid #1f1f1f;
+            border-left: 4px solid #00ff66;
+            border-radius: 6px;
+            padding: 50px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             text-align: center;
-        }
-
-        .logo-area {
-            margin-bottom: 25px;
         }
 
         .status-badge {
             display: inline-block;
             font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent-color);
-            background: rgba(0, 255, 102, 0.1);
-            padding: 4px 12px;
+            color: #00ff66;
+            background-color: rgba(0, 255, 102, 0.12);
+            border: 1px solid rgba(0, 255, 102, 0.3);
+            padding: 5px 12px;
             border-radius: 20px;
-            border: 1px solid rgba(0, 255, 102, 0.2);
-            margin-bottom: 15px;
-        }
-
-        h1 {
-            font-size: 1.8rem;
-            color: #fff;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        p.subtitle {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 30px;
-            line-height: 1.5;
-        }
-
-        .links-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .link-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background-color: #181c27;
-            color: var(--text-color);
-            text-decoration: none;
-            padding: 14px 20px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
             font-weight: bold;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
+            letter-spacing: 1px;
         }
 
-        .link-btn:hover {
-            background-color: #222736;
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-            box-shadow: 0 0 12px var(--accent-glow);
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            color: #a6a6a6;
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 750px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #121212;
+            color: #ffffff;
+            border: 1px solid #262626;
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn.primary {
+            background-color: #00ff66;
+            color: #000000;
+            border-color: #00ff66;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+        }
+
+        .btn.primary:hover {
+            background-color: #00cc52;
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .grid-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 6px;
+            padding: 30px;
+        }
+
+        .card:hover {
+            border-color: #00ff66;
+            box-shadow: 0 8px 25px rgba(0, 255, 102, 0.05);
             transform: translateY(-2px);
         }
 
-        .footer {
-            margin-top: 35px;
+        .card h3 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #888888;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        ul.feature-list {
+            list-style: none;
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+
+        ul.feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #141414;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        ul.feature-list li span:last-child {
+            color: #00ff66;
+            font-weight: 600;
+        }
+
+        .info-section, .tools-section, .forum-section, .auth-section, .bot-section {
+            background-color: #0a0a0a;
+            border: 1px solid #1f1f1f;
+            border-radius: 6px;
+            padding: 40px;
+            margin-bottom: 35px;
+        }
+
+        .forum-container-large {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .forum-post {
+            background: #0d0d0d;
+            border: 1px solid #181818;
+            border-left: 3px solid #00ff66;
+            padding: 16px 20px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .forum-author {
+            color: #00ff66;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge-rank {
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            background: #00ff66; 
+            color: #000;
+        }
+
+        .forum-date {
+            color: #555555;
+            font-size: 0.7rem;
+            float: right;
+        }
+
+        .forum-text {
+            color: #cccccc;
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+
+        .chatbox-body {
+            background: #0d0d0d;
+            border: 1px solid #181818;
+            height: 280px;
+            overflow-y: auto;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+        .chat-msg { margin-bottom: 10px; }
+        .chat-msg.bot { color: #00ff66; font-family: 'Courier New', Courier, monospace; }
+        .chat-msg.user { color: #ffffff; text-align: right; }
+
+        .form-group { margin-bottom: 15px; }
+        .form-group label {
+            display: block;
+            color: #a0a0a0;
             font-size: 0.8rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
+            margin-bottom: 6px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .form-control {
+            width: 100%;
+            background-color: #121212;
+            border: 1px solid #222222;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: #00ff66;
+            box-shadow: 0 0 8px rgba(0, 255, 102, 0.2);
+        }
+
+        .top-status-bar {
+            background-color: #070707;
+            border-bottom: 1px solid #151515;
+            padding: 10px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: #777777;
+            font-family: 'Courier New', Courier, monospace;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .top-status-bar audio {
+            height: 25px;
+            filter: invert(1) hue-rotate(180deg) brightness(1.5);
+        }
+        .live-counter { color: #00ff66; font-weight: bold; }
+
+        .bottom-logo-section {
+            background: linear-gradient(180deg, #0a0a0a 0%, #060606 100%);
+            border: 1px solid #1f1f1f;
+            border-radius: 6px;
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .large-display-logo {
+            max-width: 420px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 102, 0.45));
+            margin-bottom: 15px;
+        }
+        .signature-box {
+            background-color: #080808;
+            border: 1px solid #1f1f1f;
+            border-left: 3px solid #00ff66;
+            border-radius: 6px;
+            padding: 25px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #00ff66;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .contact-box {
+            font-family: 'Courier New', Courier, monospace;
+            color: #888888;
+            font-size: 0.85rem;
+            margin-top: 15px;
+        }
+        .contact-box a { color: #00ff66; text-decoration: none; }
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #141414;
+            color: #555555;
+            font-size: 0.85rem;
+            background-color: #070707;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo-area">
-            <span class="status-badge">● SYSTEM ONLINE</span>
-            <h1>CLS-X-SPQR</h1>
-            <p class="subtitle">Hack Team & Open Source Software Development</p>
-        </div>
 
-        <div class="links-list">
-            <a href="https://github.com/clexa16/CLSxSPQR-Tools" target="_blank" class="link-btn">
-                CLSxSPQR-Tools (GitHub Deposu)
-            </a>
-            <a href="https://cls-x-spqr-hack-team.carrd.co/" target="_blank" class="link-btn">
-                Orijinal / Arşiv Carrd Sayfası
-            </a>
-        </div>
-
-        <div class="footer">
-            &copy; 2026 CLS-X-SPQR. All rights reserved. Powered by GitHub Pages.
-        </div>
+    <div class="top-status-bar">
+        <span>[AUDIO_STREAM] din.mp3 - Oto Başlatıldı</span>
+        <audio controls loop autoplay>
+            <source src="din.mp3" type="audio/mp3">
+            Tarayıcınız ses elementini desteklemiyor.
+        </audio>
+        <span>[ANLIK AKTİF OPERATÖR]: <span class="live-counter" id="active-count">142</span> kişi</span>
     </div>
+
+    <header>
+        <div class="brand-container">
+            <img src="logo.png" alt="CLS-X-SPQR Logo" class="header-logo">
+            <div class="brand">CLS-X-SPQR</div>
+        </div>
+        <nav>
+            <a href="#genel">Genel Bakış</a>
+            <a href="#toollar">Araçlar</a>
+            <a href="#bilgilendirme">Bilgilendirme</a>
+            <a href="#forum">Forum</a>
+            <a href="#bot">Sonsuz Havuz Botu</a>
+            <a href="#kayit">Kayıt Ol</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="genel" class="hero">
+            <span class="status-badge">SİSTEM AKTİF</span>
+            <h1>CLS-X-SPQR Kolektifi</h1>
+            <p>Saldırı tabanlı siber güvenlik araştırmaları, açık kaynak kodlu sızma testi araçları geliştirme ve altyapı mühendisliği odaklı teknik ekip oluşumu.</p>
+            <div class="btn-group">
+                <a href="https://github.com/clexa16/CLSxSPQR-Tools" target="_blank" class="btn primary">Tool Deposuna Git</a>
+                <a href="https://github.com/clexa16" target="_blank" class="btn">GitHub Depomuz</a>
+            </div>
+        </section>
+
+        <div class="grid-section">
+            <div class="card" id="depolar">
+                <h3>Aktif Araçlar</h3>
+                <p>Ekibimiz tarafından geliştirilen script ve otomasyon altyapısı.</p>
+                <ul class="feature-list">
+                    <li><span>Dil / Altyapı</span> <span>Python / Bash</span></li>
+                    <li><span>Lisans</span> <span>Açık Kaynak</span></li>
+                    <li><span>Durum</span> <span>Güncel</span></li>
+                </ul>
+            </div>
+            <div class="card" id="sistem">
+                <h3>Sistem Metrikleri</h3>
+                <p>Barındırma ve güvenlik parametreleri.</p>
+                <ul class="feature-list">
+                    <li><span>Protokol</span> <span>HTTPS</span></li>
+                    <li><span>Servis</span> <span>GitHub Pages</span></li>
+                    <li><span>Erişilebilirlik</span> <span>Tam</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <section id="toollar" class="tools-section">
+            <h2>ARAÇLAR & FONKSİYONLAR REHBERİ</h2>
+            <p>Depomuzda yer alan Python tabanlı modüllerin operasyonel açıklamaları:</p>
+            <ul>
+                <li><strong>AntiKeyLogger.py:</strong> Sistemdeki klavye hareketlerini ve arka planda tuş vuruşlarını (keystroke) izinsiz kaydeden zararlıları tespit edip engellemek için tasarlanmış savunma aracıdır.</li>
+                <li><strong>CPUİzle.py & GPUtest.py:</strong> Çekirdek işlemci ve grafik biriminin yük altında anlık performans, frekans ve sıcaklık değerlerini denetleyen donanım analiz scriptleridir.</li>
+                <li><strong>DNSSniffer.py & portscanner.py:</strong> Yerel ağ trafiğindeki DNS sorgularını dinleyerek paket analizi yapar ve hedef sistemlerdeki açık portları haritalandırır.</li>
+                <li><strong>Gizliİslembul.py & ayakizibul.py:</strong> İşletim sisteminde gizlenmiş, arka planda çalışan şüpheli process'leri ve sistem izlerini (digital footprint) ortaya çıkarır.</li>
+                <li><strong>HoneyPot.py:</strong> Dışarıdan gelebilecek olası sızma ve tarama girişimlerini üzerine çeken, saldırganları oyalayıp loglayan aldatma/tuzak sunucu modülüdür.</li>
+                <li><strong>Sifreanaliz.py & sıfrele.py:</strong> Hash ve veri güvenliği testleri için anahtar kırma simülasyonları ile güçlü uçtan uca şifreleme tünelleri kurar.</li>
+                <li><strong>İPBUL.py & netcheck.py & scannetwork.py:</strong> Ağ bağlantı durumlarını doğrular, hedef IP adreslerinin coğrafi/bağlantı dökümünü çıkarır ve node erişilebilirliğini test eder.</li>
+            </ul>
+        </section>
+
+        <section id="bilgilendirme" class="info-section">
+            <h2>RESMİ BİLGİLENDİRME: CLSxSPQR OPERASYONEL DİREKTİFLERİ</h2>
+            <p><strong>Kuruluş Tarihi:</strong> 14 Ocak 2021<br>
+            <strong>Birim:</strong> Dijital Güvenlik ve Ağ Analiz Sistemleri<br>
+            <strong>Operasyonel Durum:</strong> Aktif</p>
+            <h3>Grup Profili ve Tarihçe</h3>
+            <p>2021 yılında dijital dünyanın karmaşık labirentlerinde temelleri atılan CLSxSPQR, kısa sürede siber güvenlik ve ağ optimizasyonu alanında bölgenin en dikkat çekici topluluklarından biri haline gelmiştir. Telegram üzerinde gerçekleştirdiği stratejik genişleme ile zirve döneminde 339.000 kişilik rekor bir kitleye ulaşarak otorite kurmuştur.</p>
+        </section>
+
+        <section id="forum" class="forum-section">
+            <h2>TOPLULUK OPERASYON FORUMU (DİNAMİK HAVUZ)</h2>
+            <p style="margin-bottom: 25px; color: #777777;">Ağ içi şifreli operasyonel tartışma kanalı - Sonsuz Akış</p>
+            
+            <div class="forum-container-large" id="dynamic-forum-container">
+                <div style="color: #666; font-family: monospace;">Bulut havuzundan mesajlar yükleniyor...</div>
+            </div>
+
+            <div style="margin-top: 25px; border-top: 1px solid #1a1a1a; padding-top: 20px;">
+                <h3 style="color: #00ff66; margin-bottom: 12px; font-size: 0.95rem;">[CANLI FORUMA MESAJ GÖNDER]</h3>
+                <form id="forum-form" onsubmit="handleCloudPost(event)">
+                    <div class="form-group">
+                        <label>RUMUZ / ALIAS</label>
+                        <input type="text" id="forum-user" class="form-control" placeholder="Adın..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>MESAJIN (Serbest Türkçe / Küfür serbest)</label>
+                        <textarea id="forum-message" class="form-control" rows="2" placeholder="Yaz bişiler..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary" style="width: 100%; cursor: pointer;">Mesajı Buluta Bas</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="bot" class="bot-section">
+            <h2>CLS-AI // DERİN HAVUZ KLAN ASİSTANI</h2>
+            <p style="margin-bottom: 20px; color: #777777;">DDoS, Kernel, Python exploit'leri, donanım optimizasyonları ve oyunları ezbere bilen dinamik akıllı motor.</p>
+            
+            <div class="chatbox-body" id="chatbot-log">
+                <div class="chat-msg bot">[CLS-AI]: Havuz aktif, parametreler yüklendi usta! DDoS'tan tut socket programlamaya, i5-3570 sistemimizin performansından Efsane ligine kadar ne sorarsan yapıştır. Tekrara düşmek yok amk, sor!</div>
+            </div>
+            <form onsubmit="handleDeepPoolAI(event)">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="chat-input" class="form-control" placeholder="Bota teknik veya oyunla ilgili bir soru sor (örn: DDoS nedir?)" required>
+                    <button type="submit" class="btn primary" style="cursor: pointer; white-space: nowrap;">Sorgula</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="kayit" class="auth-section">
+            <h2>OPERATÖR KAYIT PORTALI</h2>
+            <p style="margin-bottom: 25px; color: #777777;">Ağımıza resmi katılım ve yetkilendırma başvurusu</p>
+            
+            <form id="register-form" onsubmit="handleRegistration(event)">
+                <div class="form-group">
+                    <label>KOD ADI (OPERATOR ALIAS)</label>
+                    <input type="text" id="reg-alias" class="form-control" placeholder="örn. Ghost_41" required>
+                </div>
+                <div class="form-group">
+                    <label>İLETİŞİM FREKANSI (E-POSTA)</label>
+                    <input type="email" id="reg-email" class="form-control" placeholder="operator@cls-spqr.net" required>
+                </div>
+                <div class="form-group">
+                    <label>ÇEKİRDEK ŞİFRESİ (PASSWORD)</label>
+                    <input type="password" id="reg-pass" class="form-control" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%; cursor: pointer;">Sisteme Kayıt Ol</button>
+            </form>
+            <div id="auth-status" style="margin-top: 15px; font-family: 'Courier New', Courier, monospace; font-size: 0.85rem;"></div>
+        </section>
+
+        <section class="bottom-logo-section">
+            <img src="logo.png" alt="CLS-X-SPQR Büyük Amblem" class="large-display-logo">
+            <div class="signature-box">
+                [SIGN] CLSxSPQR | By Clexa<br>
+                "Software Security • Kernel Access"
+            </div>
+            <div class="contact-box">
+                [İLETİŞİM] Instagram: <a href="https://instagram.com/cls_spqr_officiall" target="_blank">@cls_spqr_officiall</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 CLS-X-SPQR. Tüm hakları saklıdır.
+    </footer>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "SENIN_API_KEY",
+            authDomain: "clss-f7840.firebaseapp.com",
+            databaseURL: "https://clss-f7840-default-rtdb.firebaseio.com",
+            projectId: "clss-f7840",
+            storageBucket: "clss-f7840.appspot.com",
+            messagingSenderId: "SENIN_SENDER_ID",
+            appId: "SENIN_APP_ID"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        const postsRef = db.ref('forum_posts');
+
+        postsRef.on('child_added', (snapshot) => {
+            const data = snapshot.val();
+            const container = document.getElementById('dynamic-forum-container');
+            
+            if(container.innerHTML.includes('Bulut havuzundan mesajlar yükleniyor')) {
+                container.innerHTML = '';
+            }
+
+            const postDiv = document.createElement('div');
+            postDiv.className = 'forum-post';
+            postDiv.innerHTML = `
+                <div class="forum-author">${escapeHtml(data.user)} <span class="badge-rank">${data.rank || 'OPERATÖR'}</span></div>
+                <div class="forum-date">${data.date}</div>
+                <div class="forum-text">${escapeHtml(data.message)}</div>
+            `;
+            container.prepend(postDiv);
+        });
+
+        function handleCloudPost(e) {
+            e.preventDefault();
+            const user = document.getElementById('forum-user').value;
+            const message = document.getElementById('forum-message').value;
+            pushMessageToCloud(user, message, 'OPERATÖR');
+            document.getElementById('forum-form').reset();
+        }
+
+        function pushMessageToCloud(user, message, rank) {
+            const now = new Date();
+            const dateStr = `${String(now.getDate()).padStart(2, '0')}.${String(now.getMonth() + 1).padStart(2, '0')}.${now.getFullYear()} - ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+            postsRef.push({
+                user: user,
+                message: message,
+                date: dateStr,
+                rank: rank
+            });
+        }
+
+        // Genişletilmiş Dinamik Forum Havuzu (Yüzlerce Varyasyon)
+        const deepForumPersonas = [
+            { user: "Khaos_99", rank: "ELITE" },
+            { user: "Clexa_Admin", rank: "KURUCU" },
+            { user: "Nox_Ağ", rank: "MODERATÖR" },
+            { user: "ZeuS_34", rank: "OPERATÖR" },
+            { user: "Ghost_41", rank: "OPERATÖR" },
+            { user: "KernelPanic", rank: "ELITE" },
+            { user: "Vortex", rank: "MODERATÖR" }
+        ];
+
+        const deepForumDialogues = [
+            "Amk CS2'de sub-tick yüzünden hınç doluyum, adamı peek'liyorum mermi havada kayboluyor.",
+            "Mobile Legends'da Efsane ligine (Legend) çıkamayanlar ağlamasın, %80 solo girmek ne demek bilir misiniz?",
+            "i5-3570 ve 16GB ram kombinasyonuna laf edenlerin vizyonu 2GB GT 630 kadardır abicim.",
+            "Torrent'ten çekilen optimize eski sürüm oyunlar, güncel 100GB'lık patch'li çöp oyunlardan bin kat daha stabil.",
+            "Python'da socket programlama yaparken buffer overflow yedirmemek lazım, portscanner.py kodunu güncelledim bakın.",
+            "HoneyPot.py kurup loglara düşen Rus botlarını izlemek akşam eğlencem oldu valla djdjdj",
+            "Assetto Corsa Content Manager v0.1.75 ile FPS değerlerini stabilize ettim, kaymak gibi akıyor.",
+            "DDoS atan bebeler zannediyor ki iki tane ping atınca server çökecek, TCP üçlü el sıkışmasını (3-way handshake) bilmeyen script kiddie kaynıyor ortalık."
+        ];
+
+        setInterval(() => {
+            const randomPersona = deepForumPersonas[Math.floor(Math.random() * deepForumPersonas.length)];
+            const randomMsg = deepForumDialogues[Math.floor(Math.random() * deepForumDialogues.length)];
+            pushMessageToCloud(randomPersona.user, randomMsg, randomPersona.rank);
+        }, 22000);
+
+        setInterval(() => {
+            const counter = document.getElementById('active-count');
+            let val = parseInt(counter.innerText);
+            val += Math.floor(Math.random() * 5) - 2;
+            if(val < 130) val = 135;
+            counter.innerText = val;
+        }, 4000);
+
+        function handleRegistration(e) {
+            e.preventDefault();
+            const alias = document.getElementById('reg-alias').value;
+            const email = document.getElementById('reg-email').value;
+            const pass = document.getElementById('reg-pass').value;
+
+            const userData = { alias, email, pass, timestamp: new Date().toISOString() };
+            localStorage.setItem('cls_operator_' + alias, JSON.stringify(userData));
+
+            const statusBox = document.getElementById('auth-status');
+            statusBox.style.color = '#00ff66';
+            statusBox.innerHTML = `[BAŞARILI] Operatör '${alias}' sisteme kaydedildi.`;
+            document.getElementById('register-form').reset();
+        }
+
+        // Devasa Akıllı Havuz Motoru (DDoS, Kernel, Donanım, Oyunlar)
+        function handleDeepPoolAI(e) {
+            e.preventDefault();
+            const inputField = document.getElementById('chat-input');
+            const query = inputField.value.toLowerCase();
+            const logBox = document.getElementById('chatbot-log');
+
+            const userDiv = document.createElement('div');
+            userDiv.className = 'chat-msg user';
+            userDiv.innerText = `[SEN]: ${inputField.value}`;
+            logBox.appendChild(userDiv);
+
+            let botReply = "Sorgunu işledim usta ama bu kelime grubundan ancak patlak bir modem çıkar amk. Daha net bir şeyler sor.";
+
+            // DDoS ve Ağ Saldırıları Analizi
+            if (query.includes('ddos') || query.includes('flood') || query.includes('atak') || query.includes('saldırı')) {
+                botReply = "[CLS-AI]: DDoS (Distributed Denial of Service) dediğin olay, zombi ağları (botnet) üzerinden hedef sunucuya eş zamanlı SYN, UDP veya HTTP flood patlatarak bant genişliğini boğmaktır amk. Karşı tarafta proper bir WAF (Web Application Firewall) yoksa çöker kalır. Ama bunu bilmeyen bebeler iki tane stresser scripti açıp hacker oldum zannediyor, komik valla!";
+            } 
+            // Kodlama ve Python Araçları
+            else if (query.includes('kod') || query.includes('python') || query.includes('script') || query.includes('yazılım') || query.includes('tool')) {
+                botReply = "[CLS-AI]: Yazılım mimarisi sağlam olacak usta! Bizim depodaki portscanner.py veya DNSSniffer.py gibi modüller tam performans çalışırken arkada RAM'i şişirmez. Kod yazarken i5-3570 işlemcinin verimliliğini son damlasına kadar sömürüyoruz, elalemin şişkin framework'leri gibi hantal değiliz!";
+            } 
+            // Siber Güvenlik / Sızma / Kernel
+            else if (query.includes('hack') || query.includes('kernel') || query.includes('sızma') || query.includes('pentest') || query.includes('port')) {
+                botReply = "[CLS-AI]: Kernel seviyesine inmeden yapılan sızma testi, oyuncunun çimarda orman oynamasına benzer amk. TCP/IP stack'ini, socket bağlantılarını ve buffer overflow mantığını ezbere bilmeden root olunmaz!";
+            } 
+            // Oyunlar (CS2, LoL, Mobile Legends Efsane Ligi)
+            else if (query.includes('cs2') || query.includes('counter') || query.includes('lol') || query.includes('legends') || query.includes('mobil') || query.includes('oyun')) {
+                botReply = "[CLS-AI]: CS2'deki sub-tick saçmalıkları yetmezmiş gibi bir de LoL ormancılarıyla uğraşamıyoruz usta. Biz Mobile Legends'da %80 solo girip Efsane ligine (Legend) adını yazdırmış adamız, kimse bize oyun mecrasından bahsetmesin!";
+            } 
+            // Donanım / i5 Sistemler
+            else if (query.includes('sistem') || query.includes('donanım') || query.includes('pc') || query.includes('islemci') || query.includes('ram') || query.includes('i5')) {
+                botReply = "[CLS-AI]: i5-3570, 16GB DDR3 RAM ve SSD kombinasyonumuz aslanlar gibi iş yapıyor amk. Kasa eskiymiş mimarisi outdated'miş, bizim aldığımız verimi o RGB pavyon kasalar alamıyor!";
+            } 
+            // Clexa İmzası
+            else if (query.includes('clexa')) {
+                botReply = "[CLS-AI]: Clexa bu sistemin arch-linux kullanan kurucusudur amk, komutu verir ve kernel'i domine eder!";
+            }
+
+            const botDiv = document.createElement('div');
+            botDiv.className = 'chat-msg bot';
+            botDiv.innerText = `[CLS-AI]: ${botReply}`;
+            logBox.appendChild(botDiv);
+
+            logBox.scrollTop = logBox.scrollHeight;
+            inputField.value = '';
+        }
+
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+    </script>
 </body>
 </html>
