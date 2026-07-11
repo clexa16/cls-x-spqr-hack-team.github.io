@@ -157,68 +157,97 @@
             transform: translateY(-3px);
         }
 
-        .grid-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 35px;
-        }
-
-        @media (max-width: 768px) {
-            .grid-section {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .card {
-            background-color: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            border-radius: 6px;
-            padding: 30px;
-        }
-
-        .card:hover {
-            border-color: #00ff66;
-            box-shadow: 0 8px 25px rgba(0, 255, 102, 0.05);
-            transform: translateY(-2px);
-        }
-
-        .card h3 {
-            color: #ffffff;
-            font-size: 1.2rem;
-            margin-bottom: 12px;
-        }
-
-        .card p {
-            color: #888888;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-
-        ul.feature-list {
-            list-style: none;
-            color: #cccccc;
-            font-size: 0.9rem;
-        }
-
-        ul.feature-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #141414;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        ul.feature-list li span:last-child {
-            color: #00ff66;
-            font-weight: 600;
-        }
-
-        .info-section, .tools-section, .forum-section, .auth-section, .bot-section {
+        .info-section, .tools-section, .forum-section, .auth-section, .bot-section, .gallery-section, .sim-section {
             background-color: #0a0a0a;
             border: 1px solid #1f1f1f;
             border-radius: 6px;
             padding: 40px;
             margin-bottom: 35px;
+        }
+
+        /* Fakehack Terminal Stilleri */
+        .terminal-box {
+            background-color: #050505;
+            border: 1px solid #1f1f1f;
+            border-top: 2px solid #00ff66;
+            border-radius: 4px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            margin-top: 20px;
+        }
+        .terminal-screen {
+            background-color: #080808;
+            border: 1px solid #151515;
+            height: 320px;
+            overflow-y: auto;
+            padding: 15px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            border-radius: 3px;
+        }
+        .sim-green { color: #00ff66; }
+        .sim-red { color: #ff3333; }
+        .sim-cyan { color: #00e5ff; }
+
+        .tools-grid-sim {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            padding-right: 5px;
+        }
+        .tool-sim-btn {
+            background: #121212;
+            border: 1px solid #222;
+            color: #ccc;
+            padding: 8px 12px;
+            font-size: 0.75rem;
+            border-radius: 3px;
+            cursor: pointer;
+            text-align: left;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .tool-sim-btn:hover {
+            border-color: #00ff66;
+            color: #00ff66;
+            background: #161616;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+            display: none;
+        }
+
+        .gallery-grid.active {
+            display: grid;
+        }
+
+        .gallery-item {
+            background: #0d0d0d;
+            border: 1px solid #1c1c1c;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid #181818;
+        }
+
+        .gallery-item span {
+            display: block;
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.8rem;
+            color: #00ff66;
+            text-align: center;
         }
 
         .forum-container-large {
@@ -387,6 +416,8 @@
         <nav>
             <a href="#genel">Genel Bakış</a>
             <a href="#toollar">Araçlar</a>
+            <a href="#galeri">Tool Görselleri</a>
+            <a href="#simulasyon">Simülasyon Oyunları</a>
             <a href="#bilgilendirme">Bilgilendirme</a>
             <a href="#forum">Forum</a>
             <a href="#bot">Canlı Terminal Asistanı</a>
@@ -405,27 +436,6 @@
             </div>
         </section>
 
-        <div class="grid-section">
-            <div class="card" id="depolar">
-                <h3>Aktif Araçlar</h3>
-                <p>Ekibimiz tarafından geliştirilen script ve otomasyon altyapısı.</p>
-                <ul class="feature-list">
-                    <li><span>Dil / Altyapı</span> <span>Python / Bash</span></li>
-                    <li><span>Lisans</span> <span>Açık Kaynak</span></li>
-                    <li><span>Durum</span> <span>Güncel</span></li>
-                </ul>
-            </div>
-            <div class="card" id="sistem">
-                <h3>Sistem Metrikleri</h3>
-                <p>Barındırma ve güvenlik parametreleri.</p>
-                <ul class="feature-list">
-                    <li><span>Protokol</span> <span>HTTPS</span></li>
-                    <li><span>Servis</span> <span>GitHub Pages</span></li>
-                    <li><span>Erişilebilirlik</span> <span>Tam</span></li>
-                </ul>
-            </div>
-        </div>
-
         <section id="toollar" class="tools-section">
             <h2>ARAÇLAR & FONKSİYONLAR REHBERİ</h2>
             <p>Depomuzda yer alan Python tabanlı modüllerin operasyonel açıklamaları:</p>
@@ -438,6 +448,75 @@
                 <li><strong>Sifreanaliz.py & sıfrele.py:</strong> Hash ve veri güvenliği testleri için anahtar kırma simülasyonları ile güçlü uçtan uca şifreleme tünelleri kurar.</li>
                 <li><strong>İPBUL.py & netcheck.py & scannetwork.py:</strong> Ağ bağlantı durumlarını doğrular, hedef IP adreslerinin coğrafi/bağlantı dökümünü çıkarır ve node erişilebilirliğini test eder.</li>
             </ul>
+        </section>
+
+        <section id="galeri" class="gallery-section">
+            <h2>OPERASYONEL GÖRSEL ARŞİVİ</h2>
+            <p style="margin-bottom: 20px; color: #777777;">Sistemde kayıtlı araçların ekran görüntülerini ve log akışlarını inceleyin.</p>
+            
+            <button type="button" class="btn primary" onclick="toggleGallery()" style="cursor: pointer; margin-bottom: 10px;">Tool Görüntüleri</button>
+            
+            <div class="gallery-grid" id="tool-gallery-grid">
+                <div class="gallery-item">
+                    <img src="image01.jpg" alt="Image 01" onerror="this.src='logo.png'">
+                    <span>image01.jpg</span>
+                </div>
+                <div class="gallery-item">
+                    <img src="image02.jpg" alt="Image 02" onerror="this.src='logo.png'">
+                    <span>image02.jpg</span>
+                </div>
+                <div class="gallery-item">
+                    <img src="image03.jpg" alt="Image 03" onerror="this.src='logo.png'">
+                    <span>image03.jpg</span>
+                </div>
+                <div class="gallery-item">
+                    <img src="image04.jpg" alt="Image 04" onerror="this.src='logo.png'">
+                    <span>image04.jpg</span>
+                </div>
+                <div class="gallery-item">
+                    <img src="image05.jpg" alt="Image 05" onerror="this.src='logo.png'">
+                    <span>image05.jpg</span>
+                </div>
+                <div class="gallery-item">
+                    <img src="image06.jpg" alt="Image 06" onerror="this.src='logo.png'">
+                    <span>image06.jpg</span>
+                </div>
+                <div class="gallery-item">
+                    <img src="image07.jpg" alt="Image 07" onerror="this.src='logo.png'">
+                    <span>image07.jpg</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SİMÜLASYON OYUNLARI (FKEHACK.PY WEB VERSİYONU - ORTALARA TAŞINDI + DALGALI NOT) -->
+        <section id="simulasyon" class="sim-section">
+            <h2 class="sim-red" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 10px;">==========================================</h2>
+            <h2 style="color: #fff; font-size: 1.4rem; margin-bottom: 5px;">| SİMÜLASYON OYUNLARI // FAKEHACK.PY |</h2>
+            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 10px;">SYSTEM: TINY10 | GPU: HD 4450 | BY CLEXA - CLxSPQR</p>
+            
+            <!-- DALGALI UYARI NOTU -->
+            <div style="background: rgba(255, 51, 51, 0.08); border: 1px dashed #ff3333; padding: 12px 18px; border-radius: 4px; margin-bottom: 25px; font-family: 'Courier New', Courier, monospace; font-size: 0.82rem; color: #ff6666;">
+                [!] <strong>DİKKAT:</strong> Bu simülasyon tamamen göz boyama amaçlıdır, gerçekte hiçbir sisteme zarar vermez veya işlem yapmaz. Arkadaşlarınızın yanında "Ağları çöktürüyom la" diye hava atıp karizmatik görünmek için gönül rahatlığıyla kullanabilirsiniz. Sorumluluk tamamen sizde! 😉
+            </div>
+
+            <div class="terminal-box">
+                <div class="terminal-screen" id="sim-screen">
+                    <div class="sim-red">==========================================</div>
+                    <div class="sim-red">|        BY CLEXA - CLSxSPQR TEAM         |</div>
+                    <div class="sim-red">|    SYSTEM: TINY10 | GPU: HD 4450        |</div>
+                    <div class="sim-red">==========================================</div>
+                    <div class="sim-green" style="margin-top: 10px;">Sistem hazır. Aşağıdaki modüllerden birini seçerek simülasyonu çalıştırın (Durdurmak için Durdur butonuna basın).</div>
+                </div>
+
+                <div class="tools-grid-sim" id="sim-buttons-container">
+                    <!-- JavaScript ile dinamik eklenecek -->
+                </div>
+
+                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                    <input type="text" id="sim-target-input" class="form-control" placeholder="Hedef (IP, URL, vb.) girin..." style="flex: 1; min-width: 220px;">
+                    <button type="button" class="btn primary" onclick="stopSimulation()" style="cursor: pointer; background: #ff3333; border-color: #ff3333; color: #fff;">Durdur (Menüye Dön)</button>
+                </div>
+            </div>
         </section>
 
         <section id="bilgilendirme" class="info-section">
@@ -527,6 +606,87 @@
     </footer>
 
     <script>
+        const PYTHON_TOOLS = [
+            { name: "DDoS Attack", input: "Target IP" },
+            { name: "RAT Controller", input: "Target IP" },
+            { name: "SMS Bomber", input: "Phone Number" },
+            { name: "Port Scanner", input: "Target IP" },
+            { name: "Brute Force SSH", input: "Target IP" },
+            { name: "WiFi Cracker", input: "WiFi SSID" },
+            { name: "Phishing Page Generator", input: "Target URL" },
+            { name: "Keylogger", input: "Target IP" },
+            { name: "Packet Sniffer", input: "Network Interface" },
+            { name: "Malware Builder", input: "Payload Name" },
+            { name: "Exploit Injector", input: "Target IP" },
+            { name: "SQL Injection", input: "Target URL" },
+            { name: "XSS Attack Simulator", input: "Target URL" },
+            { name: "Credential Harvester", input: "Email Address" },
+            { name: "DNS Spoofing", input: "Target Domain" },
+            { name: "ARP Spoofing", input: "Target IP" },
+            { name: "Session Hijacker", input: "Target Session ID" },
+            { name: "MAC Address Changer", input: "New MAC Address" },
+            { name: "HTTP Flood", input: "Target IP" },
+            { name: "VPN Bypass", input: "Target IP" }
+        ];
+
+        let activeSimInterval = null;
+
+        function initSimButtons() {
+            const container = document.getElementById('sim-buttons-container');
+            container.innerHTML = '';
+            PYTHON_TOOLS.forEach((tool, index) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'tool-sim-btn';
+                btn.innerText = `[${String(index + 1).padStart(2, '0')}] ${tool.name}`;
+                btn.onclick = () => startSimulation(tool);
+                container.appendChild(btn);
+            });
+        }
+
+        function startSimulation(tool) {
+            stopSimulation();
+            const targetVal = document.getElementById('sim-target-input').value.trim() || '127.0.0.1';
+            const screen = document.getElementById('sim-screen');
+            
+            const launchDiv = document.createElement('div');
+            launchDiv.className = 'sim-red';
+            launchDiv.innerHTML = `<br>--- ${tool.name} - By Clexa ---<br>[!] CLxSPQR Team - Launching ${tool.name} against ${targetVal}<br>`;
+            screen.appendChild(launchDiv);
+
+            activeSimInterval = setInterval(() => {
+                const colorClass = Math.random() > 0.2 ? 'sim-green' : 'sim-red';
+                const now = new Date();
+                const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+                const randPacket = Math.floor(1000 + Math.random() * 9000);
+                const randLatency = (10 + Math.random() * 290).toFixed(1);
+                const status = Math.random() > 0.1 ? 'OK' : 'FAIL';
+                
+                const lineDiv = document.createElement('div');
+                lineDiv.className = colorClass;
+                lineDiv.innerText = `[${timeStr}] ${tool.name}: packet=${randPacket} latency=${randLatency}ms status=${status} | By Clexa - CLxSPQR`;
+                screen.appendChild(lineDiv);
+                screen.scrollTop = screen.scrollHeight;
+            }, 60);
+        }
+
+        function stopSimulation() {
+            if (activeSimInterval) {
+                clearInterval(activeSimInterval);
+                activeSimInterval = null;
+                const screen = document.getElementById('sim-screen');
+                const stopDiv = document.createElement('div');
+                stopDiv.className = 'sim-cyan';
+                stopDiv.innerHTML = `<br>[!] Connection Interrupted. Returning to menu...<br>`;
+                screen.appendChild(stopDiv);
+                screen.scrollTop = screen.scrollHeight;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initSimButtons();
+        });
+
         const firebaseConfig = {
             apiKey: "SENIN_API_KEY",
             authDomain: "clss-f7840.firebaseapp.com",
@@ -634,6 +794,11 @@
             counter.innerText = val;
         }, 4000);
 
+        function toggleGallery() {
+            const grid = document.getElementById('tool-gallery-grid');
+            grid.classList.toggle('active');
+        }
+
         function handleRegistration(e) {
             e.preventDefault();
             const alias = document.getElementById('reg-alias').value;
@@ -649,7 +814,6 @@
             document.getElementById('register-form').reset();
         }
 
-        // Kesintisiz, hatasız yerel akıllı asistan mekanizması
         function handleLocalAI(e) {
             e.preventDefault();
             const inputField = document.getElementById('chat-input');
@@ -661,7 +825,6 @@
             userDiv.innerText = `[SEN]: ${inputField.value}`;
             logBox.appendChild(userDiv);
             
-            const originalText = inputField.value;
             inputField.value = '';
 
             const loadingDiv = document.createElement('div');
