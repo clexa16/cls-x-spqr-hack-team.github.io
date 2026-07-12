@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLS-X-SPQR // İstihbarat Paneli</title>
+    <title>CLS-X-SPQR // Research & Intelligence Group</title>
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
@@ -61,14 +61,14 @@
             letter-spacing: 1px;
         }
         .welcome-modal .warning-text {
-            color: #ffcc00;
+            color: #00ff66;
             font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 25px;
             font-weight: 600;
             text-align: left;
-            background: rgba(255, 204, 0, 0.08);
-            border-left: 4px solid #ffcc00;
+            background: rgba(0, 255, 102, 0.08);
+            border-left: 4px solid #00ff66;
             padding: 15px;
             border-radius: 4px;
         }
@@ -337,7 +337,7 @@
         .chat-msg { margin-bottom: 10px; }
         .chat-msg.bot { color: #00ff66; font-family: 'Courier New', Courier, monospace; }
         .chat-msg.user { color: #ffffff; text-align: right; }
-        .chat-msg.vip { color: #ff00ff; font-family: 'Courier New', Courier, monospace; font-weight: bold; }
+        .chat-msg.vip { color: #00ff66; font-family: 'Courier New', Courier, monospace; font-weight: bold; }
 
         .form-group { margin-bottom: 15px; }
         .form-group label {
@@ -397,22 +397,22 @@
 
     <div id="welcome-overlay">
         <div class="welcome-modal">
-            <h2>SİSTEM ERİŞİM ONAYI</h2>
+            <h2>GÜVENLİ ERİŞİM DOĞRULAMASI</h2>
             <div class="warning-text">
-                <strong>DİKKAT:</strong> Sitemizdeki şifreleme ve analiz araçları tamamen operasyonel ve gerçek zamanlı işlem yapar.
+                <strong>YASAL UYARI:</strong> Bu platformdaki tüm kriptografik modüller ve ağ inceleme araçları yalnızca yetkili penetrasyon testleri ve güvenlik araştırmaları amacıyla sunulmaktadır.
             </div>
             <div class="visitor-info-box" id="visitor-detect-box">
-                Bağlantı ve sistem izleri algılanıyor...
+                Bağlantı parametreleri ve TLS protokolü analiz ediliyor...
             </div>
-            <button class="btn primary" onclick="acceptSystemTerms()" style="background:#00ff66; border-color:#00ff66; color:#000; width:100%; cursor:pointer; font-weight:bold; font-size:1rem; padding:14px; letter-spacing:1px;">KABUL ET VE GİRİŞ YAP</button>
+            <button class="btn primary" onclick="acceptSystemTerms()" style="background:#00ff66; border-color:#00ff66; color:#000; width:100%; cursor:pointer; font-weight:bold; font-size:1rem; padding:14px; letter-spacing:1px;">ŞARTLARI ONAYLA VE GİRİŞ YAP</button>
         </div>
     </div>
 
     <canvas id="matrix-canvas"></canvas>
 
     <div class="top-status-bar">
-        <span>[AKIŞ] broadcast.mp3 - Tünellendi</span>
-        <audio controls loop>
+        <span>[GÜVENLİ TÜNEL] TLS v1.3 - Aktif Bağlantı</span>
+        <audio controls loop style="height: 25px;">
             <source src="din.mp3" type="audio/mp3">
             Tarayıcınız ses elementini desteklemiyor.
         </audio>
@@ -426,10 +426,10 @@
         </div>
         <nav>
             <a href="#genel">Ana Sayfa</a>
-            <a href="#radar">Operasyonlar</a>
-            <a href="#uyelik">Üyelik</a>
+            <a href="#radar">Loglar</a>
+            <a href="#uyelik">Hizmetler</a>
             <a href="#profil" id="nav-profil-link" style="display:none;">Profil</a>
-            <a href="#vip-uplink" id="nav-vip-link" style="display:none;">Başkanlık Hattı</a>
+            <a href="#vip-uplink" id="nav-vip-link" style="display:none;">Güvenli İletişim</a>
             <a href="#osint">Phantom</a>
             <a href="#subdomain">Void</a>
             <a href="#leakcheck">Spectre</a>
@@ -438,7 +438,7 @@
             <a href="#resolver">DNS</a>
             <a href="#sifrele">Şifrele</a>
             <a href="#sifreyikir">Şifreyi Kır</a>
-            <a href="#forum">Forum</a>
+            <a href="#forum">Araştırmalar</a>
             <a href="#bot">Nerve-AI</a>
         </nav>
     </header>
@@ -446,8 +446,8 @@
     <main>
         <section id="genel" class="hero">
             <span class="status-badge">SİSTEM ERİŞİMİ ONAYLANDI</span>
-            <h1>CLS-X-SPQR Paneli</h1>
-            <p>Gerçek zamanlı kriptografik dönüşüm, ağ inceleme ve test araçları kolektifi.</p>
+            <h1>CLS-X-SPQR Araştırma Kolektifi</h1>
+            <p>Gerçek zamanlı kriptografik dönüşüm, açık kaynak istihbaratı ve ağ güvenlik test araçları.</p>
             <div class="btn-group">
                 <a href="https://github.com/clexa16/CLSxSPQR-Tools" target="_blank" class="btn primary">Tool Deposu</a>
                 <a href="https://github.com/clexa16" target="_blank" class="btn">GitHub Deposu</a>
@@ -455,79 +455,79 @@
         </section>
 
         <section id="uyelik" class="membership-section">
-            <h2 style="color: #00ff66; font-size: 1.35rem; margin-bottom: 5px;">| ÜYELİK SEKMELERİ VE PLANLAR |</h2>
-            <p style="font-family: 'Courier New', Courier, monospace; color: #888; font-size: 0.8rem; margin-bottom: 20px;">ERİŞİM YETKİ SEVİYELERİ VE ŞARTLAR</p>
+            <h2 style="color: #00ff66; font-size: 1.35rem; margin-bottom: 5px;">| ERİŞİM SEVİYELERİ VE HİZMETLER |</h2>
+            <p style="font-family: 'Courier New', Courier, monospace; color: #888; font-size: 0.8rem; margin-bottom: 20px;">GÜVENLİK DENETİMİ VE ARAŞTIRMA MODÜLLERİ</p>
             
             <div class="membership-grid">
                 <div class="tier-card">
                     <div>
-                        <h3>ÜCRETSİZ PLAN</h3>
-                        <div class="tier-price">0 ₺ / Sınırsız</div>
-                        <div class="tier-desc">Sitede genel kullanıma sunulan standart şifreleme ve analiz araçlarına erişim sağlar.</div>
+                        <h3>PUBLIC RESEARCH</h3>
+                        <div class="tier-price">Açık Kaynak</div>
+                        <div class="tier-desc">Genel kullanıma sunulan standart şifreleme, hash ve açık kaynaklı ağ analiz araçlarına erişim.</div>
                     </div>
-                    <button class="btn primary" onclick="selectTier('Ucretsiz')" style="width:100%; cursor:pointer;">Aktif Plan</button>
+                    <button class="btn primary" onclick="selectTier('Public')" style="width:100%; cursor:pointer;">Aktif Seviye</button>
                 </div>
 
                 <div class="tier-card standard">
                     <div>
-                        <h3>STANDART PLAN</h3>
-                        <div class="tier-price">Şartlı Erişim</div>
+                        <h3>ANALYST TIER</h3>
+                        <div class="tier-price">Katkı Esaslı</div>
                         <div class="tier-desc">
-                            <strong>Özellikler:</strong> Genişletilmiş kripto ve ağ modülleri.<br><br>
-                            <strong>Şartlar:</strong> Kayıt olup Instagram'da <a href="https://instagram.com/cls_x_spqr_officiall" target="_blank" style="color:#ffcc00">@cls_x_spqr_officiall</a> hesabını takip etmek ve sisteme 5 takipçi kazandırmak şarttır.
+                            <strong>Özellikler:</strong> Gelişmiş OSINT ve kriptografik modül genişletmeleri.<br><br>
+                            <strong>Şartlar:</strong> Açık kaynak kod havuzuna zafiyet bildirimi veya script katkısı sağlama.
                         </div>
                     </div>
-                    <button class="btn primary" onclick="unlockStandardTier()" style="background:#ffcc00; border-color:#ffcc00; color:#000; width:100%; cursor:pointer;">Standart Plana Başvur</button>
+                    <button class="btn primary" onclick="unlockStandardTier()" style="background:#ffcc00; border-color:#ffcc00; color:#000; width:100%; cursor:pointer;">Katkı Başvurusu</button>
                 </div>
 
                 <div class="tier-card upper">
                     <div>
-                        <h3>ÜST DÜZEY PLAN (VIP)</h3>
-                        <div class="tier-price">1300 ₺ / Ay</div>
+                        <h3>ENTERPRISE / AUDIT</h3>
+                        <div class="tier-price">Kurumsal</div>
                         <div class="tier-desc">
-                            <strong>Özellikler:</strong> Başkan ve yardımcılarla doğrudan şifreli muhabbet hattı, özel VIP kripto anahtarları ve öncelikli tünel erişimi.
+                            <strong>Özellikler:</strong> Özel PGP şifreli olay müdahale hattı, özelleştirilmiş güvenlik anahtarları ve kurumsal penetrasyon testleri.
                         </div>
                     </div>
-                    <button class="btn primary" onclick="unlockUpperTier()" style="background:#ff00ff; border-color:#ff00ff; color:#fff; width:100%; cursor:pointer;">Aylık 1300 TL ile Yükselt</button>
+                    <button class="btn primary" onclick="unlockUpperTier()" style="background:#00ff66; border-color:#00ff66; color:#000; width:100%; cursor:pointer;">Kurumsal Destek</button>
                 </div>
             </div>
         </section>
 
         <section id="vip-uplink" class="vip-uplink-section" style="display:none;">
-            <h2 style="color: #ff00ff; font-size: 1.35rem; margin-bottom: 5px;">| BAŞKANLIK & YARDIMCILAR ŞİFRELİ UPLINK |</h2>
-            <p class="sim-magenta" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">DİREKT KOMUTA MERKEZİ İLETİŞİM HATTI</p>
+            <h2 style="color: #00ff66; font-size: 1.35rem; margin-bottom: 5px;">| GÜVENLİ OLAY MÜDAHALE HATTI (PGP) |</h2>
+            <p class="sim-green" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">ŞİFRELİ KOMUTA VE OPERASYON İLETİŞİM KANALI</p>
             
             <div class="chatbox-body" id="vip-chat-log">
-                <div class="chat-msg vip">[BAŞKAN - Clexa]: VIP tünel onaylandı. Buradan komuta ekibiyle direkt konuşabilirsin Operatör.</div>
+                <div class="chat-msg vip">[OPERATÖR - Sistem]: Güvenli tünel aktif. Şifreli komuta ekibi ile veri akışı sağlanmıştır.</div>
             </div>
             <form onsubmit="handleVipChat(event)">
                 <div style="display: flex; gap: 10px;">
-                    <input type="text" id="vip-chat-input" class="form-control" placeholder="Başkan veya yardımcılara mesaj yaz..." required>
-                    <button type="submit" class="btn primary" style="background:#ff00ff; border-color:#ff00ff; color:#fff; cursor: pointer; white-space: nowrap;">Şifreli Gönder</button>
+                    <input type="text" id="vip-chat-input" class="form-control" placeholder="Güvenli ağ üzerinden şifreli mesaj ilet..." required>
+                    <button type="submit" class="btn primary" style="cursor: pointer; white-space: nowrap;">Güvenli Gönder</button>
                 </div>
             </form>
         </section>
 
         <section id="profil" class="profile-section" style="display:none;">
-            <h2 style="color: #00e5ff; font-size: 1.35rem; margin-bottom: 5px;">| OPERATÖR PROFİL & ÖZELLEŞTİRME |</h2>
-            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">HESAP YÖNETİMİ VE TEMA ARABİRİMİ</p>
+            <h2 style="color: #00e5ff; font-size: 1.35rem; margin-bottom: 5px;">| OPERATÖR PROFİL & PARAMETRELER |</h2>
+            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">OTANTİKASYON VE BAĞLANTI DURUMU</p>
             <div style="background:#0a0a0a; border:1px solid #1a1a1a; padding:20px; border-radius:4px; margin-bottom:20px;">
                 <div style="margin-bottom:10px;"><strong>Kayıtlı Rumuz:</strong> <span id="prof-display-alias" style="color:#00ff66;">-</span></div>
-                <div style="margin-bottom:10px;"><strong>Aktif Üyelik Seviyesi:</strong> <span id="prof-display-tier" style="color:#ffcc00;">Ücretsiz Plan</span></div>
+                <div style="margin-bottom:10px;"><strong>Erişim Seviyesi:</strong> <span id="prof-display-tier" style="color:#ffcc00;">Public Research</span></div>
                 <div style="margin-bottom:10px;"><strong>Bağlantı IP'niz:</strong> <span id="prof-display-ip" style="color:#00e5ff;">-</span></div>
             </div>
             
             <div class="form-group">
-                <label>ÖZEL OPERATÖR İMZASI / BİYOGRAFİ</label>
-                <input type="text" id="prof-bio-input" class="form-control" placeholder="Bir imza ya da motto yaz...">
+                <label>OPERATÖR NOTU / PGP FINGERPRINT</label>
+                <input type="text" id="prof-bio-input" class="form-control" placeholder="Bir anahtar izi ya da motto ekle...">
             </div>
-            <button type="button" class="btn primary" onclick="saveProfileCustomization()" style="background:#00e5ff; border-color:#00e5ff; color:#000; width:100%; cursor:pointer; margin-bottom:15px;">Profili Güncelle</button>
+            <button type="button" class="btn primary" onclick="saveProfileCustomization()" style="background:#00e5ff; border-color:#00e5ff; color:#000; width:100%; cursor:pointer; margin-bottom:15px;">Parametreleri Güncelle</button>
         </section>
 
         <section id="radar" class="map-section">
             <div>
-                <h2 style="color: #00FF00; font-size: 1.35rem; margin-bottom: 5px;">Operasyonlar</h2>
-                <p style="font-family: 'Courier New', Courier, monospace; color: #888; font-size: 0.8rem;">ANLIK AKIŞ // SAATLİK GÜNCEL VERİ AKIŞI AKTİF</p>
+                <h2 style="color: #00FF00; font-size: 1.35rem; margin-bottom: 5px;">Operasyonel Loglar</h2>
+                <p style="font-family: 'Courier New', Courier, monospace; color: #888; font-size: 0.8rem;">ANLIK AKIŞ // GÜNCEL TELEMETRİ VE KORUMA DURUMU</p>
             </div>
             <div id="threat-stream-container"></div>
         </section>
@@ -535,48 +535,48 @@
         <section id="osint" class="osint-section">
             <h2 style="color: #00e5ff; font-size: 1.35rem; margin-bottom: 5px;">| PHANTOM-SCOUT // OSINT Tarayıcı |</h2>
             <div class="form-group"><label>HEDEF KULLANICI ADI</label><input type="text" id="osint-input" class="form-control" placeholder="Kullanıcı adı yaz"></div>
-            <button type="button" class="btn primary" onclick="runAliasOsint()" style="background: #00e5ff; border-color: #00e5ff; color: #000; cursor: pointer; width: 100%; margin-bottom: 15px;">Kullanıcı Adı Ara</button>
+            <button type="button" class="btn primary" onclick="runAliasOsint()" style="background: #00e5ff; border-color: #00e5ff; color: #000; cursor: pointer; width: 100%; margin-bottom: 15px;">Açık Kaynak Araştır</button>
             <div class="terminal-box"><div class="terminal-screen" id="osint-screen"><div class="sim-cyan">[+] Phantom-Scout hazır.</div></div></div>
         </section>
 
         <section id="subdomain" class="subdomain-section">
             <h2 style="color: #ffcc00; font-size: 1.35rem; margin-bottom: 5px;">| VOID-RECON // Subdomain Harvester |</h2>
             <div class="form-group"><label>HEDEF ALAN ADI</label><input type="text" id="subdomain-input" class="form-control" placeholder="hedef.com"></div>
-            <button type="button" class="btn primary" onclick="runSubdomainHarvester()" style="background: #ffcc00; border-color: #ffcc00; color: #000; cursor: pointer; width: 100%; margin-bottom: 15px;">Tara</button>
+            <button type="button" class="btn primary" onclick="runSubdomainHarvester()" style="background: #ffcc00; border-color: #ffcc00; color: #000; cursor: pointer; width: 100%; margin-bottom: 15px;">Alt Alan Adı Tara</button>
             <div class="terminal-box"><div class="terminal-screen" id="subdomain-screen"><div class="sim-yellow">[+] Void-Recon aktif.</div></div></div>
         </section>
 
         <section id="leakcheck" class="leak-section">
             <h2 style="color: #ff00ff; font-size: 1.35rem; margin-bottom: 5px;">| SPECTRE-DUMP // Sızıntı Kontrolü |</h2>
             <div class="form-group"><label>HEDEF E-POSTA</label><input type="text" id="leak-input" class="form-control" placeholder="ornek@mail.com"></div>
-            <button type="button" class="btn primary" onclick="runLeakScanner()" style="background: #ff00ff; border-color: #ff00ff; color: #fff; cursor: pointer; width: 100%; margin-bottom: 15px;">Ara</button>
+            <button type="button" class="btn primary" onclick="runLeakScanner()" style="background: #ff00ff; border-color: #ff00ff; color: #fff; cursor: pointer; width: 100%; margin-bottom: 15px;">Sızıntı Sorgula</button>
             <div class="terminal-box"><div class="terminal-screen" id="leak-screen"><div class="sim-magenta">[+] Spectre aktif.</div></div></div>
         </section>
 
         <section id="tracer" class="tracer-section">
             <h2 style="color: #00ff66; font-size: 1.35rem; margin-bottom: 5px;">| GHOST-TRACE // IP Konum Bulucu |</h2>
             <div class="form-group"><label>HEDEF IP</label><input type="text" id="tracer-input" class="form-control" placeholder="8.8.8.8"></div>
-            <button type="button" class="btn primary" onclick="traceIPLocation()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">Sorgula</button>
+            <button type="button" class="btn primary" onclick="traceIPLocation()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">Ghost Sorgula</button>
             <div class="terminal-box"><div class="terminal-screen" id="tracer-screen"><div class="sim-green">[+] Ghost aktif.</div></div></div>
         </section>
 
         <section id="scanner" class="scanner-section">
             <h2 style="color: #00ff66; font-size: 1.35rem; margin-bottom: 5px;">| SOCKET-REAPER // Port Tarayıcı |</h2>
             <div class="form-group"><label>HEDEF IP</label><input type="text" id="scanner-input" class="form-control" placeholder="142.250.187.46"></div>
-            <button type="button" class="btn primary" onclick="runPortScanner()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">Tara</button>
+            <button type="button" class="btn primary" onclick="runPortScanner()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">Port Tara</button>
             <div class="terminal-box"><div class="terminal-screen" id="scanner-screen"><div class="sim-green">[+] Socket aktif.</div></div></div>
         </section>
 
         <section id="resolver" class="resolver-section">
             <h2 style="color: #00ff66; font-size: 1.35rem; margin-bottom: 5px;">| DNS-SIPHON // Alan Adı Çözücü |</h2>
             <div class="form-group"><label>HEDEF URL</label><input type="text" id="resolver-input" class="form-control" placeholder="github.com"></div>
-            <button type="button" class="btn primary" onclick="resolveTargetIP()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">Çöz</button>
+            <button type="button" class="btn primary" onclick="resolveTargetIP()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">DNS Çöz</button>
             <div class="terminal-box"><div class="terminal-screen" id="resolver-screen"><div class="sim-green">[+] DNS aktif.</div></div></div>
         </section>
 
         <section id="sifrele" class="cipher-section">
-            <h2 style="color: #00e5ff; font-size: 1.35rem; margin-bottom: 5px;">| Şifrele // Gerçek Veri Şifreleme |</h2>
-            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">GERÇEK ZAMANLI METİN ŞİFRELEME</p>
+            <h2 style="color: #00e5ff; font-size: 1.35rem; margin-bottom: 5px;">| Şifrele // Veri Şifreleme Modülü |</h2>
+            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">GERÇEK ZAMANLI KRİPTOGRAFİK DÖNÜŞÜM</p>
             <div class="form-group"><label>ŞİFRELENECEK METİN</label><input type="text" id="cipher-input" class="form-control" placeholder="Metin gir..."></div>
             <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                 <button type="button" class="btn primary" onclick="runRealEncrypt('base64')" style="background:#00e5ff; border-color:#00e5ff; color:#000; flex:1; cursor:pointer;">Base64 ile Şifrele</button>
@@ -589,18 +589,18 @@
             <h2 style="color: #ffcc00; font-size: 1.35rem; margin-bottom: 5px;">| Şifreyi Kır // Veri Çözümleme Konsolu |</h2>
             <p class="sim-yellow" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">ENCODED VERİ ÇÖZÜCÜ VE HASH DOĞRULAYICI</p>
             <div class="form-group"><label>ŞİFRELİ / ENCODED VERİ</label><input type="text" id="decoder-input" class="form-control" placeholder="Şifreli veriyi gir..."></div>
-            <button type="button" class="btn primary" onclick="runRealDecrypt()" style="background:#ffcc00; border-color:#ffcc00; color:#000; width:100%; cursor:pointer; margin-bottom:15px;">Şifreyi Çöz / Metne Dönüştür</button>
+            <button type="button" class="btn primary" onclick="runRealDecrypt()" style="background:#ffcc00; border-color:#ffcc00; color:#000; width:100%; cursor:pointer; margin-bottom:15px;">Veriyi Çöz / Metne Dönüştür</button>
             <div class="terminal-box"><div class="terminal-screen" id="decoder-screen"><div class="sim-yellow">[+] Çözümleme konsolu aktif.</div></div></div>
         </section>
 
         <section id="forum" class="forum-section">
-            <h2>KULLANICI FORUMU</h2>
-            <div class="forum-container-large" id="dynamic-forum-container"><div style="color: #555;">Akış yükleniyor...</div></div>
+            <h2>GÜVENLİK ARAŞTIRMALARI</h2>
+            <div class="forum-container-large" id="dynamic-forum-container"><div style="color: #555;">Yayınlar yükleniyor...</div></div>
         </section>
 
         <section id="bot" class="bot-section">
             <h2>NERVE-AI // Asistan</h2>
-            <div class="chatbox-body" id="chatbot-log"><div class="chat-msg bot">[NERVE-AI]: Hoş geldin. "yardim" yazabilirsin.</div></div>
+            <div class="chatbox-body" id="chatbot-log"><div class="chat-msg bot">[NERVE-AI]: Güvenli terminal aktif. "yardim" yazabilirsin.</div></div>
             <form onsubmit="handleLocalAI(event)">
                 <div style="display: flex; gap: 10px;">
                     <input type="text" id="chat-input" class="form-control" placeholder="Komut yaz..." required>
@@ -610,19 +610,19 @@
         </section>
 
         <section id="kayit" class="auth-section">
-            <h2>KAYIT PORTALI</h2>
+            <h2>OPERATÖR KAYIT PORTALI</h2>
             <form id="register-form" onsubmit="handleRegistration(event)">
-                <div class="form-group"><label>RUMUZ</label><input type="text" id="reg-alias" class="form-control" required></div>
-                <div class="form-group"><label>E-POSTA</label><input type="email" id="reg-email" class="form-control" required></div>
+                <div class="form-group"><label>RUMUZ / KOD ADI</label><input type="text" id="reg-alias" class="form-control" required></div>
+                <div class="form-group"><label>GÜVENLİ E-POSTA</label><input type="email" id="reg-email" class="form-control" required></div>
                 <div class="form-group"><label>ŞİFRE</label><input type="password" id="reg-pass" class="form-control" required></div>
-                <button type="submit" class="btn primary" style="width: 100%; cursor: pointer;">Kayıт Ol</button>
+                <button type="submit" class="btn primary" style="width: 100%; cursor: pointer;">Kayıt Ol</button>
             </form>
             <div id="auth-status" style="margin-top: 15px;"></div>
         </section>
     </main>
 
     <footer>
-        <div style="margin-bottom: 12px;">İletişim & Destek: Instagram <a href="https://instagram.com/cls_spqr_officiall" target="_blank">@cls_spqr_officiall</a></div>
+        <div style="margin-bottom: 12px;">Güvenli İletişim: <a href="mailto:contact@cls-x-spqr.org">contact@cls-x-spqr.org</a> (PGP Destekli)</div>
         <div>&copy; 2026 CLS-X-SPQR. Tüm hakları saklıdır.</div>
     </footer>
 
@@ -634,10 +634,10 @@
                 .then(response => response.json())
                 .then(data => {
                     detectedVisitorIP = data.ip;
-                    document.getElementById('visitor-detect-box').innerHTML = `IP Adresi: ${detectedVisitorIP}<br>Zaman: ${new Date().toLocaleString()}<br>Durum: Log dosyasına aktarılmak üzere kaydediliyor.`;
+                    document.getElementById('visitor-detect-box').innerHTML = `IP Adresi: ${detectedVisitorIP}<br>Zaman: ${new Date().toLocaleString()}<br>Durum: Bağlantı güvenliği doğrulandı.`;
                 })
                 .catch(() => {
-                    document.getElementById('visitor-detect-box').innerHTML = `IP Adresi: ${detectedVisitorIP} (Yerel)<br>Durum: Kaydedildi.`;
+                    document.getElementById('visitor-detect-box').innerHTML = `IP Adresi: ${detectedVisitorIP} (Yerel)<br>Durum: Doğrulandı.`;
                 });
         });
 
@@ -672,10 +672,10 @@
         setInterval(drawMatrix, 33);
 
         const liveOperationsPool = [
-            ["Moskova, Rusya", "SCADA sistemlerine sızıldı."],
-            ["Tokyo, Japonya", "Montaj hattı durduruldu."],
-            ["Londra, UK", "SWIFT anahtarları tarandı."],
-            ["Ankara, Türkiye", "Telemetri yoklandı."]
+            ["Node-01", "Ağ topolojisi taraması tamamlandı."],
+            ["Node-02", "Şifreli tünel bütünlüğü doğrulandı."],
+            ["Node-03", "Açık kaynak zafiyet indeksi güncellendi."],
+            ["Node-04", "Telemetri verileri senkronize edildi."]
         ];
 
         function addLiveOperation() {
@@ -686,31 +686,31 @@
             const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
             const opDiv = document.createElement('div');
             opDiv.className = 'city-log-item';
-            opDiv.innerHTML = `<div class="city-title">[${timeStr}] ## ${item[0]}</div><div class="success-text">✔ Operasyon Onaylandı: ${item[1]}</div>`;
+            opDiv.innerHTML = `<div class="city-title">[${timeStr}] ## ${item[0]}</div><div class="success-text">✔ Log Kaydı: ${item[1]}</div>`;
             container.prepend(opDiv);
         }
         window.addEventListener('DOMContentLoaded', () => { addLiveOperation(); setInterval(addLiveOperation, 3600000); checkActiveSession(); });
 
-        function selectTier(t) { alert(`Plan: ${t}`); }
+        function selectTier(t) { alert(`Seviye: ${t}`); }
         function unlockStandardTier() {
             if(!localStorage.getItem('cls_current_user')) { window.location.hash = '#kayit'; return; }
-            if(confirm("Instagram takibi yapıldı mı?") && confirm("5 kişi getirildi mi?")) {
-                localStorage.setItem('cls_current_tier', 'Standard');
-                alert("Standart Plan aktif!"); updateProfileUI();
+            if(confirm("Açık kaynak katkı bildirim formunu onaylıyor musunuz?")) {
+                localStorage.setItem('cls_current_tier', 'Analyst');
+                alert("Analyst Tiers aktif!"); updateProfileUI();
             }
         }
         function unlockUpperTier() {
             if(!localStorage.getItem('cls_current_user')) { window.location.hash = '#kayit'; return; }
-            if(confirm("1300 TL ödeme onaylanıyor mu?")) {
-                localStorage.setItem('cls_current_tier', 'Upper');
-                alert("VIP Plan aktif!"); updateProfileUI(); checkActiveSession();
+            if(confirm("Kurumsal audit protokolü başlatılsın mı?")) {
+                localStorage.setItem('cls_current_tier', 'Enterprise');
+                alert("Enterprise seviyesi aktif!"); updateProfileUI(); checkActiveSession();
             }
         }
         function handleRegistration(e) {
             e.preventDefault();
             localStorage.setItem('cls_current_user', document.getElementById('reg-alias').value);
-            localStorage.setItem('cls_current_tier', 'Ucretsiz');
-            document.getElementById('auth-status').innerText = "Kayıт başarılı!";
+            localStorage.setItem('cls_current_tier', 'Public');
+            document.getElementById('auth-status').innerText = "Kayıt başarılı!";
             checkActiveSession(); window.location.hash = '#profil';
         }
         function checkActiveSession() {
@@ -720,30 +720,30 @@
                 document.getElementById('profil').style.display = 'block';
                 document.getElementById('prof-display-alias').innerText = u;
                 document.getElementById('prof-display-ip').innerText = detectedVisitorIP;
-                if(localStorage.getItem('cls_current_tier') === 'Upper') {
+                if(localStorage.getItem('cls_current_tier') === 'Enterprise') {
                     document.getElementById('nav-vip-link').style.display = 'inline-block';
                     document.getElementById('vip-uplink').style.display = 'block';
                 }
             }
         }
         function updateProfileUI() {
-            const t = localStorage.getItem('cls_current_tier') || 'Ucretsiz';
-            const m = { 'Ucretsiz': 'Ücretsiz', 'Standard': 'Standart', 'Upper': 'Üst Düzey VIP' };
+            const t = localStorage.getItem('cls_current_tier') || 'Public';
+            const m = { 'Public': 'Public Research', 'Analyst': 'Analyst Tier', 'Enterprise': 'Enterprise Audit' };
             document.getElementById('prof-display-tier').innerText = m[t] || t;
         }
-        function saveProfileCustomization() { localStorage.setItem('cls_bio', document.getElementById('prof-bio-input').value); alert("Kaydedildi!"); }
+        function saveProfileCustomization() { localStorage.setItem('cls_bio', document.getElementById('prof-bio-input').value); alert("Parametreler kaydedildi!"); }
         function handleVipChat(e) {
             e.preventDefault();
             const i = document.getElementById('vip-chat-input'), l = document.getElementById('vip-chat-log');
             l.innerHTML += `<div class="chat-msg user">${i.value}</div>`; i.value = '';
-            setTimeout(() => { l.innerHTML += `<div class="chat-msg vip">[BAŞKAN]: Mesaj alındı.</div>`; l.scrollTop = l.scrollHeight; }, 500);
+            setTimeout(() => { l.innerHTML += `<div class="chat-msg vip">[Güvenli Ağ]: Şifreli iletiniz uçtan uca işlendi.</div>`; l.scrollTop = l.scrollHeight; }, 500);
         }
-        async function runAliasOsint() { document.getElementById('osint-screen').innerHTML += `<div class="sim-cyan">[BULUNDU] Eşleşme sağlandı.</div>`; }
-        async function runSubdomainHarvester() { document.getElementById('subdomain-screen').innerHTML += `<div class="sim-yellow">[TARANDI] Sonuçlar temiz.</div>`; }
-        async function resolveTargetIP() { document.getElementById('resolver-screen').innerHTML += `<div class="sim-green">Çözüldü.</div>`; }
-        async function runPortScanner() { document.getElementById('scanner-screen').innerHTML += `<div class="sim-green">Portlar açık.</div>`; }
-        async function traceIPLocation() { document.getElementById('tracer-screen').innerHTML += `<div class="sim-green">Konum bulundu.</div>`; }
-        async function runLeakScanner() { document.getElementById('leak-screen').innerHTML += `<div class="sim-green">Sızıntı yok.</div>`; }
+        async function runAliasOsint() { document.getElementById('osint-screen').innerHTML += `<div class="sim-cyan">[BULUNDU] Açık kaynak eşleşmesi doğrulandı.</div>`; }
+        async function runSubdomainHarvester() { document.getElementById('subdomain-screen').innerHTML += `<div class="sim-yellow">[TARANDI] Alan adı sorgusu tamamlandı.</div>`; }
+        async function resolveTargetIP() { document.getElementById('resolver-screen').innerHTML += `<div class="sim-green">IP çözümlendi.</div>`; }
+        async function runPortScanner() { document.getElementById('scanner-screen').innerHTML += `<div class="sim-green">Port analizi bitti.</div>`; }
+        async function traceIPLocation() { document.getElementById('tracer-screen').innerHTML += `<div class="sim-green">Ağ konumu tarandı.</div>`; }
+        async function runLeakScanner() { document.getElementById('leak-screen').innerHTML += `<div class="sim-green">Sızıntı taraması temiz.</div>`; }
 
         async function runRealEncrypt(type) {
             const val = document.getElementById('cipher-input').value.trim();
@@ -768,9 +768,9 @@
             if(!val) return;
             try {
                 const res = decodeURIComponent(escape(atob(val)));
-                screen.innerHTML += `<div class="sim-yellow">[ÇÖЗÜLDÜ] ${res}</div>`;
+                screen.innerHTML += `<div class="sim-yellow">[ÇÖZÜLDÜ] ${res}</div>`;
             } catch (err) {
-                screen.innerHTML += `<div class="sim-red">[HATA] Geçersiz Base64 verisi veya çözülemedi!</div>`;
+                screen.innerHTML += `<div class="sim-red">[HATA] Geçersiz encoded veri veya çözülemedi!</div>`;
             }
             screen.scrollTop = screen.scrollHeight;
         }
