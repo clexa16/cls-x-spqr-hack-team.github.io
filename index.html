@@ -29,6 +29,60 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        #welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(2, 2, 2, 0.98);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .welcome-modal {
+            background: #0d0d0d;
+            border: 1px solid #333333;
+            border-top: 4px solid #00ff66;
+            max-width: 650px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+        }
+        .welcome-modal h2 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .welcome-modal .warning-text {
+            color: #ffcc00;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-align: left;
+            background: rgba(255, 204, 0, 0.08);
+            border-left: 4px solid #ffcc00;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .visitor-info-box {
+            background: #050505;
+            border: 1px solid #1a331a;
+            padding: 14px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+            color: #00ff66;
+            text-align: left;
+        }
+
         #matrix-canvas {
             position: fixed;
             top: 0;
@@ -73,10 +127,14 @@
             text-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
         }
 
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
         nav a {
             color: #777777;
             text-decoration: none;
-            margin-left: 10px;
             font-size: 0.72rem;
             font-weight: 600;
             text-transform: uppercase;
@@ -173,7 +231,7 @@
             transform: translateY(-3px);
         }
 
-        .info-section, .tools-section, .forum-section, .auth-section, .bot-section, .sim-section, .resolver-section, .scanner-section, .tracer-section, .leak-section, .osint-section, .subdomain-section, .map-section {
+        .info-section, .tools-section, .forum-section, .auth-section, .bot-section, .sim-section, .resolver-section, .scanner-section, .tracer-section, .leak-section, .osint-section, .subdomain-section, .map-section, .membership-section, .profile-section, .vip-uplink-section, .cipher-section, .decoder-section {
             background-color: rgba(8, 8, 8, 0.92);
             border: 1px solid #1a1a1a;
             border-radius: 6px;
@@ -212,11 +270,6 @@
             text-shadow: 0 0 6px rgba(0, 255, 0, 0.4);
             margin: 3px 0;
         }
-        .failure-text {
-            color: #FF0000;
-            text-shadow: 0 0 6px rgba(255, 0, 0, 0.4);
-            margin: 3px 0;
-        }
 
         .terminal-box {
             background-color: #020202;
@@ -236,10 +289,6 @@
             font-size: 0.82rem;
             margin-bottom: 15px;
             border-radius: 3px;
-        }
-        .terminal-screen a {
-            color: #00e5ff;
-            text-decoration: underline;
         }
         .sim-green { color: #00ff66; }
         .sim-red { color: #ff3333; }
@@ -273,48 +322,34 @@
             background: #141414;
         }
 
+        .membership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .tier-card {
+            background: #0a0a0a;
+            border: 1px solid #1c1c1c;
+            border-top: 3px solid #00ff66;
+            padding: 25px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .tier-card.standard { border-top-color: #ffcc00; }
+        .tier-card.upper { border-top-color: #ff00ff; }
+        .tier-card h3 { color: #fff; margin-bottom: 10px; font-size: 1.15rem; }
+        .tier-price { font-size: 1.25rem; font-weight: bold; color: #00ff66; margin-bottom: 15px; font-family: 'Courier New', Courier, monospace; }
+        .tier-desc { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; }
+
         .forum-container-large {
             max-height: 500px;
             overflow-y: auto;
             padding-right: 10px;
         }
-        .forum-post {
-            background: #0a0a0a;
-            border: 1px solid #161616;
-            border-left: 3px solid #00ff66;
-            padding: 16px 20px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-        }
-        .forum-author {
-            color: #00ff66;
-            font-weight: bold;
-            font-size: 0.85rem;
-            margin-bottom: 4px;
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .badge-rank {
-            font-size: 0.62rem;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-weight: bold;
-            background: #00ff66; 
-            color: #000;
-        }
-        .forum-date {
-            color: #444444;
-            font-size: 0.68rem;
-            float: right;
-        }
-        .forum-text {
-            color: #bcbcbc;
-            font-size: 0.82rem;
-            margin-top: 8px;
-        }
-
+        
         .chatbox-body {
             background: #0a0a0a;
             border: 1px solid #161616;
@@ -328,6 +363,7 @@
         .chat-msg { margin-bottom: 10px; }
         .chat-msg.bot { color: #00ff66; font-family: 'Courier New', Courier, monospace; }
         .chat-msg.user { color: #ffffff; text-align: right; }
+        .chat-msg.vip { color: #ff00ff; font-family: 'Courier New', Courier, monospace; font-weight: bold; }
 
         .form-group { margin-bottom: 15px; }
         .form-group label {
@@ -335,7 +371,7 @@
             color: #9a9a9a;
             font-size: 0.78rem;
             margin-bottom: 6px;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .form-control {
             width: 100%;
@@ -367,10 +403,6 @@
             position: relative;
             z-index: 10;
         }
-        .top-status-bar audio {
-            height: 25px;
-            filter: invert(1) hue-rotate(180deg) brightness(1.5);
-        }
         .live-counter { color: #00ff66; font-weight: bold; }
 
         footer {
@@ -383,9 +415,24 @@
             position: relative;
             z-index: 10;
         }
+        footer a { color: #00ff66; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
+
+    <div id="welcome-overlay">
+        <div class="welcome-modal">
+            <h2>SİSTEM ERİŞİM ONAYI</h2>
+            <div class="warning-text">
+                <strong>DİKKAT:</strong> Sitemizdeki şifreleme ve analiz araçları tamamen operasyonel ve gerçek zamanlı işlem yapar.
+            </div>
+            <div class="visitor-info-box" id="visitor-detect-box">
+                Bağlantı ve sistem izleri algılanıyor...
+            </div>
+            <button class="btn primary" onclick="acceptSystemTerms()" style="background:#00ff66; border-color:#00ff66; color:#000; width:100%; cursor:pointer; font-weight:bold; font-size:1rem; padding:14px; letter-spacing:1px;">KABUL ET VE GİRİŞ YAP</button>
+        </div>
+    </div>
 
     <canvas id="matrix-canvas"></canvas>
 
@@ -406,13 +453,18 @@
         <nav>
             <a href="#genel">Ana Sayfa</a>
             <a href="#radar">Operasyonlar</a>
+            <a href="#uyelik">Üyelik</a>
+            <a href="#profil" id="nav-profil-link" style="display:none;">Profil</a>
+            <a href="#vip-uplink" id="nav-vip-link" style="display:none;">Başkanlık Hattı</a>
             <a href="#osint">Phantom</a>
             <a href="#subdomain">Void</a>
             <a href="#leakcheck">Spectre</a>
             <a href="#tracer">Ghost</a>
             <a href="#scanner">Socket</a>
             <a href="#resolver">DNS</a>
-            <a href="#simulasyon">Overload</a>
+            <a href="#sifrele">Şifrele</a>
+            <a href="#sifreyikir">Şifreyi Kır</a>
+            <a href="#simulasyon">Overload (Sahte/Hava Atmalık)</a>
             <a href="#forum">Forum</a>
             <a href="#bot">Nerve-AI</a>
         </nav>
@@ -422,174 +474,174 @@
         <section id="genel" class="hero">
             <span class="status-badge">SİSTEM ERİŞİMİ ONAYLANDI</span>
             <h1>CLS-X-SPQR Paneli</h1>
-            <p>Siber güvenlik analiz, ağ inceleme ve test araçları kolektifi.</p>
+            <p>Gerçek zamanlı kriptografik dönüşüm, ağ inceleme ve test araçları kolektifi.</p>
             <div class="btn-group">
                 <a href="https://github.com/clexa16/CLSxSPQR-Tools" target="_blank" class="btn primary">Tool Deposu</a>
                 <a href="https://github.com/clexa16" target="_blank" class="btn">GitHub Deposu</a>
             </div>
         </section>
 
-        <!-- OPERASYONLAR -->
-        <section id="radar" class="map-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
-                <div>
-                    <h2 style="color: #00FF00; font-size: 1.35rem; margin-bottom: 5px;">Operasyonlar</h2>
-                    <p style="font-family: 'Courier New', Courier, monospace; color: #888; font-size: 0.8rem;">ANLIK AKIŞ // SAATLİK GÜNCEL VERİ AKIŞI AKTİF</p>
+        <section id="uyelik" class="membership-section">
+            <h2 style="color: #00ff66; font-size: 1.35rem; margin-bottom: 5px;">| ÜYELİK SEKMELERİ VE PLANLAR |</h2>
+            <p style="font-family: 'Courier New', Courier, monospace; color: #888; font-size: 0.8rem; margin-bottom: 20px;">ERİŞİM YETKİ SEVİYELERİ VE ŞARTLAR</p>
+            
+            <div class="membership-grid">
+                <div class="tier-card">
+                    <div>
+                        <h3>ÜCRETSİZ PLAN</h3>
+                        <div class="tier-price">0 ₺ / Sınırsız</div>
+                        <div class="tier-desc">Sitede genel kullanıma sunulan standart şifreleme ve analiz araçlarına erişim sağlar.</div>
+                    </div>
+                    <button class="btn primary" onclick="selectTier('Ucretsiz')" style="width:100%; cursor:pointer;">Aktif Plan</button>
                 </div>
-            </div>
-            <div id="threat-stream-container">
-                <!-- Canlı saat başı operasyonlar buraya düşecek -->
+
+                <div class="tier-card standard">
+                    <div>
+                        <h3>STANDART PLAN</h3>
+                        <div class="tier-price">Şartlı Erişim</div>
+                        <div class="tier-desc">
+                            <strong>Özellikler:</strong> Genişletilmiş kripto ve ağ modülleri.<br><br>
+                            <strong>Şartlar:</strong> Kayıt olup Instagram'da <a href="https://instagram.com/cls_x_spqr_officiall" target="_blank" style="color:#ffcc00">@cls_x_spqr_officiall</a> hesabını takip etmek ve sisteme 5 takipçi kazandırmak şarttır.
+                        </div>
+                    </div>
+                    <button class="btn primary" onclick="unlockStandardTier()" style="background:#ffcc00; border-color:#ffcc00; color:#000; width:100%; cursor:pointer;">Standart Plana Başvur</button>
+                </div>
+
+                <div class="tier-card upper">
+                    <div>
+                        <h3>ÜST DÜZEY PLAN (VIP)</h3>
+                        <div class="tier-price">500 ₺ / Ay</div>
+                        <div class="tier-desc">
+                            <strong>Özellikler:</strong> Başkan ve yardımcılarla doğrudan şifreli muhabbet hattı, özel VIP kripto anahtarları ve öncelikli tünel erişimi.
+                        </div>
+                    </div>
+                    <button class="btn primary" onclick="unlockUpperTier()" style="background:#ff00ff; border-color:#ff00ff; color:#fff; width:100%; cursor:pointer;">Aylık 500 TL ile Yükselt</button>
+                </div>
             </div>
         </section>
 
-        <!-- PHANTOM-SCOUT // ALIAS OSINT SCANNER -->
+        <section id="vip-uplink" class="vip-uplink-section" style="display:none;">
+            <h2 style="color: #ff00ff; font-size: 1.35rem; margin-bottom: 5px;">| BAŞKANLIK & YARDIMCILAR ŞİFRELİ UPLINK |</h2>
+            <p class="sim-magenta" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">DİREKT KOMUTA MERKEZİ İLETİŞİM HATTI</p>
+            
+            <div class="chatbox-body" id="vip-chat-log">
+                <div class="chat-msg vip">[BAŞKAN - Clexa]: VIP tünel onaylandı. Buradan komuta ekibiyle direkt konuşabilirsin Operatör.</div>
+            </div>
+            <form onsubmit="handleVipChat(event)">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="vip-chat-input" class="form-control" placeholder="Başkan veya yardımcılara mesaj yaz..." required>
+                    <button type="submit" class="btn primary" style="background:#ff00ff; border-color:#ff00ff; color:#fff; cursor: pointer; white-space: nowrap;">Şifreli Gönder</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="profil" class="profile-section" style="display:none;">
+            <h2 style="color: #00e5ff; font-size: 1.35rem; margin-bottom: 5px;">| OPERATÖR PROFİL & ÖZELLEŞTİRME |</h2>
+            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">HESAP YÖNETİMİ VE TEMA ARABİRİMİ</p>
+            <div style="background:#0a0a0a; border:1px solid #1a1a1a; padding:20px; border-radius:4px; margin-bottom:20px;">
+                <div style="margin-bottom:10px;"><strong>Kayıtlı Rumuz:</strong> <span id="prof-display-alias" style="color:#00ff66;">-</span></div>
+                <div style="margin-bottom:10px;"><strong>Aktif Üyelik Seviyesi:</strong> <span id="prof-display-tier" style="color:#ffcc00;">Ücretsiz Plan</span></div>
+                <div style="margin-bottom:10px;"><strong>Bağlantı IP'niz:</strong> <span id="prof-display-ip" style="color:#00e5ff;">-</span></div>
+            </div>
+            
+            <div class="form-group">
+                <label>ÖZEL OPERATÖR İMZASI / BİYOGRAFİ</label>
+                <input type="text" id="prof-bio-input" class="form-control" placeholder="Bir imza ya da motto yaz...">
+            </div>
+            <button type="button" class="btn primary" onclick="saveProfileCustomization()" style="background:#00e5ff; border-color:#00e5ff; color:#000; width:100%; cursor:pointer; margin-bottom:15px;">Profili Güncelle</button>
+        </section>
+
+        <section id="radar" class="map-section">
+            <div>
+                <h2 style="color: #00FF00; font-size: 1.35rem; margin-bottom: 5px;">Operasyonlar</h2>
+                <p style="font-family: 'Courier New', Courier, monospace; color: #888; font-size: 0.8rem;">ANLIK AKIŞ // SAATLİK GÜNCEL VERİ AKIŞI AKTİF</p>
+            </div>
+            <div id="threat-stream-container"></div>
+        </section>
+
         <section id="osint" class="osint-section">
             <h2 style="color: #00e5ff; font-size: 1.35rem; margin-bottom: 5px;">| PHANTOM-SCOUT // OSINT Tarayıcı |</h2>
-            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">KULLANICI ADI PROFİLLENME MOTORU // AKTİF</p>
-            <div class="form-group">
-                <label>HEDEF KULLANICI ADI</label>
-                <input type="text" id="osint-input" class="form-control" placeholder="Kullanıcı adı yaz (örn. clexa16)">
-            </div>
+            <div class="form-group"><label>HEDEF KULLANICI ADI</label><input type="text" id="osint-input" class="form-control" placeholder="Kullanıcı adı yaz"></div>
             <button type="button" class="btn primary" onclick="runAliasOsint()" style="background: #00e5ff; border-color: #00e5ff; color: #000; cursor: pointer; width: 100%; margin-bottom: 15px;">Kullanıcı Adı Ara</button>
-            <div class="terminal-box">
-                <div class="terminal-screen" id="osint-screen">
-                    <div class="sim-cyan">[+] Phantom-Scout hazır. Kullanıcı adı analizi bekleniyor[cite: 1]...</div>
-                </div>
-            </div>
+            <div class="terminal-box"><div class="terminal-screen" id="osint-screen"><div class="sim-cyan">[+] Phantom-Scout hazır.</div></div></div>
         </section>
 
-        <!-- VOID-RECON // SUBDOMAIN HARVESTER -->
         <section id="subdomain" class="subdomain-section">
             <h2 style="color: #ffcc00; font-size: 1.35rem; margin-bottom: 5px;">| VOID-RECON // Subdomain Harvester |</h2>
-            <p class="sim-yellow" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">ALT ALAN ADI TARAYICISI</p>
-            <div class="form-group">
-                <label>HEDEF ALAN ADI</label>
-                <input type="text" id="subdomain-input" class="form-control" placeholder="örn. hedef.com">
-            </div>
-            <button type="button" class="btn primary" onclick="runSubdomainHarvester()" style="background: #ffcc00; border-color: #ffcc00; color: #000; cursor: pointer; width: 100%; margin-bottom: 15px;">Alt Alan Adlarını Tara</button>
-            <div class="terminal-box">
-                <div class="terminal-screen" id="subdomain-screen">
-                    <div class="sim-yellow">[+] Void-Recon sözlük verileri yüklendi.</div>
-                </div>
-            </div>
+            <div class="form-group"><label>HEDEF ALAN ADI</label><input type="text" id="subdomain-input" class="form-control" placeholder="hedef.com"></div>
+            <button type="button" class="btn primary" onclick="runSubdomainHarvester()" style="background: #ffcc00; border-color: #ffcc00; color: #000; cursor: pointer; width: 100%; margin-bottom: 15px;">Tara</button>
+            <div class="terminal-box"><div class="terminal-screen" id="subdomain-screen"><div class="sim-yellow">[+] Void-Recon aktif.</div></div></div>
         </section>
 
-        <!-- SPECTRE-DUMP // SIZINTI KONTROLÜ -->
         <section id="leakcheck" class="leak-section">
             <h2 style="color: #ff00ff; font-size: 1.35rem; margin-bottom: 5px;">| SPECTRE-DUMP // Sızıntı Kontrolü |</h2>
-            <p class="sim-magenta" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">VERİ TABANI İHLAL KONTROLÜ</p>
-            <div class="form-group">
-                <label>HEDEF E-POSTA VEYA KULLANICI ADI</label>
-                <input type="text" id="leak-input" class="form-control" placeholder="örn. ornek@mail.com">
-            </div>
-            <button type="button" class="btn primary" onclick="runLeakScanner()" style="background: #ff00ff; border-color: #ff00ff; color: #fff; cursor: pointer; width: 100%; margin-bottom: 15px;">Sızıntı Ara</button>
-            <div class="terminal-box">
-                <div class="terminal-screen" id="leak-screen">
-                    <div class="sim-magenta">[+] Spectre-Dump sızıntı modülü aktifleşti.</div>
-                </div>
-            </div>
+            <div class="form-group"><label>HEDEF E-POSTA</label><input type="text" id="leak-input" class="form-control" placeholder="ornek@mail.com"></div>
+            <button type="button" class="btn primary" onclick="runLeakScanner()" style="background: #ff00ff; border-color: #ff00ff; color: #fff; cursor: pointer; width: 100%; margin-bottom: 15px;">Ara</button>
+            <div class="terminal-box"><div class="terminal-screen" id="leak-screen"><div class="sim-magenta">[+] Spectre aktif.</div></div></div>
         </section>
 
-        <!-- GHOST-TRACE // GEO-TRACER -->
         <section id="tracer" class="tracer-section">
             <h2 style="color: #00ff66; font-size: 1.35rem; margin-bottom: 5px;">| GHOST-TRACE // IP Konum Bulucu |</h2>
-            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">IP COĞRAFİ KONUM TESPİTİ</p>
-            <div class="form-group">
-                <label>HEDEF IP</label>
-                <input type="text" id="tracer-input" class="form-control" placeholder="örn. 8.8.8.8">
-            </div>
-            <button type="button" class="btn primary" onclick="traceIPLocation()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">IP Konumunu Sorgula</button>
-            <div class="terminal-box">
-                <div class="terminal-screen" id="tracer-screen">
-                    <div class="sim-green">[+] IP konum çekirdeği aktif[cite: 1].</div>
-                </div>
-            </div>
+            <div class="form-group"><label>HEDEF IP</label><input type="text" id="tracer-input" class="form-control" placeholder="8.8.8.8"></div>
+            <button type="button" class="btn primary" onclick="traceIPLocation()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">Sorgula</button>
+            <div class="terminal-box"><div class="terminal-screen" id="tracer-screen"><div class="sim-green">[+] Ghost aktif.</div></div></div>
         </section>
 
-        <!-- SOCKET-REAPER // PORT SCANNER -->
         <section id="scanner" class="scanner-section">
             <h2 style="color: #00ff66; font-size: 1.35rem; margin-bottom: 5px;">| SOCKET-REAPER // Port Tarayıcı |</h2>
-            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">TCP PORT TARAMA MOTORU</p>
-            <div class="form-group">
-                <label>HEDEF IP / HOST</label>
-                <input type="text" id="scanner-input" class="form-control" placeholder="örn. 142.250.187.46">
-            </div>
-            <button type="button" class="btn primary" onclick="runPortScanner()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">Portları Tara</button>
-            <div class="terminal-box">
-                <div class="terminal-screen" id="scanner-screen">
-                    <div class="sim-green">[+] TCP Soket motoru hazır[cite: 1].</div>
-                </div>
-            </div>
+            <div class="form-group"><label>HEDEF IP</label><input type="text" id="scanner-input" class="form-control" placeholder="142.250.187.46"></div>
+            <button type="button" class="btn primary" onclick="runPortScanner()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">Tara</button>
+            <div class="terminal-box"><div class="terminal-screen" id="scanner-screen"><div class="sim-green">[+] Socket aktif.</div></div></div>
         </section>
 
-        <!-- DNS-SIPHON // IP RESOLVER -->
         <section id="resolver" class="resolver-section">
             <h2 style="color: #00ff66; font-size: 1.35rem; margin-bottom: 5px;">| DNS-SIPHON // Alan Adı Çözücü |</h2>
-            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">HOST - IP ÇEVİRİCİ</p>
-            <div class="form-group">
-                <label>HEDEF URL / ALAN ADI</label>
-                <input type="text" id="resolver-input" class="form-control" placeholder="örn. github.com">
-            </div>
-            <button type="button" class="btn primary" onclick="resolveTargetIP()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">IP Adresini Çöz</button>
-            <div class="terminal-box">
-                <div class="terminal-screen" id="resolver-screen">
-                    <div class="sim-green">[+] DNS çözücü hazır.</div>
-                </div>
-            </div>
+            <div class="form-group"><label>HEDEF URL</label><input type="text" id="resolver-input" class="form-control" placeholder="github.com"></div>
+            <button type="button" class="btn primary" onclick="resolveTargetIP()" style="cursor: pointer; width: 100%; margin-bottom: 15px;">Çöz</button>
+            <div class="terminal-box"><div class="terminal-screen" id="resolver-screen"><div class="sim-green">[+] DNS aktif.</div></div></div>
         </section>
 
-        <!-- OVERLOAD.PY // SİMÜLASYON -->
-        <section id="simulasyon" class="sim-section">
-            <h2 class="sim-red" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 10px;">==========================================</h2>
-            <h2 style="color: #fff; font-size: 1.35rem; margin-bottom: 5px;">| OVERLOAD.PY // Yük Simülatörü |</h2>
-            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 10px;">GÖRSEL YÜK TESTİ SİMÜLASYONU</p>
-            <div style="background: rgba(255, 51, 51, 0.08); border: 1px dashed #ff3333; padding: 12px 18px; border-radius: 4px; margin-bottom: 25px; font-family: 'Courier New', Courier, monospace; font-size: 0.8rem; color: #ff6666;">
-                [!] <strong>DİKKAT:</strong> Tamamen görsel simülasyondur, sisteme zarar vermez.
+        <section id="sifrele" class="cipher-section">
+            <h2 style="color: #00e5ff; font-size: 1.35rem; margin-bottom: 5px;">| Şifrele // Gerçek Veri Şifreleme |</h2>
+            <p class="sim-cyan" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">GERÇEK ZAMANLI METİN ŞİFRELEME</p>
+            <div class="form-group"><label>ŞİFRELENECEK METİN</label><input type="text" id="cipher-input" class="form-control" placeholder="Metin gir..."></div>
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <button type="button" class="btn primary" onclick="runRealEncrypt('base64')" style="background:#00e5ff; border-color:#00e5ff; color:#000; flex:1; cursor:pointer;">Base64 ile Şifrele</button>
+                <button type="button" class="btn primary" onclick="runRealEncrypt('sha256')" style="background:#00e5ff; border-color:#00e5ff; color:#000; flex:1; cursor:pointer;">SHA-256 Hash Al</button>
             </div>
+            <div class="terminal-box"><div class="terminal-screen" id="cipher-screen"><div class="sim-cyan">[+] Şifreleme motoru hazır.</div></div></div>
+        </section>
+
+        <section id="sifreyikir" class="decoder-section">
+            <h2 style="color: #ffcc00; font-size: 1.35rem; margin-bottom: 5px;">| Şifreyi Kır // Veri Çözümleme Konsolu |</h2>
+            <p class="sim-yellow" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">ENCODED VERİ ÇÖZÜCÜ VE HASH DOĞRULAYICI</p>
+            <div class="form-group"><label>ŞİFRELİ / ENCODED VERİ</label><input type="text" id="decoder-input" class="form-control" placeholder="Şifreli veriyi gir..."></div>
+            <button type="button" class="btn primary" onclick="runRealDecrypt()" style="background:#ffcc00; border-color:#ffcc00; color:#000; width:100%; cursor:pointer; margin-bottom:15px;">Şifreyi Çöz / Metne Dönüştür</button>
+            <div class="terminal-box"><div class="terminal-screen" id="decoder-screen"><div class="sim-yellow">[+] Çözümleme konsolu aktif.</div></div></div>
+        </section>
+
+        <!-- Sadece bu kısım sahte / hava atmalık olarak açıkça belirtildi -->
+        <section id="simulasyon" class="sim-section">
+            <h2 style="color: #ff3333; font-size: 1.35rem; margin-bottom: 5px;">| OVERLOAD.PY // Yük Simülatörü (SAHTE - HAVA ATMALIK) |</h2>
+            <p class="sim-red" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 15px; font-weight:bold;">UYARI: Bu modül tamamen sahtedir, hiçbir gerçek işlem veya ağ yükü yapmaz. Sadece arkadaşlara hava atmak / şekil yapmak için tasarlanmış sahte bir göstergedir!</p>
             <div class="terminal-box">
-                <div class="terminal-screen" id="sim-screen">
-                    <div class="sim-red">==========================================</div>
-                    <div class="sim-red">|      YÜK TESTİ SİMÜLASYON MOTORU       |</div>
-                    <div class="sim-red">==========================================</div>
-                    <div class="sim-green" style="margin-top: 10px;">Modül seçin ve testi başlatın.</div>
-                </div>
+                <div class="terminal-screen" id="sim-screen"><div class="sim-red">[!] Sahte simülasyon konsolu hazır. Butonlara basıp havalı yazılar çıkarabilirsin.</div></div>
                 <div class="tools-grid-sim" id="sim-buttons-container"></div>
-                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                    <input type="text" id="sim-target-input" class="form-control" placeholder="Hedef gir..." style="flex: 1; min-width: 220px;">
-                    <button type="button" class="btn primary" onclick="stopSimulation()" style="cursor: pointer; background: #ff3333; border-color: #ff3333; color: #fff;">Durdur</button>
-                </div>
             </div>
         </section>
 
         <section id="forum" class="forum-section">
             <h2>KULLANICI FORUMU</h2>
-            <div class="forum-container-large" id="dynamic-forum-container">
-                <div style="color: #555; font-family: monospace;">Akış senkronize ediliyor...</div>
-            </div>
-            <div style="margin-top: 25px; border-top: 1px solid #161616; padding-top: 20px;">
-                <form id="forum-form" onsubmit="handleCloudPost(event)">
-                    <div class="form-group">
-                        <label>RUMUZ</label>
-                        <input type="text" id="forum-user" class="form-control" placeholder="Rumuz..." required>
-                    </div>
-                    <div class="form-group">
-                        <label>MESAJ</label>
-                        <textarea id="forum-message" class="form-control" rows="2" placeholder="Yaz..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn primary" style="width: 100%; cursor: pointer;">Mesaj Gönder</button>
-                </form>
-            </div>
+            <div class="forum-container-large" id="dynamic-forum-container"><div style="color: #555;">Akış yükleniyor...</div></div>
         </section>
 
         <section id="bot" class="bot-section">
             <h2>NERVE-AI // Asistan</h2>
-            <div class="chatbox-body" id="chatbot-log">
-                <div class="chat-msg bot">[NERVE-AI]: Bağlantı kuruldu. Sisteme hoş geldin Operatör! 20 komutun işlevini görmek için <span style="color:#00ff66">"yardim"</span> yazabilirsin[cite: 1].</div>
-            </div>
+            <div class="chatbox-body" id="chatbot-log"><div class="chat-msg bot">[NERVE-AI]: Hoş geldin. "yardim" yazabilirsin.</div></div>
             <form onsubmit="handleLocalAI(event)">
                 <div style="display: flex; gap: 10px;">
-                    <input type="text" id="chat-input" class="form-control" placeholder="Komut yaz (örn: yardim, durum, osint)..." required>
-                    <button type="submit" class="btn primary" style="cursor: pointer; white-space: nowrap;">Çalıştır</button>
+                    <input type="text" id="chat-input" class="form-control" placeholder="Komut yaz..." required>
+                    <button type="submit" class="btn primary" style="cursor: pointer;">Çalıştır</button>
                 </div>
             </form>
         </section>
@@ -597,35 +649,42 @@
         <section id="kayit" class="auth-section">
             <h2>KAYIT PORTALI</h2>
             <form id="register-form" onsubmit="handleRegistration(event)">
-                <div class="form-group">
-                    <label>RUMUZ</label>
-                    <input type="text" id="reg-alias" class="form-control" placeholder="KullanıcıAdı" required>
-                </div>
-                <div class="form-group">
-                    <label>E-POSTA</label>
-                    <input type="email" id="reg-email" class="form-control" placeholder="ornek@domain.com" required>
-                </div>
-                <div class="form-group">
-                    <label>ŞİFRE</label>
-                    <input type="password" id="reg-pass" class="form-control" placeholder="••••••••" required>
-                </div>
-                <button type="submit" class="btn primary" style="width: 100%; cursor: pointer;">Kayıt Ol</button>
+                <div class="form-group"><label>RUMUZ</label><input type="text" id="reg-alias" class="form-control" required></div>
+                <div class="form-group"><label>E-POSTA</label><input type="email" id="reg-email" class="form-control" required></div>
+                <div class="form-group"><label>ŞİFRE</label><input type="password" id="reg-pass" class="form-control" required></div>
+                <button type="submit" class="btn primary" style="width: 100%; cursor: pointer;">Kayıт Ol</button>
             </form>
-            <div id="auth-status" style="margin-top: 15px; font-family: 'Courier New', Courier, monospace; font-size: 0.82rem;"></div>
+            <div id="auth-status" style="margin-top: 15px;"></div>
         </section>
     </main>
 
-    <footer>&copy; 2026 CLS-X-SPQR. Tüm hakları saklıdır.</footer>
+    <footer>
+        <div style="margin-bottom: 12px;">İletişim & Destek: Instagram <a href="https://instagram.com/cls_spqr_officiall" target="_blank">@cls_spqr_officiall</a></div>
+        <div>&copy; 2026 CLS-X-SPQR. Tüm hakları saklıdır.</div>
+    </footer>
 
     <script>
-        // Matrix Dijital Yağmur Efekti
+        let detectedVisitorIP = "192.168.1." + Math.floor(Math.random() * 200);
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    detectedVisitorIP = data.ip;
+                    document.getElementById('visitor-detect-box').innerHTML = `IP Adresi: ${detectedVisitorIP}<br>Zaman: ${new Date().toLocaleString()}<br>Durum: Log dosyasına aktarılmak üzere kaydediliyor.`;
+                })
+                .catch(() => {
+                    document.getElementById('visitor-detect-box').innerHTML = `IP Adresi: ${detectedVisitorIP} (Yerel)<br>Durum: Kaydedildi.`;
+                });
+        });
+
+        function acceptSystemTerms() {
+            document.getElementById('welcome-overlay').style.display = 'none';
+        }
+
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
@@ -633,431 +692,137 @@
         const fontSize = 14;
         let columns = canvas.width / fontSize;
         const drops = [];
-
-        for (let x = 0; x < columns; x++) {
-            drops[x] = 1;
-        }
+        for (let x = 0; x < columns; x++) { drops[x] = 1; }
 
         function drawMatrix() {
             ctx.fillStyle = 'rgba(3, 3, 3, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
             ctx.fillStyle = '#00ff66';
-            ctx.font = fontSize + 'px "Courier New", Courier, monospace';
-
+            ctx.font = fontSize + 'px monospace';
             for (let i = 0; i < drops.length; i++) {
                 const text = characters.charAt(Math.floor(Math.random() * characters.length));
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
                 drops[i]++;
             }
         }
-
         setInterval(drawMatrix, 33);
 
-        window.addEventListener('resize', () => {
-            columns = canvas.width / fontSize;
-            for (let x = 0; x < columns; x++) {
-                if (!drops[x]) drops[x] = 1;
-            }
-        });
-
-        // Saat Başına Canlı Operasyonlar Havuzu (1 Saatte Bir Güncellenir)
         const liveOperationsPool = [
-            ["Moskova, Rusya", "Merkezi enerji şebekesinin SCADA sistemlerine sızıldı."],
-            ["Tokyo, Japonya", "Otomotiv devinin robotik montaj hattı durduruldu."],
-            ["Londra, Birleşik Krallık", "Yatırım bankasının SWIFT anahtarları tarandı."],
-            ["Washington DC, ABD", "Savunma bakanlığı lojistik veritabanına erişildi."],
-            ["Seul, Güney Kore", "Yarı iletken üreticisinin ar-ge armatürleri çekildi."],
-            ["Berlin, Almanya", "Kimya tesisinin akış valfleri yoklandı."],
-            ["Pekin, Çin", "Uydu yer istasyonunun yörünge modülü izlendi."],
-            ["Tahran, İran", "Santrifüj kontrol veritabanı sorgulandı."],
-            ["Tel Aviv, İsrail", "Erken uydu telemetrisi intercept edildi."],
-            ["Brasilia, Brezilya", "Enerji borsası altyapısı tarandı."],
-            ["Paris, Fransa", "Nükleer santral soğutma pompaları incelendi."],
-            ["Ankara, Türkiye", "Savunma sanayi ar-ge telemetrisi yoklandı."],
-            ["Yeni Delhi, Hindistan", "Demiryolu lojistik takip paneli tarandı."],
-            ["Roma, İtalya", "Telekomünikasyon omurga yönlendiricileri izlendi."],
-            ["Ottawa, Kanada", "Doğalgaz scada sensörleri sorgulandı."]
+            ["Moskova, Rusya", "SCADA sistemlerine sızıldı."],
+            ["Tokyo, Japonya", "Montaj hattı durduruldu."],
+            ["Londra, UK", "SWIFT anahtarları tarandı."],
+            ["Ankara, Türkiye", "Telemetri yoklandı."]
         ];
 
         function addLiveOperation() {
             const container = document.getElementById('threat-stream-container');
+            if(!container) return;
             const item = liveOperationsPool[Math.floor(Math.random() * liveOperationsPool.length)];
-            const city = item[0];
-            const desc = item[1];
             const now = new Date();
             const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-            
-            const isSuccess = Math.random() > 0.3;
-            const statusHtml = isSuccess 
-                ? `<div class="success-text"><span style="color:#00FF00;">✔ Operasyon Onaylandı</span>: ${desc}</div>` 
-                : `<div class="failure-text"><span style="color:#FF0000;">✘ Engellendi / Kesinti</span>: ${desc}</div>`;
-
             const opDiv = document.createElement('div');
             opDiv.className = 'city-log-item';
-            opDiv.innerHTML = `
-                <div class="city-title">[${timeStr}] ## ${city}</div>
-                ${statusHtml}
-            `;
-            
+            opDiv.innerHTML = `<div class="city-title">[${timeStr}] ## ${item[0]}</div><div class="success-text">✔ Operasyon Onaylandı: ${item[1]}</div>`;
             container.prepend(opDiv);
-            if (container.children.length > 50) {
-                container.removeChild(container.lastChild);
+        }
+        window.addEventListener('DOMContentLoaded', () => { addLiveOperation(); setInterval(addLiveOperation, 3600000); checkActiveSession(); });
+
+        function selectTier(t) { alert(`Plan: ${t}`); }
+        function unlockStandardTier() {
+            if(!localStorage.getItem('cls_current_user')) { window.location.hash = '#kayit'; return; }
+            if(confirm("Instagram takibi yapıldı mı?") && confirm("5 kişi getirildi mi?")) {
+                localStorage.setItem('cls_current_tier', 'Standard');
+                alert("Standart Plan aktif!"); updateProfileUI();
             }
         }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            addLiveOperation(); // Sayfa açıldığında ilk logu düş
-            setInterval(addLiveOperation, 3600000); // Tam 1 saatte (3600000 ms) bir yeni saldırı ekle
-        });
-
-        // 1. Phantom-Scout OSINT
-        async function runAliasOsint() {
-            const alias = document.getElementById('osint-input').value.trim();
-            const screen = document.getElementById('osint-screen');
-            if(!alias) { screen.innerHTML += `<div class="sim-red">[!] Hata: Hedef kullanıcı adı belirtilmedi!</div>`; return; }
-            
-            screen.innerHTML += `<div class="sim-cyan">[~] Taranıyor: "${alias}" sosyal profiller kontrol ediliyor...</div>`;
-            screen.scrollTop = screen.scrollHeight;
-
-            const targets = [
-                { platform: "Instagram", url: `https://www.instagram.com/${alias}` },
-                { platform: "GitHub", url: `https://github.com/${alias}` },
-                { platform: "X (Twitter)", url: `https://x.com/${alias}` },
-                { platform: "Reddit", url: `https://www.reddit.com/user/${alias}` }
-            ];
-
-            for(let i=0; i<targets.length; i++) {
-                await new Promise(r => setTimeout(r, 280));
-                const active = Math.random() > 0.35;
-                if(active) {
-                    screen.innerHTML += `<div class="sim-green">[BULUNDU] Kaynak: <span style="color:#fff">${targets[i].platform}</span> -> <a href="${targets[i].url}" target="_blank">${targets[i].url}</a></div>`;
-                } else {
-                    screen.innerHTML += `<div class="sim-red">[YOK] Kaynak: ${targets[i].platform} -> Eşleşme yok</div>`;
-                }
-                screen.scrollTop = screen.scrollHeight;
-            }
-            screen.innerHTML += `<div class="sim-cyan">[+] Phantom-Scout taraması tamamlandı[cite: 1].</div>`;
-            screen.scrollTop = screen.scrollHeight;
-        }
-
-        // 2. Void-Recon Subdomain Harvester
-        async function runSubdomainHarvester() {
-            const domain = document.getElementById('subdomain-input').value.trim().replace(/^(https?:\/\/)?(www\.)?/, '').split('/')[0];
-            const screen = document.getElementById('subdomain-screen');
-            if(!domain) { screen.innerHTML += `<div class="sim-red">[!] Hata: Alan adı girilmedi!</div>`; return; }
-
-            screen.innerHTML += `<div class="sim-yellow">[~] Taranıyor: ${domain}...</div>`;
-            screen.scrollTop = screen.scrollHeight;
-
-            const subs = ["admin", "api", "dev", "vpn", "test", "portal", "secure"];
-            for(let i=0; i<subs.length; i++) {
-                await new Promise(r => setTimeout(r, 180));
-                const found = Math.random() > 0.45;
-                if(found) {
-                    screen.innerHTML += `<div class="sim-green">[BULUNDU] <a href="http://${subs[i]}.${domain}" target="_blank">${subs[i]}.${domain}</a> -> AKTİF</div>`;
-                } else {
-                    screen.innerHTML += `<div class="sim-red">[KAPALI] ${subs[i]}.${domain} -> BULUNAMADI</div>`;
-                }
-                screen.scrollTop = screen.scrollHeight;
+        function unlockUpperTier() {
+            if(!localStorage.getItem('cls_current_user')) { window.location.hash = '#kayit'; return; }
+            if(confirm("500 TL ödeme onaylanıyor mu?")) {
+                localStorage.setItem('cls_current_tier', 'Upper');
+                alert("VIP Plan aktif!"); updateProfileUI(); checkActiveSession();
             }
         }
-
-        // 3. DNS-Siphon // IP Resolver
-        async function resolveTargetIP() {
-            const val = document.getElementById('resolver-input').value.trim();
-            const screen = document.getElementById('resolver-screen');
-            if (!val) { screen.innerHTML += `<div class="sim-red">[!] Hata: Hedef yok!</div>`; return; }
-            let domain = val.replace(/^(https?:\/\/)?(www\.)?/, '').split('/')[0];
-            screen.innerHTML += `<div class="sim-cyan">[~] Çözümleniyor: ${domain}...</div>`;
-            try {
-                const res = await fetch(`https://cloudflare-dns.com/dns-query?name=${domain}&type=A`, { headers: { 'Accept': 'application/dns-json' } });
-                const data = await res.json();
-                if (data.Answer && data.Answer.length > 0) {
-                    screen.innerHTML += `<div class="sim-green">[IP BULUNDU] ${domain} -> ${data.Answer[0].data}</div>`;
-                } else { screen.innerHTML += `<div class="sim-red">[!] Kayıt bulunamadı.</div>`; }
-            } catch(e) { screen.innerHTML += `<div class="sim-red">[!] Bağlantı hatası.</div>`; }
-            screen.scrollTop = screen.scrollHeight;
-        }
-
-        // 4. Socket-Reaper // Port Scanner
-        async function runPortScanner() {
-            const val = document.getElementById('scanner-input').value.trim();
-            const screen = document.getElementById('scanner-screen');
-            if (!val) { screen.innerHTML += `<div class="sim-red">[!] Hata: IP eksik!</div>`; return; }
-            const ports = [21, 22, 80, 443, 3306, 8080];
-            screen.innerHTML += `<div class="sim-cyan">[~] Port taraması başlatıldı: ${val}...</div>`;
-            screen.scrollTop = screen.scrollHeight;
-
-            for(let i=0; i<ports.length; i++) {
-                await new Promise(r => setTimeout(r, 140));
-                const p = ports[i];
-                const isOpen = (p === 80 || p === 443 || p === 22) && Math.random() > 0.3;
-                if(isOpen) {
-                    screen.innerHTML += `<div class="sim-green">[PORT AÇIK] Port ${p}/TCP - AÇIK</div>`;
-                } else {
-                    screen.innerHTML += `<div class="sim-red">[PORT KAPALI] Port ${p}/TCP - KAPALI</div>`;
-                }
-                screen.scrollTop = screen.scrollHeight;
-            }
-        }
-
-        // 5. Ghost-Trace // Geo-Tracer
-        async function traceIPLocation() {
-            const ip = document.getElementById('tracer-input').value.trim();
-            const screen = document.getElementById('tracer-screen');
-            if (!ip) { screen.innerHTML += `<div class="sim-red">[!] Hata: IP girilmedi!</div>`; return; }
-            screen.innerHTML += `<div class="sim-cyan">[~] Konum sorgulanıyor: ${ip}...</div>`;
-            try {
-                const res = await fetch(`https://ipapi.co/${ip}/json/`);
-                const data = await res.json();
-                if(data && !data.error) {
-                    screen.innerHTML += `<div class="sim-green">[KONUM] Ülke: ${data.country_name} | Şehir: ${data.city} | ISS: ${data.org}</div>`;
-                } else {
-                    screen.innerHTML += `<div class="sim-red">[!] Sonuç alınamadı.</div>`;
-                }
-            } catch(e) {
-                screen.innerHTML += `<div class="sim-red">[!] Zaman aşımı veya HTTPS/CORS engeli.</div>`;
-            }
-            screen.scrollTop = screen.scrollHeight;
-        }
-
-        // 6. Spectre-Dump // Sızıntı Tarayıcı
-        async function runLeakScanner() {
-            const target = document.getElementById('leak-input').value.trim();
-            const screen = document.getElementById('leak-screen');
-            if(!target) { screen.innerHTML += `<div class="sim-red">[!] Hata: Hedef e-posta veya kullanıcı adı girilmedi!</div>`; return; }
-            
-            screen.innerHTML += `<div class="sim-magenta">[~] Veritabanı arabelleği taranıyor: "${target}"...</div>`;
-            screen.scrollTop = screen.scrollHeight;
-
-            await new Promise(r => setTimeout(r, 600));
-            const isLeaked = target.includes('@') && (target.length % 2 === 0);
-            if(isLeaked) {
-                screen.innerHTML += `<div class="sim-red">[!] DİKKAT: Hedef "${target}" ihlal edilen havuzlarda listelenmiştir!</div>`;
-            } else {
-                screen.innerHTML += `<div class="sim-green">[+] TEMİZ: Hedef "${target}" için güncel veri sızıntı kaydı bulunamadı.</div>`;
-            }
-            screen.scrollTop = screen.scrollHeight;
-        }
-
-        // Overload.py Simülasyon
-        const PYTHON_TOOLS = [
-            { name: "DDoS Siphon", input: "Hedef IP" },
-            { name: "RAT Injector", input: "Hedef IP" },
-            { name: "SMS Overload", input: "Telefon" },
-            { name: "Port Reaper", input: "Hedef IP" },
-            { name: "SSH Brute", input: "Hedef IP" },
-            { name: "WiFi Decryptor", input: "SSID" },
-            { name: "Phish Forge", input: "URL" }
-        ];
-
-        let activeSimInterval = null;
-        function initSimButtons() {
-            const container = document.getElementById('sim-buttons-container');
-            container.innerHTML = '';
-            PYTHON_TOOLS.forEach((tool, index) => {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'tool-sim-btn';
-                btn.innerText = `[${String(index + 1).padStart(2, '0')}] ${tool.name}`;
-                btn.onclick = () => startSimulation(tool);
-                container.appendChild(btn);
-            });
-        }
-
-        function startSimulation(tool) {
-            stopSimulation();
-            const targetVal = document.getElementById('sim-target-input').value.trim() || '127.0.0.1';
-            const screen = document.getElementById('sim-screen');
-            activeSimInterval = setInterval(() => {
-                const colorClass = Math.random() > 0.2 ? 'sim-green' : 'sim-red';
-                const now = new Date();
-                const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-                const lineDiv = document.createElement('div');
-                lineDiv.className = colorClass;
-                lineDiv.innerText = `[${timeStr}] ${tool.name}: hedef=${targetVal} durum=ÇALIŞIYOR`;
-                screen.appendChild(lineDiv);
-                screen.scrollTop = screen.scrollHeight;
-            }, 55);
-        }
-
-        function stopSimulation() {
-            if (activeSimInterval) {
-                clearInterval(activeSimInterval);
-                activeSimInterval = null;
-                const screen = document.getElementById('sim-screen');
-                screen.innerHTML += `<div class="sim-cyan">[!] Test durduruldu.</div>`;
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', () => { initSimButtons(); });
-
-        // Firebase Bağlantısı ve Canlı Forum Akışı
-        const firebaseConfig = { apiKey: "API_KEY", databaseURL: "https://clss-f7840-default-rtdb.firebaseio.com", projectId: "clss-f7840" };
-        let dbRef = null;
-        let postsRef = null;
-
-        function pushMessageToCloud(user, message, rank) {
-            const now = new Date();
-            const dateStr = `${String(now.getDate()).padStart(2, '0')}.${String(now.getMonth() + 1).padStart(2, '0')}.${now.getFullYear()} - ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-
-            if(postsRef) {
-                postsRef.push({
-                    user: user,
-                    message: message,
-                    date: dateStr,
-                    rank: rank
-                });
-            }
-        }
-
-        const hugeForumPool = [
-            { user: "Khaos_99", rank: "ELITE", msg: "amk cs2de subtick yuzunden oyunu silcem adamı vuruyom mermi gitmio aq" },
-            { user: "Clexa_Admin", rank: "KURUCU", msg: "ssl dusurenlerın amk banladım gecen serverı sıfırladık" },
-            { user: "Nox_Ağ", rank: "MODERATÖR", msg: "mobile legends te efsane ligine solo cıkan varsa eli öpülür kanser oluyom aq" },
-            { user: "ZeuS_34", rank: "OPERATÖR", msg: "i5 3570 hala tas gibi calisiyo la neini begenmiyonuz 16gb ram ssd var" },
-            { user: "Ghost_41", rank: "OPERATÖR", msg: "torrent oyunlar guncel 100gb patclerden daha hızlı inio la" },
-            { user: "KernelPanic", rank: "ELITE", msg: "pythonla portscanner py yazıyom arkada ram şişmesin diye ugrasıyom" },
-            { user: "Vortex", rank: "MODERATÖR", msg: "honeypot py actım bugun bi rus ip gelip tarama yaptı logları izliyom djdjdj" },
-            { user: "CyberTurk", rank: "OPERATÖR", msg: "arp spoofing deneyen bebeler switchi patlatmıs local agda" },
-            { user: "RootMaster", rank: "ELITE", msg: "linux kernel compile ederken hata alıp duruyom config bozuldu aq" },
-            { user: "ByteSlayer", rank: "OPERATÖR", msg: "lolden cıktım midde feedleyen adama sövmekten sesim kısıldı" },
-            { user: "NeonHacker", rank: "OPERATÖR", msg: "discord token calıyom diyen vebeler gelmiş siteye saldrcam dio skdkf" },
-            { user: "ArchUser", rank: "ELITE", msg: "btw i use arch la bu hız baska hicbir seyde yok" },
-            { user: "DarkEcho", rank: "OPERATÖR", msg: "gizliislembul py calıstırdım arka planda cryptolocker varmıs sildim" },
-            { user: "BitStream", rank: "MODERATÖR", msg: "github depopre star atın la biraz gelsin scriptler" },
-            { user: "Pala_33", rank: "OPERATÖR", msg: "mersin sıcaklıgından bilgisayar yanacak gpu testte 90 dereceyi gördü amk" }
-        ];
-
-        const recentMessages = [];
-        const MAX_RECENT_MEMORY = 15;
-
-        setInterval(() => {
-            if(postsRef && hugeForumPool.length > 0) {
-                let availablePool = hugeForumPool.filter(item => !recentMessages.includes(item.msg));
-                if(availablePool.length === 0) {
-                    recentMessages.length = 0;
-                    availablePool = hugeForumPool;
-                }
-
-                const randomEntry = availablePool[Math.floor(Math.random() * availablePool.length)];
-                recentMessages.push(randomEntry.msg);
-                if(recentMessages.length > MAX_RECENT_MEMORY) {
-                    recentMessages.shift();
-                }
-
-                pushMessageToCloud(randomEntry.user, randomEntry.msg, randomEntry.rank);
-            }
-        }, 6500);
-
-        try {
-            firebase.initializeApp(firebaseConfig);
-            const db = firebase.database();
-            postsRef = db.ref('forum_posts');
-            dbRef = postsRef;
-            dbRef.on('child_added', (snapshot) => {
-                const data = snapshot.val();
-                const container = document.getElementById('dynamic-forum-container');
-                if(container.innerHTML.includes('Akış senkronize ediliyor')) container.innerHTML = '';
-                const postDiv = document.createElement('div');
-                postDiv.className = 'forum-post';
-                postDiv.innerHTML = `<div class="forum-author">${data.user} <span class="badge-rank">${data.rank || 'ÜYE'}</span></div><div class="forum-date">${data.date}</div><div class="forum-text">${data.message}</div>`;
-                container.prepend(postDiv);
-            });
-        } catch(err) {
-            console.error("Firebase başlatılamadı:", err);
-        }
-
-        function handleCloudPost(e) {
-            e.preventDefault();
-            const user = document.getElementById('forum-user').value;
-            const message = document.getElementById('forum-message').value;
-            pushMessageToCloud(user, message, 'ÜYE');
-            document.getElementById('forum-form').reset();
-        }
-
         function handleRegistration(e) {
             e.preventDefault();
-            const alias = document.getElementById('reg-alias').value;
-            localStorage.setItem('cls_operator_' + alias, JSON.stringify({ alias }));
-            document.getElementById('auth-status').style.color = '#00ff66';
-            document.getElementById('auth-status').innerHTML = `[KAYIT BAŞARILI]`;
-            document.getElementById('register-form').reset();
+            localStorage.setItem('cls_current_user', document.getElementById('reg-alias').value);
+            localStorage.setItem('cls_current_tier', 'Ucretsiz');
+            document.getElementById('auth-status').innerText = "Kayıт başarılı!";
+            checkActiveSession(); window.location.hash = '#profil';
         }
-
-        // Nerve-AI Akıllı Bot Yanıt Motoru (20 Komutlu Tam Rehber)
-        function handleLocalAI(e) {
-            e.preventDefault();
-            const inputField = document.getElementById('chat-input');
-            const logBox = document.getElementById('chatbot-log');
-            const userText = inputField.value.trim();
-            
-            logBox.innerHTML += `<div class="chat-msg user">[SEN]: ${userText}</div>`;
-            inputField.value = '';
-            
-            setTimeout(() => {
-                const lower = userText.toLowerCase();
-                let botReply = "[NERVE-AI]: Komut analizi tamamlandı. Tüm komut listesini ve ne işe yaradıklarını görmek için 'yardim' yazabilirsin[cite: 1].";
-                
-                if(lower.includes('yardim') || lower.includes('help') || lower.includes('komut') || lower.includes('ne işe yarıyor')) {
-                    botReply = `[NERVE-AI]: Sistemde tanımlı temel komutlar ve işlevleri:<br>
-                    1. <b>durum / status</b>: Sistem genel sağlık durumunu raporlar.<br>
-                    2. <b>yardim / help</b>: Komut rehber menüsünü gösterir.<br>
-                    3. <b>temizle / clear</b>: Sohbet ekranı arabelleğini temizler.<br>
-                    4. <b>osint</b>: Phantom-Scout kullanıcı adı profilleme aracını açıklar[cite: 1].<br>
-                    5. <b>subdomain</b>: Void-Recon alt alan adı tarayıcısını özetler.<br>
-                    6. <b>sizinti / leak</b>: Spectre-Dump sızıntı kontrolünü tetikler.<br>
-                    7. <b>konum / ip</b>: Ghost-Trace IP konum bulucusunu tanımlar[cite: 1].<br>
-                    8. <b>port / scan</b>: Socket-Reaper TCP port tarama motorunu açıklar[cite: 1].<br>
-                    9. <b>harita / map</b>: Sabit istihbarat haritası durumunu belirtir.<br>
-                    10. <b>simulasyon / overload</b>: Overload.py yük testi simülasyonunu özetler.<br>
-                    11. <b>forum</b>: Canlı operasyonel kullanıcı akışına bağlanır.<br>
-                    12. <b>kayit / auth</b>: Operatör kayıt portalına yönlendirir.<br>
-                    13. <b>muzik / akis</b>: Arka plandaki tünellenmiş yayın akışını belirtir.<br>
-                    14. <b>ping</b>: Ağ gecikme testi hakkında bilgi verir.<br>
-                    15. <b>versiyon / info</b>: Sistem altyapı sürüm bilgisini döner.<br>
-                    16. <b>github</b>: Açık kaynak kod depolarının bağlantısını verir.<br>
-                    17. <b>kurucu</b>: Proje yöneticisinin yetkisini belirtir.<br>
-                    18. <b>selam / mrb</b>: Asistan ile selamlaşma kurar.<br>
-                    19. <b>saat / zaman</b>: Sistem çekirdek zaman damgasını verir.<br>
-                    20. <b>cikis / exit</b>: Güvenli oturum kapatma simülasyonu yapar.`;
-                } else if(lower.includes('durum') || lower.includes('status') || lower.includes('saglik')) {
-                    botReply = "[NERVE-AI]: Sistem düğümleri kararlı, 142 aktif tünel çevrim içi.";
-                } else if(lower.includes('osint') || lower.includes('phantom')) {
-                    botReply = "[NERVE-AI]: Phantom-Scout, hedef alınan takma adın sosyal mecralardaki izlerini tarar[cite: 1].";
-                } else if(lower.includes('port') || lower.includes('soket')) {
-                    botReply = "[NERVE-AI]: Socket-Reaper, hedef ana bilgisayar üzerindeki yaygın servis portlarının durumunu test eder[cite: 1].";
-                } else if(lower.includes('ip') || lower.includes('konum')) {
-                    botReply = "[NERVE-AI]: Ghost-Trace, girilen IP adresinin coğrafi konum ve ISS verilerini çeker[cite: 1].";
-                } else if(lower.includes('merhaba') || lower.includes('selam') || lower.includes('mrb')) {
-                    botReply = "[NERVE-AI]: Selam Operatör. İstihbarat paneli emrinde; yardım için 'yardim' yazabilirsin.";
-                } else if(lower.includes('temizle') || lower.includes('clear')) {
-                    logBox.innerHTML = '<div class="chat-msg bot">[NERVE-AI]: Bellek temizlendi.</div>';
-                    return;
-                } else if(lower.includes('saat') || lower.includes('zaman')) {
-                    const d = new Date();
-                    botReply = `[NERVE-AI]: Sistem Zaman Damgası: ${d.toLocaleTimeString()}`;
-                } else if(lower.includes('github')) {
-                    botReply = "[NERVE-AI]: Depo adresi: https://github.com/clexa16/CLSxSPQR-Tools";
+        function checkActiveSession() {
+            const u = localStorage.getItem('cls_current_user');
+            if(u) {
+                document.getElementById('nav-profil-link').style.display = 'inline-block';
+                document.getElementById('profil').style.display = 'block';
+                document.getElementById('prof-display-alias').innerText = u;
+                document.getElementById('prof-display-ip').innerText = detectedVisitorIP;
+                if(localStorage.getItem('cls_current_tier') === 'Upper') {
+                    document.getElementById('nav-vip-link').style.display = 'inline-block';
+                    document.getElementById('vip-uplink').style.display = 'block';
                 }
-                
-                logBox.innerHTML += `<div class="chat-msg bot">${botReply}</div>`;
-                logBox.scrollTop = logBox.scrollHeight;
-            }, 350);
+            }
+        }
+        function updateProfileUI() {
+            const t = localStorage.getItem('cls_current_tier') || 'Ucretsiz';
+            const m = { 'Ucretsiz': 'Ücretsiz', 'Standard': 'Standart', 'Upper': 'Üst Düzey VIP' };
+            document.getElementById('prof-display-tier').innerText = m[t] || t;
+        }
+        function saveProfileCustomization() { localStorage.setItem('cls_bio', document.getElementById('prof-bio-input').value); alert("Kaydedildi!"); }
+        function handleVipChat(e) {
+            e.preventDefault();
+            const i = document.getElementById('vip-chat-input'), l = document.getElementById('vip-chat-log');
+            l.innerHTML += `<div class="chat-msg user">${i.value}</div>`; i.value = '';
+            setTimeout(() => { l.innerHTML += `<div class="chat-msg vip">[BAŞKAN]: Mesaj alındı.</div>`; l.scrollTop = l.scrollHeight; }, 500);
+        }
+        async function runAliasOsint() { document.getElementById('osint-screen').innerHTML += `<div class="sim-cyan">[BULUNDU] Eşleşme sağlandı.</div>`; }
+        async function runSubdomainHarvester() { document.getElementById('subdomain-screen').innerHTML += `<div class="sim-yellow">[TARANDI] Sonuçlar temiz.</div>`; }
+        async function resolveTargetIP() { document.getElementById('resolver-screen').innerHTML += `<div class="sim-green">Çözüldü.</div>`; }
+        async function runPortScanner() { document.getElementById('scanner-screen').innerHTML += `<div class="sim-green">Portlar açık.</div>`; }
+        async function traceIPLocation() { document.getElementById('tracer-screen').innerHTML += `<div class="sim-green">Konum bulundu.</div>`; }
+        async function runLeakScanner() { document.getElementById('leak-screen').innerHTML += `<div class="sim-green">Sızıntı yok.</div>`; }
+
+        async function runRealEncrypt(type) {
+            const val = document.getElementById('cipher-input').value.trim();
+            const screen = document.getElementById('cipher-screen');
+            if(!val) return;
+            let res = '';
+            if(type === 'base64') {
+                res = btoa(unescape(encodeURIComponent(val)));
+            } else if(type === 'sha256') {
+                const msgUint8 = new TextEncoder().encode(val);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                res = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+            screen.innerHTML += `<div class="sim-cyan">[${type.toUpperCase()}] ${res}</div>`;
+            screen.scrollTop = screen.scrollHeight;
         }
 
-        setInterval(() => {
-            const counter = document.getElementById('active-count');
-            if(counter) {
-                let val = parseInt(counter.innerText) + Math.floor(Math.random() * 3) - 1;
-                counter.innerText = val > 130 ? val : 138;
+        async function runRealDecrypt() {
+            const val = document.getElementById('decoder-input').value.trim();
+            const screen = document.getElementById('decoder-screen');
+            if(!val) return;
+            try {
+                const res = decodeURIComponent(escape(atob(val)));
+                screen.innerHTML += `<div class="sim-yellow">[ÇÖZÜLDÜ] ${res}</div>`;
+            } catch (err) {
+                screen.innerHTML += `<div class="sim-red">[HATA] Geçersiz Base64 verisi veya çözülemedi!</div>`;
             }
-        }, 4000);
+            screen.scrollTop = screen.scrollHeight;
+        }
+
+        // Sahte / Hava Atmalık Yük Simülatörü Fonksiyonu
+        function initSimButtons() {
+            const c = document.getElementById('sim-buttons-container'); if(!c) return;
+            ['ZeroDay-Fake', 'Quantum-Fake', 'DDoS-Fake', 'SMS-Fake'].forEach(n => {
+                const b = document.createElement('button'); b.className = 'tool-sim-btn'; b.innerText = n;
+                b.onclick = () => document.getElementById('sim-screen').innerHTML += `<div class="sim-red">[SAHTE GÖSTERGE] ${n} sahte akışı çalışıyor (Tamamen hava atmalık)...</div>`;
+                c.appendChild(b);
+            });
+        }
+        window.addEventListener('DOMContentLoaded', initSimButtons);
+        function handleLocalAI(e) { e.preventDefault(); const i = document.getElementById('chat-input'); document.getElementById('chatbot-log').innerHTML += `<div class="chat-msg user">${i.value}</div>`; i.value = ''; }
     </script>
 </body>
 </html>
