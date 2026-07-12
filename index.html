@@ -483,12 +483,12 @@
                 <div class="tier-card upper">
                     <div>
                         <h3>ÜST DÜZEY PLAN (VIP)</h3>
-                        <div class="tier-price">500 ₺ / Ay</div>
+                        <div class="tier-price">1300 ₺ / Ay</div>
                         <div class="tier-desc">
                             <strong>Özellikler:</strong> Başkan ve yardımcılarla doğrudan şifreli muhabbet hattı, özel VIP kripto anahtarları ve öncelikli tünel erişimi.
                         </div>
                     </div>
-                    <button class="btn primary" onclick="unlockUpperTier()" style="background:#ff00ff; border-color:#ff00ff; color:#fff; width:100%; cursor:pointer;">Aylık 500 TL ile Yükselt</button>
+                    <button class="btn primary" onclick="unlockUpperTier()" style="background:#ff00ff; border-color:#ff00ff; color:#fff; width:100%; cursor:pointer;">Aylık 1300 TL ile Yükselt</button>
                 </div>
             </div>
         </section>
@@ -701,7 +701,7 @@
         }
         function unlockUpperTier() {
             if(!localStorage.getItem('cls_current_user')) { window.location.hash = '#kayit'; return; }
-            if(confirm("500 TL ödeme onaylanıyor mu?")) {
+            if(confirm("1300 TL ödeme onaylanıyor mu?")) {
                 localStorage.setItem('cls_current_tier', 'Upper');
                 alert("VIP Plan aktif!"); updateProfileUI(); checkActiveSession();
             }
@@ -768,7 +768,7 @@
             if(!val) return;
             try {
                 const res = decodeURIComponent(escape(atob(val)));
-                screen.innerHTML += `<div class="sim-yellow">[ÇÖZÜLDÜ] ${res}</div>`;
+                screen.innerHTML += `<div class="sim-yellow">[ÇÖЗÜLDÜ] ${res}</div>`;
             } catch (err) {
                 screen.innerHTML += `<div class="sim-red">[HATA] Geçersiz Base64 verisi veya çözülemedi!</div>`;
             }
