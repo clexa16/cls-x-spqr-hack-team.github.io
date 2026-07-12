@@ -231,7 +231,7 @@
             transform: translateY(-3px);
         }
 
-        .info-section, .tools-section, .forum-section, .auth-section, .bot-section, .sim-section, .resolver-section, .scanner-section, .tracer-section, .leak-section, .osint-section, .subdomain-section, .map-section, .membership-section, .profile-section, .vip-uplink-section, .cipher-section, .decoder-section {
+        .info-section, .tools-section, .forum-section, .auth-section, .bot-section, .resolver-section, .scanner-section, .tracer-section, .leak-section, .osint-section, .subdomain-section, .map-section, .membership-section, .profile-section, .vip-uplink-section, .cipher-section, .decoder-section {
             background-color: rgba(8, 8, 8, 0.92);
             border: 1px solid #1a1a1a;
             border-radius: 6px;
@@ -295,32 +295,6 @@
         .sim-cyan { color: #00e5ff; }
         .sim-magenta { color: #ff00ff; }
         .sim-yellow { color: #ffcc00; }
-
-        .tools-grid-sim {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 10px;
-            max-height: 250px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-            padding-right: 5px;
-        }
-        .tool-sim-btn {
-            background: #0e0e0e;
-            border: 1px solid #1d1d1d;
-            color: #bbb;
-            padding: 8px 12px;
-            font-size: 0.72rem;
-            border-radius: 3px;
-            cursor: pointer;
-            text-align: left;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        .tool-sim-btn:hover {
-            border-color: #00ff66;
-            color: #00ff66;
-            background: #141414;
-        }
 
         .membership-grid {
             display: grid;
@@ -464,7 +438,6 @@
             <a href="#resolver">DNS</a>
             <a href="#sifrele">Şifrele</a>
             <a href="#sifreyikir">Şifreyi Kır</a>
-            <a href="#simulasyon">Overload (Sahte/Hava Atmalık)</a>
             <a href="#forum">Forum</a>
             <a href="#bot">Nerve-AI</a>
         </nav>
@@ -618,16 +591,6 @@
             <div class="form-group"><label>ŞİFRELİ / ENCODED VERİ</label><input type="text" id="decoder-input" class="form-control" placeholder="Şifreli veriyi gir..."></div>
             <button type="button" class="btn primary" onclick="runRealDecrypt()" style="background:#ffcc00; border-color:#ffcc00; color:#000; width:100%; cursor:pointer; margin-bottom:15px;">Şifreyi Çöz / Metne Dönüştür</button>
             <div class="terminal-box"><div class="terminal-screen" id="decoder-screen"><div class="sim-yellow">[+] Çözümleme konsolu aktif.</div></div></div>
-        </section>
-
-        <!-- Sadece bu kısım sahte / hava atmalık olarak açıkça belirtildi -->
-        <section id="simulasyon" class="sim-section">
-            <h2 style="color: #ff3333; font-size: 1.35rem; margin-bottom: 5px;">| OVERLOAD.PY // Yük Simülatörü (SAHTE - HAVA ATMALIK) |</h2>
-            <p class="sim-red" style="font-family: 'Courier New', Courier, monospace; margin-bottom: 15px; font-weight:bold;">UYARI: Bu modül tamamen sahtedir, hiçbir gerçek işlem veya ağ yükü yapmaz. Sadece arkadaşlara hava atmak / şekil yapmak için tasarlanmış sahte bir göstergedir!</p>
-            <div class="terminal-box">
-                <div class="terminal-screen" id="sim-screen"><div class="sim-red">[!] Sahte simülasyon konsolu hazır. Butonlara basıp havalı yazılar çıkarabilirsin.</div></div>
-                <div class="tools-grid-sim" id="sim-buttons-container"></div>
-            </div>
         </section>
 
         <section id="forum" class="forum-section">
@@ -812,16 +775,6 @@
             screen.scrollTop = screen.scrollHeight;
         }
 
-        // Sahte / Hava Atmalık Yük Simülatörü Fonksiyonu
-        function initSimButtons() {
-            const c = document.getElementById('sim-buttons-container'); if(!c) return;
-            ['ZeroDay-Fake', 'Quantum-Fake', 'DDoS-Fake', 'SMS-Fake'].forEach(n => {
-                const b = document.createElement('button'); b.className = 'tool-sim-btn'; b.innerText = n;
-                b.onclick = () => document.getElementById('sim-screen').innerHTML += `<div class="sim-red">[SAHTE GÖSTERGE] ${n} sahte akışı çalışıyor (Tamamen hava atmalık)...</div>`;
-                c.appendChild(b);
-            });
-        }
-        window.addEventListener('DOMContentLoaded', initSimButtons);
         function handleLocalAI(e) { e.preventDefault(); const i = document.getElementById('chat-input'); document.getElementById('chatbot-log').innerHTML += `<div class="chat-msg user">${i.value}</div>`; i.value = ''; }
     </script>
 </body>
